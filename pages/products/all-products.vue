@@ -33,7 +33,7 @@
                                 <span class="px-2 py-1 text-xs font-bold text-center text-white bg-blue-700 rounded-lg">
                                     {{ $i18n.locale ===
                                         'ar' ? product.brandAr :
-                                    product.brand }}
+                                        product.brand }}
                                 </span>
                                 <span class="px-2 py-1 text-xs font-bold text-white bg-green-600 rounded-lg">
                                     {{ product.availability }}
@@ -48,7 +48,7 @@
                                 class="block w-full text-sm font-bold text-gray-800 truncate sm:text-base dark:text-gray-200">
                                 {{ $i18n.locale ===
                                     'ar' ? product.titleAr :
-                                product.title }}
+                                    product.title }}
                             </h5>
                             <div class="flex flex-wrap items-center gap-2 mt-2">
                                 <h6 class="text-lg font-bold text-gray-800 sm:text-md dark:text-gray-200">{{
@@ -60,8 +60,9 @@
                             </div>
                             <div class="mt-1 space-y-2">
                                 <div class="flex flex-wrap items-center justify-between">
-                                    <p>{{ $t('dashboard.stock') }} <span class="font-semibold text-green-600 dark:text-green-400">{{
-                                        product.stock }}</span></p>
+                                    <p>{{ $t('dashboard.stock') }} <span
+                                            class="font-semibold text-green-600 dark:text-green-400">{{
+                                                product.stock }}</span></p>
                                 </div>
                             </div>
                         </div>

@@ -200,7 +200,12 @@
     "total_users": "Total Users",
     "top_products": "Top Products",
     "no_products_found": "No Products found",
-    "stock": "Stock:"
+    "stock": "Stock:",
+    "product_title": "Product title",
+    "available_stock": "Available Stock",
+    "original_price": "Original Price",
+    "price_after_discount": "Price after Discount",
+    "discount": "Discount"
   },
   "pagination": {
     "previous": "Previous",

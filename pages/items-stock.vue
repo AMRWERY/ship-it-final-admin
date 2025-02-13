@@ -19,37 +19,37 @@
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Image
+                {{ $t('dashboard.image') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Product Title
+                {{ $t('dashboard.product_title') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Brand
+                {{ $t('dashboard.brand') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Available Stock
+                {{ $t('dashboard.available_stock') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Original Price
+                {{ $t('dashboard.original_price') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Price after Discount
+                {{ $t('dashboard.price_after_discount') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
               <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                Discount
+                {{ $t('dashboard.discount') }}
               </p>
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">

@@ -3,5 +3,6 @@
         "locales"
     ],
     "tailwind-fold.unfoldIfLineSelected": false,
-    "tailwind-fold.foldLengthThreshold": 5
+    "tailwind-fold.foldLengthThreshold": 5,
+    "i18n-ally.keystyle": "nested"
 }
