@@ -18,7 +18,7 @@
           <div class="mt-6 text-center">
             <nuxt-link to="/orders" type="button" class="px-4 py-2 text-white btn-style">{{
               $t('btn.view_details')
-            }}</nuxt-link>
+              }}</nuxt-link>
           </div>
         </div>
 
