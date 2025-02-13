@@ -73,6 +73,14 @@ const logout = async () => {
   }
 };
 
+const route = useRoute()
+
+watch(() => route.path, () => {
+  if (sidebarStore.isSidebarOpen) {
+    sidebarStore.isSidebarOpen = false
+  }
+})
+
 const menuGroups = computed(() => [
   {
     menuItems: [
