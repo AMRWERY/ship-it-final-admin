@@ -20,7 +20,7 @@
           <!-- profile -->
           <tooltip :text="$t('tooltip.profile')" position="bottom">
             <nuxt-link to="/profile" type="button" class="relative flex text-white rounded-full"
-              v-if="isAuthenticated && isAdmin">
+              v-if="isAuthenticated">
               <span class="absolute -inset-1.5" />
               <span class="sr-only">View Profile</span>
               <img src="https://justfields.com/storage/projects/7M5rV059/vector-avatar-02.jpg" alt="profile-img"
@@ -49,7 +49,7 @@
             </nuxt-link>
           </tooltip>
 
-          <nuxt-link to="/login" class="text-neutral-600" v-if="!isAuthenticated && isAdmin">login</nuxt-link>
+          <nuxt-link to="/login" class="text-neutral-600" v-if="!isAuthenticated">login</nuxt-link>
         </div>
       </div>
     </header>
@@ -59,7 +59,6 @@
 <script setup>
 const { toggleSidebar } = useSidebarStore()
 const localeStore = useLocaleStore();
-// const sidebarStore = useSidebarStore()
 
 const { locale } = useI18n();
 
@@ -81,19 +80,8 @@ const updatePageTitle = () => {
   });
 };
 
-// computed(() => {
-//   const storedLocale = localeStore.locale;
-//   setLocale(storedLocale);
-// });
-
 const authStore = useAuthStore();
 const isAuthenticated = computed(() => localStorage.getItem('user'));
-// const isAuthenticated = computed(() => authStore.isAuthenticated);
-
-const isAdmin = computed(() => {
-  const user = authStore.user;
-  return user?.email === 'admin@ship.com' && user?.role === 'admin';
-});
 
 onMounted(() => {
   updatePageTitle()
