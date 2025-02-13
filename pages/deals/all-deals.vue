@@ -70,7 +70,7 @@
                                         <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">Description</h3>
                                         <p class="mt-4 text-sm text-gray-600 dark:text-gray-100">{{
                                             currentDeal?.description
-                                            }}</p>
+                                        }}</p>
                                     </div>
                                 </div>
                             </div>
