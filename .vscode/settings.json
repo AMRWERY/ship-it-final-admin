@@ -1,0 +1,7 @@
+{
+    "i18n-ally.localesPaths": [
+        "locales"
+    ],
+    "tailwind-fold.unfoldIfLineSelected": false,
+    "tailwind-fold.foldLengthThreshold": 5
+}

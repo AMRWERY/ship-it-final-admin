@@ -1,0 +1,25 @@
+/*head*/
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap");
+/*title-font*/
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
+/*test*/
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.head {
+  font-family: "Playwrite AU SA", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.title-font {
+  font-family: "Rubik Vinyl", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.test {
+  font-family: "Pacifico", serif;
+  font-weight: 400;
+  font-style: normal;
+}
