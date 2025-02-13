@@ -1,5 +1,8 @@
   <template>
     <div>
+      <!-- Overlay Component -->
+    <overlay :visible="authStore.isOverlayVisible" />
+    
       <aside
         class="absolute left-0 top-0 z-50 flex h-screen w-[230px] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0"
         :class="{
@@ -57,7 +60,9 @@ onClickOutside(target, () => {
 const logout = async () => {
   try {
     await authStore.logoutUser();
-    navigateTo('/login')
+    setTimeout(() => {
+      navigateTo('/login')
+    }, 3000);
   } catch (err) {
     console.error('Error during logout:', err);
   }
