@@ -36,7 +36,7 @@
         </div>
 
         <div class="px-6 pb-6 mt-auto">
-          <nuxt-link type="button" to="/login" @click="logout"
+          <nuxt-link role="button" to="/login" @click="logout"
             class="block py-2 text-center text-white transition-all duration-300 bg-transparent border-2 border-white rounded-md hover:bg-white hover:text-black">
             {{ $t('btn.logout') }}
           </nuxt-link>
