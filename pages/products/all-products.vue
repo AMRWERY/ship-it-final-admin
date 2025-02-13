@@ -3,14 +3,14 @@
         <!-- breadcrumb component -->
         <breadcrumb />
 
-        <div class="p-4 mx-auto font-sans lg:max-w-6xl md:max-w-4xl">
+        <div class="p-4 mx-auto mt-6 font-sans lg:max-w-6xl md:max-w-4xl">
             <div v-if="loading" class="flex items-center justify-center text-gray-500">
                 <icon name="svg-spinners:bars-scale" class="w-16 h-16 text-gray-500 dark:text-gray-100" />
             </div>
 
             <div v-else-if="productStore.products.length === 0"
                 class="text-lg font-semibold text-center text-gray-500 dark:text-gray-100">
-                No Products found
+                {{ $t('dashboard.no_products_found') }}
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-6" v-else>
@@ -31,7 +31,9 @@
                                     {{ product.discount }}%
                                 </span>
                                 <span class="px-2 py-1 text-xs font-bold text-center text-white bg-blue-700 rounded-lg">
-                                    {{ product.brand }}
+                                    {{ $i18n.locale ===
+                                        'ar' ? product.brandAr :
+                                    product.brand }}
                                 </span>
                                 <span class="px-2 py-1 text-xs font-bold text-white bg-green-600 rounded-lg">
                                     {{ product.availability }}
@@ -44,7 +46,9 @@
                         <div class="flex-1">
                             <h5
                                 class="block w-full text-sm font-bold text-gray-800 truncate sm:text-base dark:text-gray-200">
-                                {{ product.title }}
+                                {{ $i18n.locale ===
+                                    'ar' ? product.titleAr :
+                                product.title }}
                             </h5>
                             <div class="flex flex-wrap items-center gap-2 mt-2">
                                 <h6 class="text-lg font-bold text-gray-800 sm:text-md dark:text-gray-200">{{
@@ -56,10 +60,8 @@
                             </div>
                             <div class="mt-1 space-y-2">
                                 <div class="flex flex-wrap items-center justify-between">
-                                    <p>Stock: <span class="font-semibold text-green-600 dark:text-green-400">{{
+                                    <p>{{ $t('dashboard.stock') }} <span class="font-semibold text-green-600 dark:text-green-400">{{
                                         product.stock }}</span></p>
-                                    <p>Sku: <span class="font-semibold text-green-600 dark:text-green-400">{{
-                                        product.sku }}</span></p>
                                 </div>
                             </div>
                         </div>

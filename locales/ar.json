@@ -198,7 +198,9 @@
     "orders_placed": "الطلبات المقدمة",
     "inventory": "المخزون",
     "total_users": "إجمالي المستخدمين",
-    "top_products": "أفضل المنتجات"
+    "top_products": "أفضل المنتجات",
+    "no_products_found": "لم يتم العثور على منتجات",
+    "stock": "المخزون:"
   },
   "pagination": {
     "previous": "السابق",

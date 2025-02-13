@@ -198,7 +198,9 @@
     "orders_placed": "Orders Placed",
     "inventory": "Inventory",
     "total_users": "Total Users",
-    "top_products": "Top Products"
+    "top_products": "Top Products",
+    "no_products_found": "No Products found",
+    "stock": "Stock:"
   },
   "pagination": {
     "previous": "Previous",
