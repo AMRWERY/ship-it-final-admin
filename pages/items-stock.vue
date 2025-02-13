@@ -83,30 +83,32 @@
               </p>
             </td>
             <td class="p-4 py-5">
-              <p class="block text-sm text-slate-500 dark:text-slate-100">{{ product.title }}</p>
+              <p class="block text-sm text-slate-500 dark:text-slate-100">{{ $i18n.locale ===
+                'ar' ? product.titleAr :
+                product.title }}</p>
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100">{{ product.brand }}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-100">{{ $i18n.locale ===
+                'ar' ? product.brandrA :
+                product.brand }}</p>
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100"><span
                   class="text-lg font-semibold text-green-600 dark:text-green-400">{{ product.stock
-                  }}</span> available</p>
+                  }}</span> {{ $t('dashboard.available') }}</p>
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.originalPrice">{{
-                product.originalPrice }} egp</p>
+                $n(parseFloat(product.originalPrice), 'currency',
+                  currencyLocale) }}</p>
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100">{{ product.discountedPrice }} egp</p>
+              <p class="text-sm text-slate-500 dark:text-slate-100">{{ $n(parseFloat(product.discountedPrice),
+                'currency',
+                currencyLocale)}}</p>
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.discount">{{ product.discount }}%</p>
-            </td>
-            <td class="p-4 py-5">
-              <nuxt-link to="" class="text-sm text-blue-700 dark:text-blue-400">
-                Edit Product
-              </nuxt-link>
             </td>
             <td class="p-4 py-5">
               <tooltip :text="$t('tooltip.delete_item')" position="bottom">
@@ -190,6 +192,9 @@ const deleteProduct = async (productId) => {
     loading.value = false;
   }
 };
+
+//currency composable
+const { currencyLocale } = useCurrencyLocale();
 
 definePageMeta({
   layout: 'dashboard'

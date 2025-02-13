@@ -202,10 +202,11 @@
     "no_products_found": "لم يتم العثور على منتجات",
     "stock": "المخزون:",
     "product_title": "اسم المنتج",
-  "available_stock": "المخزون المتاح",
-  "original_price": "السعر الأصلي",
-  "price_after_discount": "السعر بعد الخصم",
-  "discount": "الخصم"
+    "available_stock": "المخزون المتاح",
+    "original_price": "السعر الأصلي",
+    "price_after_discount": "السعر بعد الخصم",
+    "discount": "الخصم",
+    "available": "متاح"
   },
   "pagination": {
     "previous": "السابق",
