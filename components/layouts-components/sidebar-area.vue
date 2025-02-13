@@ -46,28 +46,23 @@
   </template>
 
 <script setup>
-const target = ref(null)
-
 const sidebarStore = useSidebarStore()
+const authStore = useAuthStore();
+const target = ref(null)
 
 onClickOutside(target, () => {
   sidebarStore.isSidebarOpen = false
 })
 
-const authStore = useAuthStore();
-
 const logout = async () => {
   try {
     await authStore.logoutUser();
-    // setTimeout(() => {
-    //   location.reload();
-    // }, 1000);
   } catch (err) {
     console.error('Error during logout:', err);
   }
 };
 
-const { t } = useI18n()
+// const { t } = useI18n()
 
 const menuGroups = computed(() => [
   {
