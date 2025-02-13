@@ -35,8 +35,8 @@
           <!-- Sidebar Menu -->
         </div>
 
-        <div class="px-6 pb-6 mt-auto">
-          <nuxt-link role="button" to="/login" @click="logout"
+        <div class="px-4 pb-6 mt-auto">
+          <nuxt-link role="button" to="" @click="logout"
             class="block py-2 text-center text-white transition-all duration-300 bg-transparent border-2 border-white rounded-md hover:bg-white hover:text-black">
             {{ $t('btn.logout') }}
           </nuxt-link>
@@ -57,6 +57,7 @@ onClickOutside(target, () => {
 const logout = async () => {
   try {
     await authStore.logoutUser();
+    navigateTo('/login')
   } catch (err) {
     console.error('Error during logout:', err);
   }

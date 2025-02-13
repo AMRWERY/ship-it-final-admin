@@ -7,7 +7,7 @@
           <div class="p-4 space-y-4 rounded-lg shadow-lg sm:p-6 lg:p-8">
             <p class="mb-10 text-2xl font-bold text-center text-gray-800 dark:text-gray-200 sm:text-3xl">{{
               $t('form.sign_in_to_your_account')
-              }}</p>
+            }}</p>
             <div>
               <dynamic-inputs :label="t('form.email')" :placeholder="t('form.enter_your_email')" type="email"
                 name="email" :rules="'required|email'" :required="true" prefixIcon="material-symbols:alternate-email"
@@ -61,13 +61,15 @@ const handleLogin = async () => {
   loading.value = true;
   try {
     await authStore.loginUser(email.value, password.value);
-    navigateTo('/');
     triggerToast({
       title: t('toast.successfully_signed_up'),
       message: t('toast.login_successfully'),
       type: 'success',
       icon: 'mdi-check-circle',
     });
+    setTimeout(() => {
+      navigateTo('/');
+    }, 3000);
   } catch (error) {
     triggerToast({
       title: t('toast.error'),
@@ -82,9 +84,6 @@ const handleLogin = async () => {
 
 onMounted(async () => {
   await authStore.init();
-});
-
-onMounted(() => {
   themeStore.loadTheme();
 });
 
