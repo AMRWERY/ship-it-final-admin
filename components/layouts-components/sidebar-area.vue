@@ -68,8 +68,6 @@ const logout = async () => {
   }
 };
 
-// const { t } = useI18n()
-
 const menuGroups = computed(() => [
   {
     menuItems: [
