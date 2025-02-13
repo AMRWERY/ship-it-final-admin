@@ -59,9 +59,9 @@ const authStore = useAuthStore();
 const logout = async () => {
   try {
     await authStore.logoutUser();
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
+    // setTimeout(() => {
+    //   location.reload();
+    // }, 1000);
   } catch (err) {
     console.error('Error during logout:', err);
   }
