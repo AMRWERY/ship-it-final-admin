@@ -80,7 +80,7 @@ const updatePageTitle = () => {
   });
 };
 
-const authStore = useAuthStore();
+// const authStore = useAuthStore();
 const isAuthenticated = computed(() => localStorage.getItem('user'));
 
 onMounted(() => {
