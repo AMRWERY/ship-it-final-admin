@@ -31,7 +31,6 @@
             <template v-for="menuGroup in menuGroups" :key="menuGroup.name">
               <div>
                 <h3 class="mb-4 text-sm font-medium text-white ms-4">{{ menuGroup.name }}</h3>
-
                 <ul class="mb-6 flex flex-col gap-1.5">
                   <sidebar-item v-for="(menuItem, index) in menuGroup.menuItems" :item="menuItem" :key="index"
                     :index="index" />
