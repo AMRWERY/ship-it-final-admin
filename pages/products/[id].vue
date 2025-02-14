@@ -16,7 +16,9 @@
             <option value="" disabled class="bg-white dark:bg-[#181a1b] text-slate-700 dark:text-slate-200">{{
               $t('form.select_category') }}</option>
             <option v-for="category in categories" :key="category.id" :value="category.id"
-              class="bg-white dark:bg-[#181a1b] text-slate-700 dark:text-slate-200">{{ category.title }}</option>
+              class="bg-white dark:bg-[#181a1b] text-slate-700 dark:text-slate-200">{{ $i18n.locale ===
+                'ar' ? category.titleAr :
+                category.title }}</option>
           </select>
         </div>
 

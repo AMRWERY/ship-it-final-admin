@@ -14,7 +14,9 @@
             <option value="" disabled class="bg-white dark:bg-[#181a1b] text-slate-700 dark:text-slate-200">{{
               $t('form.select_category') }}</option>
             <option v-for="category in categories" :key="category.id" :value="category.id"
-              class="bg-white dark:bg-[#181a1b] text-slate-700 dark:text-slate-200">{{ category.title }}</option>
+              class="bg-white dark:bg-[#181a1b] text-slate-700 dark:text-slate-200">{{ $i18n.locale ===
+                'ar' ? category.titleAr :
+                category.title }}</option>
           </select>
         </div>
 
@@ -85,7 +87,7 @@
         </div>
 
         <div class="mb-4">
-          <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">Product Type</p>
+          <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.product_type') }}</p>
           <div class="grid grid-cols-3 gap-4">
             <label for="new-arrival" class="block mb-2 font-medium text-gray-700 dark:text-gray-200">
               <input type="checkbox" id="new-arrival" name="new-arrival" value="New_Arrival"
@@ -120,7 +122,7 @@
         </div>
 
         <div class="mb-4">
-          <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">Size</p>
+          <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.size') }}</p>
           <div class="grid grid-cols-4 gap-4 md:grid-cols-5 sm:grid-cols-4">
             <label for="size-choice" class="block mb-2 font-medium text-gray-700 dark:text-gray-200">
               <input type="checkbox" id="size-choice" name="size-choice" value="XXS"
@@ -228,7 +230,7 @@
 
         <!-- don't delete it -->
         <div class="mb-4">
-          <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">Color</p>
+          <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.color') }}</p>
           <div class="grid grid-cols-3 gap-4">
             <label for="color-choice" class="block mb-2 font-medium text-gray-700 dark:text-gray-200">
               <input type="checkbox" id="color-choice" name="color-choice" value="Black"
