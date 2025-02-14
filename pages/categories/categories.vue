@@ -30,9 +30,8 @@
         <tbody v-if="categoryStore.paginatedCategories.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <!-- skeleton-loader component -->
-              <skeleton-loader />
-              <!-- <icon name="svg-spinners:blocks-shuffle-3" class="w-24 h-24" /> -->
+              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_categories_found') }}
+              </p>
             </td>
           </tr>
         </tbody>
@@ -68,7 +67,7 @@
         </tbody>
       </table>
 
-      <div class="flex items-center justify-end px-4 py-3 mt-4">
+      <div class="flex items-center justify-end px-4 py-3 mt-4" v-if="categoryStore.paginatedCategories.length > 0">
         <div class="flex mt-3 space-s-1 ms-auto">
           <button @click="categoryStore.changePage(categoryStore.currentPage - 1)"
             :disabled="categoryStore.currentPage === 1"

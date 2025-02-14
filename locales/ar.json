@@ -210,7 +210,7 @@
     "discount": "الخصم",
     "available": "متاح",
     "no_meesages_found": "لا توجد رسائل",
-    "no_users_found": "لايوجد مستخدمون ",
+    "no_users_found": "لا يوجد مستخدمون ",
     "save": "توفير",
     "days": "أيام",
     "hours": "ساعات",
@@ -219,7 +219,9 @@
     "description": "الوصف",
     "color": "اللون",
     "size": "المقاس / الحجم",
-    "upcoming_deals": "العروض القادمة"
+    "upcoming_deals": "العروض القادمة",
+    "no_orders_found": "لا يوجد طلبات",
+    "no_categories_found": "لا توجد فئات"
   },
   "pagination": {
     "previous": "السابق",

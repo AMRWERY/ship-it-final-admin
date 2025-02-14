@@ -219,7 +219,9 @@
     "description": "Description",
     "color": "Color",
     "size": "Size",
-    "upcoming_deals": "Upcoming Deals"
+    "upcoming_deals": "Upcoming Deals",
+    "no_orders_found": "No orders found",
+    "no_categories_found": "No categories found"
   },
   "pagination": {
     "previous": "Previous",

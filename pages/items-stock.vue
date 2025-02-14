@@ -61,8 +61,7 @@
         <tbody v-if="productStore.paginatedProducts.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <!-- skeleton-loader component -->
-              <skeleton-loader />
+              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_products_found') }}</p>
             </td>
           </tr>
         </tbody>
@@ -124,7 +123,7 @@
     </div>
 
     <!-- pagination -->
-    <div class="flex items-center px-4 py-3">
+    <div class="flex items-center px-4 py-3" v-if="productStore.paginatedProducts.length > 0">
       <div class="flex mt-3 space-s-1 ms-auto">
         <button @click="productStore.changePage(productStore.currentPage - 1)"
           :disabled="productStore.currentPage === 1"
