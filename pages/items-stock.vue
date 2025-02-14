@@ -71,6 +71,8 @@
             </th>
             <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
             </th>
+            <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+            </th>
           </tr>
         </thead>
 
@@ -105,7 +107,7 @@
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100">{{ $i18n.locale ===
-                'ar' ? product.brandrA :
+                'ar' ? product.brandAr :
                 product.brand }}</p>
             </td>
             <td class="p-4 py-5">
@@ -114,9 +116,9 @@
                   }}</span> {{ $t('dashboard.available') }}</p>
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.originalPrice">{{
-                $n(parseFloat(product.originalPrice), 'currency',
-                  currencyLocale) }}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-100">
+                {{ product.originalPrice ? $n(parseFloat(product.originalPrice), 'currency', currencyLocale) : '-' }}
+              </p>
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100">{{ $n(parseFloat(product.discountedPrice),
@@ -124,7 +126,13 @@
                 currencyLocale) }}</p>
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.discount">{{ product.discount }}%</p>
+              <p class="text-sm text-slate-500 dark:text-slate-100">
+                {{ product.discount ? product.discount + '%' : '-' }}
+              </p>
+            </td>
+            <td class="p-4 py-5">
+              <nuxt-link to="" role="button" class="text-sm text-blue-700 cursor-pointer dark:text-blue-400">{{
+                $t('btn.edit_product') }}</nuxt-link>
             </td>
             <td class="p-4 py-5">
               <tooltip :text="$t('tooltip.delete_item')" position="bottom">
