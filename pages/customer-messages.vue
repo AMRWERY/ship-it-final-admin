@@ -64,8 +64,7 @@
         <tbody v-if="contactStore.paginatedMessages.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <!-- skeleton-loader component -->
-              <skeleton-loader />
+              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_meesages_found') }}</p>
             </td>
           </tr>
         </tbody>
@@ -110,11 +109,11 @@
         </tbody>
       </table>
 
-      <div class="flex items-center px-4 py-3">
+      <div class="flex items-center px-4 py-3" v-if="contactStore.paginatedMessages.length > 0">
         <div class="flex mt-3 space-s-1 ms-auto">
           <button @click="contactStore.changePage(contactStore.currentPage - 1)"
             :disabled="contactStore.currentPage === 1"
-            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white dark:bg-slate-800 dark:text-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
             {{ $t('pagination.previous') }}
           </button>
           <button v-for="page in contactStore.totalPages" :key="page" @click="contactStore.changePage(page)" :class="{
@@ -126,7 +125,7 @@
           </button>
           <button @click="contactStore.changePage(contactStore.currentPage + 1)"
             :disabled="contactStore.currentPage === contactStore.totalPages"
-            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white dark:bg-slate-800 dark:text-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
             {{ $t('pagination.next') }}
           </button>
         </div>

@@ -208,7 +208,8 @@
     "original_price": "Original Price",
     "price_after_discount": "Price after Discount",
     "discount": "Discount",
-    "available": "available"
+    "available": "available",
+    "no_meesages_found": "No meesages found"
   },
   "pagination": {
     "previous": "Previous",

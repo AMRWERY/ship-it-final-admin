@@ -208,7 +208,8 @@
     "original_price": "السعر الأصلي",
     "price_after_discount": "السعر بعد الخصم",
     "discount": "الخصم",
-    "available": "متاح"
+    "available": "متاح",
+    "no_meesages_found": "لا توجد رسائل"
   },
   "pagination": {
     "previous": "السابق",

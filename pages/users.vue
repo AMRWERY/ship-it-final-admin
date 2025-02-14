@@ -102,7 +102,7 @@
     <div class="flex items-center px-4 py-3">
       <div class="flex mt-3 space-s-1 ms-auto">
         <button @click="userStore.changePage(userStore.currentPage - 1)" :disabled="userStore.currentPage === 1"
-          class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+          class="px-3 py-1 text-sm font-normal transition duration-200 dark:bg-slate-800 dark:text-white bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
           {{ $t('pagination.previous') }}
         </button>
         <button v-for="page in userStore.totalPages" :key="page" @click="userStore.changePage(page)" :class="{
@@ -114,7 +114,7 @@
         </button>
         <button @click="userStore.changePage(userStore.currentPage + 1)"
           :disabled="userStore.currentPage === userStore.totalPages"
-          class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+          class="px-3 py-1 text-sm font-normal transition duration-200 dark:bg-slate-800 dark:text-white bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
           {{ $t('pagination.next') }}
         </button>
       </div>
