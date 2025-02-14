@@ -168,7 +168,6 @@
               }">
                 {{ getStatusTitle(order.statusId)?.status === 'Delivered' ? 'Completed' :
                   getStatusTitle(order.statusId)?.status }}
-                <!-- {{ getStatusTitle(order.statusId)?.status }} -->
               </p>
             </td>
             <td class="p-4 py-5">
@@ -298,36 +297,6 @@ const deleteOrder = (orderId) => {
       }, 3000);
     });
 };
-
-// const deleteOrder = async (orderId) => {
-//   const order = checkoutStore.paginatedOrders.find(o => o.id === orderId);
-//   if (order) {
-//     order.loading = true;
-//   }
-//   try {
-//     await checkoutStore.deleteOrder(orderId);
-//     checkoutStore.paginatedOrders = checkoutStore.paginatedOrders.filter(order => order.id !== orderId);
-//     triggerToast({
-//       title: t('toast.great'),
-//       message: t('toast.order_deleted_successfully'),
-//       type: 'success',
-//       icon: 'mdi:check-circle',
-//     });
-//   } catch (error) {
-//     triggerToast({
-//       title: t('toast.error'),
-//       message: t('toast.order_deletion_failed'),
-//       type: 'error',
-//       icon: 'mdi:alert-circle',
-//     });
-//   } finally {
-//     setTimeout(() => {
-//       if (order) {
-//         order.loading = false;
-//       }
-//     }, 3000);
-//   }
-// };
 
 const getStatusTitle = (statusId) => {
   currentStatus.value = checkoutStore.status.find((s) => s.id === statusId);

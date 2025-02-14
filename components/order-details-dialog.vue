@@ -32,8 +32,7 @@
               <p class="text-sm font-normal text-gray-600 dark:text-gray-100">{{ $t('dashboard.change_order_status') }}
               </p>
               <div class="flex mt-4 space-s-4">
-                <button type="button"
-                  :disabled="order.statusId === orderStatus[2]?.id || order.statusId === orderStatus[1]?.id || order.statusId === orderStatus[0]?.id || order.statusId === orderStatus[3]?.id || order.statusId === orderStatus[4]?.id"
+                <button type="button" :disabled="nextStatusId !== orderStatus[2]?.id"
                   @click="updateOrderStatus(order.id, orderStatus[2]?.id)"
                   class="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-3 py-2.5 me-2 mb-2 dark:text-green-400 dark:border-green-400 dark:hover:bg-green-400 dark:hover:text-white dark:focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed">
                   <icon name="svg-spinners:90-ring" v-if="order.loading && order.targetStatus === orderStatus[2]?.id" />
@@ -41,8 +40,7 @@
                     <icon name="material-symbols:shopping-basket-sharp" />
                   </span>
                 </button>
-                <button type="button"
-                  :disabled="order.statusId === orderStatus[1]?.id || order.statusId === orderStatus[3]?.id || order.statusId === orderStatus[0]?.id || order.statusId === orderStatus[4]?.id"
+                <button type="button" :disabled="nextStatusId !== orderStatus[1]?.id"
                   @click="updateOrderStatus(order.id, orderStatus[1]?.id)"
                   class="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2.5 me-2 mb-2 dark:text-red-400 dark:border-red-400 dark:hover:bg-red-400 dark:hover:text-white dark:focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed">
                   <icon name="svg-spinners:90-ring" v-if="order.loading && order.targetStatus === orderStatus[1]?.id" />
@@ -50,27 +48,24 @@
                     <icon name="ic:baseline-access-time-filled" />
                   </span>
                 </button>
-                <button type="button"
-                  :disabled="order.statusId === orderStatus[0]?.id || order.statusId === orderStatus[2]?.id || order.statusId === orderStatus[4]?.id || order.statusId === orderStatus[3]?.id"
-                  @click="updateOrderStatus(order.id, orderStatus[3].id)"
+                <button type="button" :disabled="nextStatusId !== orderStatus[3]?.id"
+                  @click="updateOrderStatus(order.id, orderStatus[3]?.id)"
                   class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-2.5 me-2 mb-2 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-400 dark:hover:text-white dark:focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
                   <icon name="svg-spinners:90-ring" v-if="order.loading && order.targetStatus === orderStatus[3]?.id" />
                   <span v-else>
                     <icon name="tabler:ship" />
                   </span>
                 </button>
-                <button type="button"
-                  :disabled="order.statusId === orderStatus[0]?.id || order.statusId === orderStatus[1]?.id || order.statusId === orderStatus[2]?.id || order.statusId === orderStatus[4]?.id"
-                  @click="updateOrderStatus(order.id, orderStatus[4].id)"
+                <button type="button" :disabled="nextStatusId !== orderStatus[4]?.id"
+                  @click="updateOrderStatus(order.id, orderStatus[4]?.id)"
                   class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-2.5 me-2 mb-2 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-400 dark:hover:text-white dark:focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
                   <icon name="svg-spinners:90-ring" v-if="order.loading && order.targetStatus === orderStatus[4]?.id" />
                   <span v-else>
                     <icon name="material-symbols:local-shipping-rounded" />
                   </span>
                 </button>
-                <button type="button"
-                  :disabled="order.statusId === orderStatus[0]?.id || order.statusId === orderStatus[1]?.id || order.statusId === orderStatus[2]?.id || order.statusId === orderStatus[3]?.id"
-                  @click="updateOrderStatus(order.id, orderStatus[0].id)"
+                <button type="button" :disabled="nextStatusId !== orderStatus[0]?.id"
+                  @click="updateOrderStatus(order.id, orderStatus[0]?.id)"
                   class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-2.5 me-2 mb-2 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-400 dark:hover:text-white dark:focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
                   <icon name="svg-spinners:90-ring" v-if="order.loading && order.targetStatus === orderStatus[0]?.id" />
                   <span v-else>
@@ -146,41 +141,6 @@ const closeDialog = () => {
 const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 const { t } = useI18n()
 
-// const updateOrderStatus = async (orderId, newStatus) => {
-//   const order = checkoutStore.paginatedOrders.find((o) => o.id === orderId);
-//   if (!order) return;
-//   order.loading = true;
-//   order.targetStatus = newStatus;
-//   await new Promise((resolve) => setTimeout(resolve, 3000));
-//   await checkoutStore.updateOrderStatus(orderId, newStatus)
-//   await checkoutStore.fetchOrders()
-//     .then((rss) => {
-//       checkoutStore.fetchOrders();
-//       triggerToast({
-//         title: t('toast.great'),
-//         message: t('toast.order_status_updated'),
-//         type: 'success',
-//         icon: 'mdi-check-circle',
-//       });
-//       order.loading = false
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       triggerToast({
-//         title: t('toast.error'),
-//         message: t('toast.failed_to_update_order'),
-//         type: 'error',
-//         icon: 'mdi:alert-circle',
-//       });
-//     })
-//     .finally(() => {
-//       const order = checkoutStore.paginatedOrders.find((o) => o.id === orderId);
-//       if (order) {
-//         order.loading = false;
-//         order.targetStatus = null;
-//       }
-//     })
-// };
 const updateOrderStatus = (orderId, newStatus) => {
   const order = checkoutStore.paginatedOrders.find((o) => o.id === orderId);
   if (!order) return;
@@ -231,10 +191,25 @@ const currentStatus = ref('')
 
 onMounted(() => {
   checkoutStore.fetchStatus();
+  const statusOrder = ['Order Placed', 'Processing', 'Shipped', 'Out for Delivery', 'Delivered'];
+  orderStatus.value = checkoutStore.status.sort((a, b) => {
+    return statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status);
+  });
   orderStatus.value = checkoutStore.status
   categoryStore.fetchCategories();
   categories.value = categoryStore.categories;
   currentStatus.value = checkoutStore.status.find((s) => s.id === props.order.statusId)?.status;
+});
+
+const currentStatusIndex = computed(() => {
+  return orderStatus.value.findIndex(s => s.id === props.order.statusId);
+});
+
+const nextStatusId = computed(() => {
+  if (currentStatusIndex.value === -1 || currentStatusIndex.value >= orderStatus.value.length - 1) {
+    return null;
+  }
+  return orderStatus.value[currentStatusIndex.value + 1]?.id;
 });
 </script>
 
