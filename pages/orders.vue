@@ -3,8 +3,10 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex items-center justify-between">
-      <h3 class="py-2 mt-5 mb-12 text-2xl font-bold text-start">{{ $t('dashboard.orders') }}</h3>
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+      <h3 class="py-2 mt-5 text-2xl font-bold text-start">
+        {{ $t('dashboard.orders') }}
+      </h3>
       <div class="flex items-end space-s-4">
         <div class="flex flex-col">
           <label class="mb-1 text-sm font-medium">{{ $t('form.start_date') }}</label>

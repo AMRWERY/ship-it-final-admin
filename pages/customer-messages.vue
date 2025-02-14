@@ -3,12 +3,11 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
-      <!-- Title -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
       <h3 class="py-2 mt-5 text-2xl font-bold text-start">
         {{ $t('dashboard.customer_messages') }}
       </h3>
-      <div class="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-s-4 mt-4 md:mt-0">
+      <div class="flex items-end space-s-4">
         <div class="flex flex-col">
           <span class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">
             {{ $t('form.start_date') }}

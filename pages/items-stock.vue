@@ -3,8 +3,25 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex items-center justify-between">
-      <h3 class="py-2 mt-5 mb-12 text-2xl font-bold text-start">{{ $t('dashboard.items_stock') }}</h3>
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+      <h3 class="py-2 mt-5 text-2xl font-bold text-start">
+        {{ $t('dashboard.items_stock') }}
+      </h3>
+      <div class="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-s-4 mt-4 md:mt-0">
+        <div class="flex flex-col">
+          <div class="relative">
+            <input type="text" placeholder="Search..."
+              class="pe-4 w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow" />
+            <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+              <icon name="material-symbols:search-rounded" class="w-5 h-5 text-gray-500" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <add-edit-product-dialog />
+        </div>
+      </div>
     </div>
 
     <div
@@ -104,7 +121,7 @@
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100">{{ $n(parseFloat(product.discountedPrice),
                 'currency',
-                currencyLocale)}}</p>
+                currencyLocale) }}</p>
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.discount">{{ product.discount }}%</p>

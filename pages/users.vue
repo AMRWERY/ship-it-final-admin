@@ -3,7 +3,12 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <h3 class="py-2 mt-5 mb-12 text-2xl font-bold text-start">{{ $t('dashboard.users') }}</h3>
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+      <h3 class="py-2 mt-5 text-2xl font-bold text-start">
+        {{ $t('dashboard.users') }}
+      </h3>
+    </div>
+
     <div
       class="relative flex flex-col w-full h-full overflow-scroll overflow-y-hidden text-gray-700 bg-white rounded-lg shadow-md bg-clip-border dark:bg-black dark:text-gray-200">
       <table class="w-full table-auto text-start min-w-max">
