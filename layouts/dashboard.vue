@@ -2,8 +2,8 @@
   <div>
     <!-- Overlay Component -->
     <overlay :visible="themeStore.showOverlay" />
-    
-    <div :dir="isRTL ? 'rtl' : 'ltr'" :class="{ 'rtl': isRTL, 'ltr': !isRTL }">
+
+    <div :dir="isRTL">
       <div class="flex h-screen overflow-hidden">
         <!-- ===== Sidebar Start ===== -->
         <sidebar-area />
@@ -29,10 +29,11 @@
 </template>
 
 <script setup>
-const { locale } = useI18n();
+const { setLocale } = useI18n();
+const localeStore = useLocaleStore()
 
 const isRTL = computed(() => {
-  return locale.value === 'ar';
+  return localeStore.isRTL;
 });
 
 //toggle themes
@@ -40,5 +41,7 @@ const themeStore = useThemeStore();
 
 onMounted(() => {
   themeStore.loadTheme();
+  localeStore.loadLocale();
+  setLocale(localeStore.locale);
 });
 </script>

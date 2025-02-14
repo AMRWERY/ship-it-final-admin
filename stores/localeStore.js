@@ -1,7 +1,6 @@
 export const useLocaleStore = defineStore("locales", {
   state: () => ({
-    // locale: "en",
-    locale: process.client ? (sessionStorage.getItem("locale") || "en") : "en",
+    locale: process.client ? sessionStorage.getItem("locale") || "en" : "en",
     isOverlayVisible: false,
   }),
 

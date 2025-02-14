@@ -5,7 +5,7 @@
     </ClientOnly>
 
     <ClientOnly v-else>
-      <NuxtLayout :dir="isRTL ? 'rtl' : 'ltr'" :class="{ 'rtl': isRTL, 'ltr': !isRTL }">
+      <NuxtLayout>
         <progress-bar />
         <NuxtPage />
       </NuxtLayout>
@@ -26,17 +26,6 @@ onMounted(() => {
     sessionStorage.setItem('visited', 'true');
     isLoading.value = false;
   }
-});
-
-//toggle locales
-const { locale } = useI18n();
-const localeStore = useLocaleStore()
-
-const isRTL = computed(() => localeStore.isRTL);
-
-onMounted(() => {
-  localeStore.loadLocale();
-  locale.value = localeStore.locale;
 });
 
 useHead({

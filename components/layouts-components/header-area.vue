@@ -19,8 +19,7 @@
         <div class="flex items-center space-s-5 ms-auto">
           <!-- profile -->
           <tooltip :text="$t('tooltip.profile')" position="bottom">
-            <nuxt-link to="/profile" type="button" class="relative flex text-white rounded-full"
-              v-if="isAuthenticated">
+            <nuxt-link to="/profile" type="button" class="relative flex text-white rounded-full" v-if="isAuthenticated">
               <span class="absolute -inset-1.5" />
               <span class="sr-only">View Profile</span>
               <img src="https://justfields.com/storage/projects/7M5rV059/vector-avatar-02.jpg" alt="profile-img"
@@ -29,12 +28,12 @@
           </tooltip>
 
           <nuxt-link class="text-neutral-600" to="" role="button" v-if="localeStore.isRTL">
-            <span class="[&>svg]:w-5" @click="setLocale('en')">
+            <span class="[&>svg]:w-5" @click="switchLocale('en')">
               En
             </span>
           </nuxt-link>
           <nuxt-link class="text-neutral-600" to="" role="button" v-else>
-            <span class="[&>svg]:w-5" @click="setLocale('ar')">
+            <span class="[&>svg]:w-5" @click="switchLocale('ar')">
               العربية
             </span>
           </nuxt-link>
@@ -59,33 +58,15 @@
 <script setup>
 const { toggleSidebar } = useSidebarStore()
 const localeStore = useLocaleStore();
+const { setLocale } = useI18n();
 
-const { locale } = useI18n();
-
-const setLocale = (value) => {
+const switchLocale = (value) => {
   localeStore.updateLocale(value);
-  locale.value = value;
-  updatePageTitle();
-};
-
-watch(() => localeStore.locale, (newLocale) => {
-  locale.value = newLocale;
-  updatePageTitle();
-});
-
-const updatePageTitle = () => {
-  const pageTitle = locale.value === 'ar' ? 'العنوان بالعربية' : 'Title in English'; // Adjust based on current locale
-  useHead({
-    title: pageTitle,
-  });
+  setLocale(value)
 };
 
 // const authStore = useAuthStore();
 const isAuthenticated = computed(() => localStorage.getItem('user'));
-
-onMounted(() => {
-  updatePageTitle()
-});
 
 //toggle themes
 defineProps({
