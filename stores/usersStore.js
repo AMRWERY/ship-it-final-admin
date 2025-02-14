@@ -5,7 +5,6 @@ import {
   doc,
   updateDoc,
   getDocs,
-  getDoc,
 } from "firebase/firestore";
 
 export const useUserStore = defineStore("users", {

@@ -209,7 +209,8 @@
     "price_after_discount": "السعر بعد الخصم",
     "discount": "الخصم",
     "available": "متاح",
-    "no_meesages_found": "لا توجد رسائل"
+    "no_meesages_found": "لا توجد رسائل",
+    "no_users_found": "لايوجد مستخدمون "
   },
   "pagination": {
     "previous": "السابق",

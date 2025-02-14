@@ -42,8 +42,7 @@
         <tbody v-if="userStore.paginatedUsers.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <!-- skeleton-loader component -->
-              <skeleton-loader />
+              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_users_found') }}</p>
             </td>
           </tr>
         </tbody>
