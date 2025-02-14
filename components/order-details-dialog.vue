@@ -2,7 +2,7 @@
   <div>
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
       <div class="flex flex-col w-full max-w-4xl p-3 bg-white rounded-lg shadow-lg dark:bg-gray-800">
-        <div v-if="orders?.length" class="flex space-s-6">
+        <div v-if="orders?.length" class="flex flex-col md:flex-row gap-6">
           <!-- Customer Info Section -->
           <div class="flex-1 p-6 rounded-lg shadow-md bg-gray-50 dark:bg-gray-700">
             <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-300">
@@ -88,7 +88,7 @@
             </h3>
             <div class="space-y-4 overflow-y-auto max-h-96 custom-scroll">
               <div v-for="(item, index) in order.cart || []" :key="item.productId"
-                class="flex items-center pb-4 space-x-4 border-b">
+                class="flex items-center pb-4 space-s-4 border-b">
                 <span class="text-xl font-semibold text-gray-700 dark:text-gray-200">{{ index + 1 }}.</span>
                 <img :src="item.imageUrl1" class="w-16 h-16 rounded-md shadow-sm" />
                 <div class="flex-1">
