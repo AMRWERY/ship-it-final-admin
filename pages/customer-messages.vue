@@ -3,19 +3,24 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex items-center justify-between">
-      <h3 class="py-2 mt-5 mb-12 text-2xl font-bold text-start">{{ $t('dashboard.customer_messages') }}</h3>
-      <div class="flex items-end space-s-4">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
+      <!-- Title -->
+      <h3 class="py-2 mt-5 text-2xl font-bold text-start">
+        {{ $t('dashboard.customer_messages') }}
+      </h3>
+      <div class="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-s-4 mt-4 md:mt-0">
         <div class="flex flex-col">
-          <span class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.start_date')
-            }}</span>
-          <!-- date-picker componenet -->
+          <span class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">
+            {{ $t('form.start_date') }}
+          </span>
+          <!-- Date-picker component -->
           <date-picker v-model="startDate" />
         </div>
         <div class="flex flex-col">
-          <span class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.end_date')
-            }}</span>
-          <!-- date-picker componenet -->
+          <span class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">
+            {{ $t('form.end_date') }}
+          </span>
+          <!-- Date-picker component -->
           <date-picker v-model="endDate" />
         </div>
         <button @click="filterOrdersByDate" class="px-4 py-2 btn-style">
@@ -23,6 +28,7 @@
         </button>
       </div>
     </div>
+
     <div
       class="relative flex flex-col w-full h-full overflow-scroll overflow-y-hidden text-gray-700 bg-white rounded-lg shadow-md bg-clip-border dark:bg-black dark:text-gray-200">
       <table class="w-full table-auto text-start min-w-max">
@@ -60,7 +66,6 @@
             <td colspan="10" class="p-4 text-center">
               <!-- skeleton-loader component -->
               <skeleton-loader />
-              <!-- <icon name="svg-spinners:blocks-shuffle-3" class="w-24 h-24" /> -->
             </td>
           </tr>
         </tbody>

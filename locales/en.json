@@ -68,7 +68,9 @@
     "enter_category_title": "Enter category title",
     "enter_category_title_ar": "Enter category title Ar",
     "select_date": "Select date",
-    "maximum_four_images_allowed": "Maximum 4 imges allowed"
+    "maximum_four_images_allowed": "Maximum 4 imges allowed",
+    "write_your_reply_here": "Write your reply here...",
+    "your_reply": "Yout Reply"
   },
   "btn": {
     "logging": "Logging",

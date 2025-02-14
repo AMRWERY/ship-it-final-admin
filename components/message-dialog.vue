@@ -36,17 +36,19 @@
             <!-- reply message -->
             <div class="mt-4">
               <button @click="toggleReply"
-                class="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded hover:bg-blue-100 dark:text-blue-400 dark:border-blue-400">
+                class="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded  dark:text-gray-200 dark:border-blue-400">
                 {{ $t('btn.reply') }}
               </button>
               <div v-if="showReply" class="mt-3">
-                <textarea v-model="replyMessage" placeholder="Write your reply here..." rows="4"
-                  class="w-full p-2 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-400"></textarea>
+                <ClientOnly>
+                  <dynamic-inputs :placeholder="t('form.write_your_reply_here')" type="textarea"
+                    :rules="'required|length:100'" name="your_reply" v-model="replyMessage" />
+                </ClientOnly>
                 <button @click="sendReply" :disabled="loading"
                   class="px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
                   <div class="flex items-center justify-center" v-if="loading">
                     <span class="text-center me-2">{{ $t('btn.sending_reply') }}...</span>
-                    <icon name="svg-spinners:270-ring-with-bg" />
+                    <icon name="svg-spinners:6-dots-rotate" />
                   </div>
                   <span v-else>{{ $t('btn.send_reply') }}</span>
                 </button>
@@ -54,7 +56,8 @@
             </div>
 
             <div v-if="replySentSuccessfully" class="w-full mt-2">
-              <p class="font-normal text-center text-green-800">{{ $t('toast.your_message_sent_successfully') }}</p>
+              <p class="font-normal text-center text-green-800 dark:text-green-400">{{
+                $t('toast.your_message_sent_successfully') }}</p>
             </div>
           </div>
         </div>
@@ -71,6 +74,8 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 const props = defineProps({
   message: Object
 });
