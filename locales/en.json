@@ -210,7 +210,16 @@
     "discount": "Discount",
     "available": "available",
     "no_meesages_found": "No meesages found",
-    "no_users_found": "No users found"
+    "no_users_found": "No users found",
+    "save": "Save",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "description": "Description",
+    "color": "Color",
+    "size": "Size",
+    "upcoming_deals": "Upcoming Deals"
   },
   "pagination": {
     "previous": "Previous",

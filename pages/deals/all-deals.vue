@@ -31,23 +31,33 @@
                     <div class="lg:col-span-8 lg:row-span-2 lg:row-end-2">
                         <div class="lg:ps-6">
                             <div class="mb-6">
-                                <span class="text-red-500 dark:text-red-200">{{ currentDeal?.brand }}</span>
+                                <span class="text-red-500 dark:text-red-200">{{ $i18n.locale ===
+                                    'ar' ? currentDeal?.brandAr :
+                                    currentDeal?.brand }}</span>
                                 <h2 class="max-w-xl mt-2 mb-4 text-2xl font-bold font-heading dark:text-gray-300">
-                                    {{ currentDeal?.title }}
+                                    {{ $i18n.locale ===
+                                        'ar' ? currentDeal?.titleAr :
+                                        currentDeal?.title }}
                                 </h2>
                             </div>
 
                             <div class="flex mb-6 item-center gap-x-6">
                                 <div class="flex items-center space-s-2">
-                                    <p class="text-2xl font-bold text-red-600 dark:text-red-500">{{
-                                        currentDeal?.discountedPrice }}
-                                        epg</p>
+                                    <p class="text-2xl font-bold text-red-600 dark:text-red-500"
+                                        v-if="currentDeal?.discountedPrice">{{
+                                            $n(parseFloat(currentDeal?.discountedPrice),
+                                                'currency',
+                                                currencyLocale) }}
+                                    </p>
                                     <p class="text-base font-semibold text-gray-600 line-through dark:text-gray-300"
-                                        v-if="currentDeal?.originalPrice">{{ currentDeal?.originalPrice
-                                        }} epg</p>
+                                        v-if="currentDeal?.originalPrice">{{ $n(parseFloat(currentDeal?.originalPrice),
+                                            'currency',
+                                            currencyLocale)
+                                        }}</p>
                                 </div>
                                 <div class="flex py-1.5 px-2 bg-purple-600 font-semibold !ms-4 rounded-lg">
-                                    <span class="text-sm text-white">save {{ currentDeal?.discount }}%</span>
+                                    <span class="text-sm text-white">{{ $t('dashboard.save') }} {{ currentDeal?.discount
+                                        }}%</span>
                                 </div>
                             </div>
 
@@ -59,7 +69,7 @@
                                             :class="`border-${key}`">
                                             <span class="text-lg font-bold">{{ value }}</span>
                                         </div>
-                                        <span class="text-sm capitalize">{{ key }}</span>
+                                        <span class="text-sm capitalize">{{ $t(`dashboard.${key}`) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -67,10 +77,11 @@
                             <div class="gap-4 pb-5 border-b border-gray-300">
                                 <div class="max-w-2xl custom-scroll max-h-32">
                                     <div class="mt-6">
-                                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">Description</h3>
-                                        <p class="mt-4 text-sm text-gray-600 dark:text-gray-100">{{
-                                            currentDeal?.description
-                                        }}</p>
+                                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">{{
+                                            $t('dashboard.description') }}</h3>
+                                        <p class="mt-4 text-sm text-gray-600 dark:text-gray-100">{{ $i18n.locale ===
+                                            'ar' ? currentDeal?.descriptionAr :
+                                            currentDeal?.description }} </p>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +89,7 @@
                             <div class="gap-4 border-b border-gray-300">
                                 <div class="py-6">
                                     <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        Color
+                                        {{ $t('dashboard.color') }}
                                     </p>
                                     <div class="flex flex-wrap items-center gap-2 mt-3 select-none">
                                         <label v-for="color in currentDeal?.colors" :key="color">
@@ -95,7 +106,7 @@
                             <div class="gap-4 border-b border-gray-300">
                                 <div class="py-6">
                                     <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        Size
+                                        {{ $t('dashboard.size') }}
                                     </p>
                                     <div class="flex flex-wrap items-center gap-2 mt-3 select-none">
                                         <label v-for="size in currentDeal?.sizes" :key="size">
@@ -115,7 +126,7 @@
                         <nav class="flex gap-4">
                             <nuxt-link to=""
                                 class="py-2 text-sm font-semibold text-gray-900 border-b-2 border-gray-900 dark:border-gray-200 dark:text-gray-200">
-                                Upcoming Deals
+                                {{ $t('dashboard.upcoming_deals') }}
                             </nuxt-link>
                         </nav>
 
@@ -129,13 +140,20 @@
                                     </div>
                                     <div class="max-sm:text-center">
                                         <h3 class="text-sm font-bold text-gray-800 sm:text-base dark:text-gray-200">{{
-                                            deal.title }}</h3>
+                                            $i18n.locale ===
+                                                'ar' ? deal.titleAr :
+                                                deal.title }}</h3>
                                         <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">{{
-                                            deal.brand }}</h4>
-                                        <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">Save {{
-                                            deal.discount }}%</h4>
+                                            $i18n.locale ===
+                                                'ar' ? deal.brandAr :
+                                                deal.brand }}</h4>
                                         <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">{{
-                                            deal.discountedPrice }} egp
+                                            $t('dashboard.save') }} {{
+                                                deal.discount }}%</h4>
+                                        <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">{{
+                                            $n(parseFloat(deal.discountedPrice),
+                                                'currency',
+                                                currencyLocale) }}
                                         </h4>
                                         <h4 class="mt-1 text-xs font-bold text-red-600 dark:text-red-400">{{
                                             formatRemainingTime(deal.remainingTime) }}</h4>
@@ -243,7 +261,7 @@ const formatRemainingTime = (timeObj) => {
         timeObj.minutes !== undefined &&
         timeObj.seconds !== undefined
     ) {
-        return `${timeObj.days} days ${timeObj.hours} hrs ${timeObj.minutes} mins ${timeObj.seconds} secs`;
+        return `${timeObj.days} ${t('dashboard.days')} ${timeObj.hours} ${t('dashboard.hours')} ${timeObj.minutes} ${t('dashboard.minutes')} ${timeObj.seconds} ${t('dashboard.seconds')}`;
     }
     return "Invalid time";
 };
@@ -262,6 +280,9 @@ const selectedImage = ref('');
 const setSelectedImage = (image) => {
     selectedImage.value = image;
 };
+
+//currency composable
+const { currencyLocale } = useCurrencyLocale();
 
 definePageMeta({
     layout: 'dashboard'
