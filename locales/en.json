@@ -70,7 +70,9 @@
     "select_date": "Select date",
     "maximum_four_images_allowed": "Maximum 4 imges allowed",
     "write_your_reply_here": "Write your reply here...",
-    "your_reply": "Yout Reply"
+    "your_reply": "Your Reply",
+    "previous": "Previous",
+    "next": "Next"
   },
   "btn": {
     "logging": "Logging",

@@ -371,12 +371,12 @@
             <div class="flex justify-between mt-6">
               <button v-if="step > 1" @click="prevStep"
                 class="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-600">
-                Previous
+                {{ $t('form.previous') }}
               </button>
               <div class="flex-grow"></div>
               <button v-if="step < 4" @click="nextStep"
                 class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-                Next
+                {{ $t('form.next') }}
               </button>
               <button type="submit" class="px-4 py-2 btn-style" v-if="step === 4">
                 <div class="flex items-center justify-center" v-if="loading">

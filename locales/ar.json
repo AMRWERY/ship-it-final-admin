@@ -70,7 +70,9 @@
     "select_date": "اختر تاريخ",
     "maximum_four_images_allowed": "يمكنك تحميل 4 صور كحد أقصى",
     "write_your_reply_here": "اكتب ردك هنا...",
-    "your_reply": "ردك"
+    "your_reply": "ردك",
+    "previous": "السابق",
+    "next": "التالي"
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",
