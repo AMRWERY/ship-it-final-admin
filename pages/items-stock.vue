@@ -19,7 +19,14 @@
         </div>
 
         <div class="flex flex-col">
-          <add-edit-product-dialog />
+          <nuxt-link to="" role="button" class="flex items-center justify-center w-full px-5 py-2.5 btn-style"
+            @click="isDialogOpen = true">
+            <icon name="material-symbols:add" class="w-5 h-5 -ms-2 me-2" aria-hidden="true" />
+            <span>{{ $t('btn.add_product') }}</span>
+          </nuxt-link>
+
+          <add-edit-product-dialog :is-dialog-open="isDialogOpen" :product-id="selectedProductId"
+            @close="isDialogOpen = false" />
         </div>
       </div>
     </div>
@@ -120,8 +127,9 @@
                 {{ !isNaN(parseFloat(product.originalPrice))
                   ? $n(parseFloat(product.originalPrice), 'currency', currencyLocale || {
                     style: 'currency', currency:
-                      'USD' })
-                : '-' }}
+                      'USD'
+                  })
+                  : '-' }}
               </p>
               <p class="text-sm text-slate-500 dark:text-slate-100" v-else>
                 -
@@ -132,7 +140,8 @@
               <p class="text-sm text-slate-500 dark:text-slate-100">{{ !isNaN(parseFloat(product.discountedPrice))
                 ? $n(parseFloat(product.discountedPrice), 'currency', currencyLocale || {
                   style: 'currency', currency:
-                    'USD' })
+                    'USD'
+                })
                 : '-' }}</p>
             </td>
             <td class="p-4 py-5">
@@ -144,8 +153,9 @@
               </p>
             </td>
             <td class="p-4 py-5">
-              <nuxt-link to="" role="button" class="text-sm text-blue-700 cursor-pointer dark:text-blue-400">{{
-                $t('btn.edit_product') }}</nuxt-link>
+              <nuxt-link to="" @click="openEditDialog(product.id)" role="button"
+                class="text-sm text-blue-700 cursor-pointer dark:text-blue-400">{{
+                  $t('btn.edit_product') }}</nuxt-link>
             </td>
             <td class="p-4 py-5">
               <tooltip :text="$t('tooltip.delete_item')" position="bottom">
@@ -232,6 +242,14 @@ const deleteProduct = async (productId) => {
 
 //currency composable
 const { currencyLocale } = useCurrencyLocale();
+
+const isDialogOpen = ref(false);
+const selectedProductId = ref(null);
+
+const openEditDialog = (productId) => {
+  selectedProductId.value = productId;
+  isDialogOpen.value = true;
+};
 
 definePageMeta({
   layout: 'dashboard'

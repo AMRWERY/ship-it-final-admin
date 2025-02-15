@@ -1,14 +1,8 @@
 <template>
   <div>
-    <nuxt-link to="" role="button" class="flex items-center justify-center w-full px-5 py-2.5 btn-style"
-      @click="openDialog">
-      <icon name="material-symbols:add" class="w-5 h-5 -ms-2 me-2" aria-hidden="true" />
-      <span>{{ $t('btn.add_product') }}</span>
-    </nuxt-link>
-
     <!-- Dialog content -->
     <transition name="dialog">
-      <div v-if="isDialogOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+      <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
         <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <form @submit.prevent="handleSubmit">
             <!-- Dialog header -->
@@ -447,11 +441,38 @@ const productImages = computed(() => {
 
 const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 const { t } = useI18n();
-const route = useRoute()
 
-const isEditMode = computed(() => {
-  return route.params.id && route.params.id !== 'add-product'
+const props = defineProps({
+  isDialogOpen: {
+    type: Boolean,
+    // required: false
+  },
+  productId: {
+    type: String,
+    required: false
+  }
+});
+
+const emit = defineEmits(['close']);
+
+watch(() => props.productId, async (newId) => {
+  if (newId) {
+    await store.fetchProductDetail(newId);
+    product.value = { ...store.selectedProduct };
+    selectedCategory.value = store.selectedProduct.categoryId;
+  }
+});
+
+const isOpen = computed({
+  get: () => props.isDialogOpen,
+  set: (value) => emit("update:isOpen", value),
 })
+
+const closeDialog = () => {
+  emit('close');
+};
+
+const isEditMode = computed(() => props.productId && props.productId !== 'add-product');
 
 const handleSubmit = () => {
   loading.value = true;
@@ -481,7 +502,7 @@ const handleSubmit = () => {
     categoryId: selectedCategory.value,
   };
   if (isEditMode.value) {
-    store.updateProduct(route.params.id, productData)
+    store.updateProduct(props.productId, productData)
       .then(() => {
         triggerToast({
           title: t("toast.success"),
@@ -540,7 +561,7 @@ onMounted(async () => {
   categories.value = categoryStore.categories;
 
   if (isEditMode.value) {
-    const productId = route.params.id;
+    const productId = props.productId;
     try {
       const fetchedProduct = await store.fetchProductDetail(productId);
       // console.log("Fetched Product:", fetchedProduct);
@@ -553,14 +574,6 @@ onMounted(async () => {
     } catch (error) {
       console.error("Failed to fetch product details:", error);
     }
-  }
-});
-
-watch(() => route.params.id, (newId) => {
-  if (newId) {
-    productStore.fetchProductDetail(newId).then((data) => {
-      product.value = data;
-    });
   }
 });
 
@@ -580,16 +593,7 @@ const handleBlur = (key) => {
   product.value[key] = enforceTwoDecimalPlaces(product.value[key]);
 };
 
-const isDialogOpen = ref(false)
 const step = ref(1)
-
-const openDialog = () => {
-  isDialogOpen.value = true
-}
-
-const closeDialog = () => {
-  isDialogOpen.value = false
-}
 
 const nextStep = () => {
   step.value++
