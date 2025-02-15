@@ -122,7 +122,10 @@
     "failed_to_add_category": "Failed to add category",
     "message_deleted": "Message deleted",
     "message_deletion_failed": "Message deletion failed",
-    "product_updated_successfully": "Product updated successfully"
+    "product_updated_successfully": "Product updated successfully",
+    "successfully_added_product": "Successfully added product",
+    "failed_to_add_product": "Failed to add product",
+    "failed_to_update_product": "Failed to update product"
   },
   "breadcrumb": {
     "home": "Home",

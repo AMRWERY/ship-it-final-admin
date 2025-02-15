@@ -89,15 +89,6 @@ const menuGroups = computed(() => [
         route: '/',
       },
       {
-        icon: 'mdi:tshirt-v',
-        label: 'layout.products',
-        route: '',
-        children: [
-          { label: 'layout.products', route: '/products/all-products' },
-          { label: 'layout.add_product', route: '/products/add-product' },
-        ]
-      },
-      {
         icon: 'material-symbols:category-rounded',
         label: 'layout.categories',
         route: '',

@@ -122,7 +122,10 @@
     "failed_to_add_category": "فشل في إضافة الفئة",
     "message_deleted": "تم حذف الرسالة",
     "message_deletion_failed": "فشل حذف الرسالة",
-    "product_updated_successfully": "تم تحديث المنتج بنجاح"
+    "product_updated_successfully": "تم تحديث المنتج بنجاح",
+    "successfully_added_product": "تم اضافه المنتج بنجاح",
+    "failed_to_add_product": "فشل اضافه المنتج",
+    "failed_to_update_product": "فشل تعديل المنتج"
   },
   "breadcrumb": {
     "home": "الرئيسية",

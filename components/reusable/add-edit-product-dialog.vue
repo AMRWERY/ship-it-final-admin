@@ -369,12 +369,12 @@
 
             <!-- Navigation buttons -->
             <div class="flex justify-between mt-6">
-              <button v-if="step > 1" @click="prevStep"
+              <button type="button" v-if="step > 1" @click="prevStep"
                 class="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-600">
                 {{ $t('form.previous') }}
               </button>
               <div class="flex-grow"></div>
-              <button v-if="step < 4" @click="nextStep"
+              <button type="button" v-if="step < 4" @click="nextStep"
                 class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
                 {{ $t('form.next') }}
               </button>
@@ -389,6 +389,31 @@
               </button>
             </div>
           </form>
+
+          <!-- toast messages -->
+          <div v-if="addSuccessfully" class="w-full mt-2">
+            <p class="font-normal text-center text-green-800 dark:text-green-400">
+              {{ $t('toast.successfully_added_product') }}
+            </p>
+          </div>
+
+          <div v-if="addFailed && !addSuccessfully" class="mt-2">
+            <p class="font-normal text-center text-red-800 dark:text-red-400">
+              {{ $t('toast.failed_to_add_product') }}
+            </p>
+          </div>
+
+          <div v-if="updateSuccessfully && isEditMode" class="w-full mt-2">
+            <p class="font-normal text-center text-green-800 dark:text-green-400">
+              {{ $t('toast.product_updated_successfully') }}
+            </p>
+          </div>
+
+          <div v-if="updateFailed && !updateSuccessfully && isEditMode" class="mt-2">
+            <p class="font-normal text-center text-red-800 dark:text-red-400">
+              {{ $t('toast.failed_to_update_product') }}
+            </p>
+          </div>
         </div>
       </div>
     </transition>
@@ -404,6 +429,10 @@ const product = ref({ brand: '', brandAr: '', title: '', titleAr: '', descriptio
 const selectedFiles = ref([]);
 const previewImages = ref([])
 const fileUploadError = ref('');
+const addSuccessfully = ref(false)
+const addFailed = ref(false)
+const updateSuccessfully = ref(false)
+const updateFailed = ref(false)
 
 const handleImageUpload = (event) => {
   const files = event.target.files;
@@ -439,7 +468,6 @@ const productImages = computed(() => {
   return images;
 });
 
-const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 const { t } = useI18n();
 
 const props = defineProps({
@@ -480,13 +508,11 @@ const handleSubmit = () => {
     (cat) => cat.id === selectedCategory.value
   );
   if (!product.value.title || !selectedCategory.value || !selectedFiles.value) {
-    triggerToast({
-      title: t("toast.error"),
-      message: t("toast.please_fill_all_required_fields"),
-      type: "error",
-      icon: "mdi-alert-circle",
-    });
+    addFailed.value = true;
     loading.value = false;
+    setTimeout(() => {
+      addFailed.value = false;
+    }, 3000);
     return;
   }
   const filteredProductData = Object.fromEntries(
@@ -504,20 +530,16 @@ const handleSubmit = () => {
   if (isEditMode.value) {
     store.updateProduct(props.productId, productData)
       .then(() => {
-        triggerToast({
-          title: t("toast.success"),
-          message: t("toast.product_updated_successfully"),
-          type: "success",
-          icon: "mdi-check-circle",
-        });
+        updateSuccessfully.value = true;
+        setTimeout(() => {
+          updateSuccessfully.value = false;
+        }, 3000)
       })
       .catch((error) => {
-        triggerToast({
-          title: t("toast.error"),
-          message: t("toast.something_went_wrong_please_try_again"),
-          type: "error",
-          icon: "mdi-alert-circle",
-        });
+        updateFailed.value = true;
+        setTimeout(() => {
+          updateFailed.value = false;
+        }, 3000);
       })
       .finally(() => {
         loading.value = false;
@@ -525,21 +547,17 @@ const handleSubmit = () => {
   } else {
     store.createProduct(productData, selectedFiles.value)
       .then(() => {
-        triggerToast({
-          title: t("toast.success"),
-          message: t("toast.product_added_successfully"),
-          type: "success",
-          icon: "mdi-check-circle",
-        });
+        addSuccessfully.value = true;
         resetForm();
+        setTimeout(() => {
+          addSuccessfully.value = false;
+        }, 3000);
       })
       .catch((error) => {
-        triggerToast({
-          title: t("toast.error"),
-          message: t("toast.something_went_wrong_please_try_again"),
-          type: "error",
-          icon: "mdi-alert-circle",
-        });
+        addFailed.value = true;
+        setTimeout(() => {
+          addFailed.value = false;
+        }, 3000);
       })
       .finally(() => {
         loading.value = false;
@@ -595,11 +613,20 @@ const handleBlur = (key) => {
 
 const step = ref(1)
 
+const resetToastStates = () => {
+  addSuccessfully.value = false;
+  addFailed.value = false;
+  updateSuccessfully.value = false;
+  updateFailed.value = false;
+}
+
 const nextStep = () => {
+  resetToastStates()
   step.value++
 }
 
 const prevStep = () => {
+  resetToastStates()
   step.value--
 }
 </script>
