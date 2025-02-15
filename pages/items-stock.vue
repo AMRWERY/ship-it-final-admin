@@ -20,13 +20,13 @@
 
         <div class="flex flex-col">
           <nuxt-link to="" role="button" class="flex items-center justify-center w-full px-5 py-2.5 btn-style"
-            @click="isDialogOpen = true">
+            @click="openAddProductDialog">
             <icon name="material-symbols:add" class="w-5 h-5 -ms-2 me-2" aria-hidden="true" />
             <span>{{ $t('btn.add_product') }}</span>
           </nuxt-link>
 
           <add-edit-product-dialog :is-dialog-open="isDialogOpen" :product-id="selectedProductId"
-            @close="isDialogOpen = false" />
+            @close="handleDialogClose" />
         </div>
       </div>
     </div>
@@ -246,9 +246,19 @@ const { currencyLocale } = useCurrencyLocale();
 const isDialogOpen = ref(false);
 const selectedProductId = ref(null);
 
+const openAddProductDialog = () => {
+  selectedProductId.value = null;
+  isDialogOpen.value = true;
+};
+
 const openEditDialog = (productId) => {
   selectedProductId.value = productId;
   isDialogOpen.value = true;
+};
+
+const handleDialogClose = () => {
+  isDialogOpen.value = false;
+  selectedProductId.value = null;
 };
 
 definePageMeta({

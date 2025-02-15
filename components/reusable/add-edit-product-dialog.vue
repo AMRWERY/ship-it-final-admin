@@ -477,7 +477,7 @@ const props = defineProps({
   },
   productId: {
     type: String,
-    required: false
+    default: null
   }
 });
 
@@ -488,6 +488,10 @@ watch(() => props.productId, async (newId) => {
     await store.fetchProductDetail(newId);
     product.value = { ...store.selectedProduct };
     selectedCategory.value = store.selectedProduct.categoryId;
+  } else {
+    product.value = {};
+    store.selectedProduct = null;
+    selectedCategory.value = '';
   }
 });
 
