@@ -3,16 +3,16 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+    <div class="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
       <h3 class="py-2 mt-5 text-2xl font-bold text-start">
         {{ $t('dashboard.items_stock') }}
       </h3>
-      <div class="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-s-4 mt-4 md:mt-0">
+      <div class="flex flex-col items-start mt-4 space-y-4 md:flex-row md:items-end md:space-y-0 md:space-s-4 md:mt-0">
         <div class="flex flex-col">
           <div class="relative">
             <input type="text" placeholder="Search..."
-              class="pe-4 w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow" />
-            <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+              class="w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm pe-4 placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow" />
+            <div class="absolute inset-y-0 flex items-center pointer-events-none end-0 pe-3">
               <icon name="material-symbols:search-rounded" class="w-5 h-5 text-gray-500" />
             </div>
           </div>
@@ -80,7 +80,7 @@
         <tbody v-if="productStore.paginatedProducts.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_products_found') }}</p>
+              <p class="text-xl font-semibold text-gray-800 dark:text-white">{{ $t('dashboard.no_products_found') }}</p>
             </td>
           </tr>
         </tbody>
@@ -116,18 +116,31 @@
                   }}</span> {{ $t('dashboard.available') }}</p>
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100">
-                {{ product.originalPrice ? $n(parseFloat(product.originalPrice), 'currency', currencyLocale) : '-' }}
+              <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.originalPrice">
+                {{ !isNaN(parseFloat(product.originalPrice))
+                  ? $n(parseFloat(product.originalPrice), 'currency', currencyLocale || {
+                    style: 'currency', currency:
+                      'USD' })
+                : '-' }}
               </p>
+              <p class="text-sm text-slate-500 dark:text-slate-100" v-else>
+                -
+              </p>
+
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100">{{ $n(parseFloat(product.discountedPrice),
-                'currency',
-                currencyLocale) }}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-100">{{ !isNaN(parseFloat(product.discountedPrice))
+                ? $n(parseFloat(product.discountedPrice), 'currency', currencyLocale || {
+                  style: 'currency', currency:
+                    'USD' })
+                : '-' }}</p>
             </td>
             <td class="p-4 py-5">
-              <p class="text-sm text-slate-500 dark:text-slate-100">
-                {{ product.discount ? product.discount + '%' : '-' }}
+              <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.discount">
+                {{ product.discount }}
+              </p>
+              <p class="text-sm text-slate-500 dark:text-slate-100" v-else>
+                -
               </p>
             </td>
             <td class="p-4 py-5">
@@ -152,7 +165,7 @@
       <div class="flex mt-3 space-s-1 ms-auto">
         <button @click="productStore.changePage(productStore.currentPage - 1)"
           :disabled="productStore.currentPage === 1"
-          class="px-3 py-1 text-sm font-normal transition dark:bg-slate-800 dark:text-white duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+          class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
           {{ $t('pagination.previous') }}
         </button>
         <button v-for="page in productStore.totalPages" :key="page" @click="productStore.changePage(page)" :class="{
@@ -164,7 +177,7 @@
         </button>
         <button @click="productStore.changePage(productStore.currentPage + 1)"
           :disabled="productStore.currentPage === productStore.totalPages"
-          class="px-3 py-1 text-sm font-normal transition dark:bg-slate-800 dark:text-white duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+          class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
           {{ $t('pagination.next') }}
         </button>
       </div>
