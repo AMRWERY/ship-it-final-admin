@@ -146,7 +146,7 @@
             </td>
             <td class="p-4 py-5">
               <p class="text-sm text-slate-500 dark:text-slate-100" v-if="product.discount">
-                {{ product.discount }}
+                {{ product.discount }}%
               </p>
               <p class="text-sm text-slate-500 dark:text-slate-100" v-else>
                 -
