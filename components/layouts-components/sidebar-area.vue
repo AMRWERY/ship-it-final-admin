@@ -4,13 +4,14 @@
       <overlay :visible="authStore.isOverlayVisible" />
 
       <aside
-        class="absolute top-0 z-50 flex h-screen w-[230px] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0"
+        class="fixed top-0 z-50 flex h-screen w-[230px] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0"
         :class="[
           localeStore.isRTL ? 'right-0' : 'left-0',
           {
             'translate-x-0': sidebarStore.isSidebarOpen,
             '-translate-x-full': !sidebarStore.isSidebarOpen && !localeStore.isRTL,
-            'translate-x-full': !sidebarStore.isSidebarOpen && localeStore.isRTL
+            'translate-x-full': !sidebarStore.isSidebarOpen && localeStore.isRTL,
+            'lg:translate-x-0': true
           }
         ]" ref="target">
         <!-- SIDEBAR HEADER -->
@@ -76,6 +77,16 @@ const route = useRoute()
 
 watch(() => route.path, () => {
   if (sidebarStore.isSidebarOpen) {
+    sidebarStore.isSidebarOpen = false
+  }
+})
+
+const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+
+watch(isLargeScreen, (isLarge) => {
+  if (isLarge) {
+    sidebarStore.isSidebarOpen = true
+  } else {
     sidebarStore.isSidebarOpen = false
   }
 })
