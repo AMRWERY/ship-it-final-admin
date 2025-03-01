@@ -3,7 +3,34 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <h3 class="py-2 mt-5 mb-12 text-2xl font-bold text-start">{{ $t('dashboard.categories') }}</h3>
+    <div class="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
+      <h3 class="py-2 mt-5 text-2xl font-bold text-start">
+        {{ $t('dashboard.categories') }}
+      </h3>
+      <div class="flex flex-col items-start mt-4 space-y-4 md:flex-row md:items-end md:space-y-0 md:space-s-4 md:mt-0">
+        <div class="flex flex-col">
+          <div class="relative">
+            <input type="text" placeholder="Search Category"
+              class="w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm pe-4 placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow" />
+            <div class="absolute inset-y-0 flex items-center pointer-events-none end-0 pe-3">
+              <icon name="material-symbols:search-rounded" class="w-5 h-5 text-gray-500" />
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="flex flex-col">
+          <nuxt-link to="" role="button" class="flex items-center justify-center w-full px-5 py-2.5 btn-style"
+            @click="openAddProductDialog">
+            <icon name="material-symbols:add" class="w-5 h-5 -ms-2 me-2" aria-hidden="true" />
+            <span>{{ $t('btn.add_product') }}</span>
+          </nuxt-link>
+
+          <add-edit-product-dialog :is-dialog-open="isDialogOpen" :product-id="selectedProductId"
+            @close="handleDialogClose" />
+        </div> -->
+      </div>
+    </div>
+
     <div
       class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white rounded-lg shadow-md bg-clip-border dark:bg-black dark:text-gray-200">
       <table class="w-full table-auto text-start min-w-max">
@@ -24,13 +51,15 @@
                 {{ $t('dashboard.image') }}
               </p>
             </th>
+            <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+            </th>
           </tr>
         </thead>
 
         <tbody v-if="categoryStore.paginatedCategories.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_categories_found') }}
+              <p class="text-xl font-semibold text-gray-800 dark:text-white">{{ $t('dashboard.no_categories_found') }}
               </p>
             </td>
           </tr>
@@ -71,7 +100,7 @@
         <div class="flex mt-3 space-s-1 ms-auto">
           <button @click="categoryStore.changePage(categoryStore.currentPage - 1)"
             :disabled="categoryStore.currentPage === 1"
-            class="px-3 py-1 text-sm font-normal transition dark:bg-slate-800 dark:text-white duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
             {{ $t('pagination.previous') }}
           </button>
           <button v-for="page in categoryStore.totalPages" :key="page" @click="categoryStore.changePage(page)" :class="{
@@ -83,7 +112,7 @@
           </button>
           <button @click="categoryStore.changePage(categoryStore.currentPage + 1)"
             :disabled="categoryStore.currentPage === categoryStore.totalPages"
-            class="px-3 py-1 text-sm font-normal transition dark:bg-slate-800 dark:text-white duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
             {{ $t('pagination.next') }}
           </button>
         </div>
