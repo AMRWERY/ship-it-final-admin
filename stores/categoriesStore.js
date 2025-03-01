@@ -22,6 +22,7 @@ export const useCategoriesStore = defineStore("categoriesStore", {
     subcategoriesPerPage: 4,
     currentCategory: null,
     currentMarketCategory: null,
+    searchCategoryByTitle: "",
   }),
 
   actions: {
@@ -135,8 +136,14 @@ export const useCategoriesStore = defineStore("categoriesStore", {
         });
     },
 
+    setSearchTerm(term) {
+      this.searchCategoryByTitle = term;
+      this.currentPage = 1;
+      this.updatePagination();
+    },
+
     updatePagination() {
-      this.paginatedCategories = this.categories.slice(
+      this.paginatedCategories = this.filteredCategories.slice(
         (this.currentPage - 1) * this.categoriesPerPage,
         this.currentPage * this.categoriesPerPage
       );
@@ -152,11 +159,24 @@ export const useCategoriesStore = defineStore("categoriesStore", {
 
   getters: {
     totalPages() {
-      return Math.ceil(this.categories.length / this.categoriesPerPage);
+      return Math.ceil(this.filteredCategories.length / this.categoriesPerPage);
     },
 
     totalPagesSubcategory() {
       return Math.ceil(this.categories.length / this.subcategoriesPerPage);
+    },
+
+    filteredCategories: (state) => {
+      const searchTerm = state.searchCategoryByTitle.trim().toLowerCase();
+      if (!searchTerm) return state.categories;
+
+      return state.categories.filter((category) => {
+        const titleMatch = category.title?.toLowerCase().includes(searchTerm);
+        const titleArMatch = category.titleAr
+          ?.toLowerCase()
+          .includes(searchTerm);
+        return titleMatch || titleArMatch;
+      });
     },
   },
 });

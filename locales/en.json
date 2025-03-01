@@ -72,7 +72,8 @@
     "write_your_reply_here": "Write your reply here...",
     "your_reply": "Your Reply",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "find_category": "Find Category..."
   },
   "btn": {
     "logging": "Logging",

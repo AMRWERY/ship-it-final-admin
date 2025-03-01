@@ -72,7 +72,8 @@
     "write_your_reply_here": "اكتب ردك هنا...",
     "your_reply": "ردك",
     "previous": "السابق",
-    "next": "التالي"
+    "next": "التالي",
+    "find_category": "ابحث عن الفئة..."
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",
