@@ -4,7 +4,8 @@
       <div class="max-w-md mx-auto">
         <img src="@/public/shopping-bags.svg" alt="shopping-bags" class="mx-auto w-36 h-36" />
         <ClientOnly>
-          <div class="p-4 space-y-4 rounded-lg shadow-lg sm:p-6 lg:p-8">
+          <div
+            class="p-4 space-y-4 rounded-lg shadow-lg sm:p-6 lg:p-8 dark:shadow-2xl dark:border-gray-100 dark:border">
             <p class="mb-10 text-2xl font-bold text-center text-gray-800 dark:text-gray-200 sm:text-3xl">{{
               $t('form.sign_in_to_your_account')
             }}</p>

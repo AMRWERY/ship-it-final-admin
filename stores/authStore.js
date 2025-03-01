@@ -85,7 +85,9 @@ export const useAuthStore = defineStore("auth-store", {
         this.user = null;
         this.role = null;
         this.error = null;
-        localStorage.clear();
+        ["user", "page", "selected"].forEach((key) => {
+          localStorage.removeItem(key);
+        });
         setTimeout(() => {
           this.isOverlayVisible = false;
         }, 3000);
