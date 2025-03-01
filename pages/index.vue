@@ -7,11 +7,11 @@
           <h3 class="text-xl font-semibold text-center">{{ $t('dashboard.orders_placed') }}</h3>
           <div class="flex items-center justify-between mt-4">
             <div
-              class="flex items-center justify-center p-1 bg-red-200 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
+              class="flex items-center justify-center p-1 bg-gray-100 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
               <icon name="material-symbols:shopping-cart-checkout" class="text-gray-700 h-7 w-7 dark:text-gray-200" />
             </div>
             <div
-              class="flex items-center justify-center px-2 bg-red-200 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
+              class="flex items-center justify-center px-2 bg-gray-100 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
               <p class="text-xl font-semibold text-gray-700 dark:text-gray-200">{{ totalCheckouts }}</p>
             </div>
           </div>
@@ -27,11 +27,11 @@
           <h3 class="text-xl font-semibold text-center">{{ $t('dashboard.inventory') }}</h3>
           <div class="flex items-center justify-between mt-4">
             <div
-              class="flex items-center justify-center p-1 bg-red-200 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
+              class="flex items-center justify-center p-1 bg-gray-100 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
               <icon name="lucide:boxes" class="text-gray-700 h-7 w-7 dark:text-gray-200" />
             </div>
             <div
-              class="flex items-center justify-center px-1.5 bg-red-200 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
+              class="flex items-center justify-center px-1.5 bg-gray-100 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
               <p class="text-xl font-semibold text-gray-700 dark:text-gray-200">{{ inStockCount }}</p>
             </div>
           </div>
@@ -46,11 +46,11 @@
           <h3 class="text-xl font-semibold text-center">{{ $t('dashboard.total_users') }}</h3>
           <div class="flex items-center justify-between mt-4">
             <div
-              class="flex items-center justify-center p-1 bg-red-200 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
+              class="flex items-center justify-center p-1 bg-gray-100 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
               <icon name="ci:users-group" class="text-gray-700 h-7 w-7 dark:text-gray-200" />
             </div>
             <div
-              class="flex items-center justify-center px-2 bg-red-200 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
+              class="flex items-center justify-center px-2 bg-gray-100 rounded-full hover:bg-red-300 dark:bg-red-500 dark:hover:bg-red-600">
               <p class="text-xl font-semibold text-gray-700 dark:text-gray-200">{{ totalCustomers }}</p>
             </div>
           </div>
@@ -61,8 +61,8 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-12">
-        <div class="col-span-12 p-4 bg-white rounded-lg shadow-md md:col-span-9 h-[400px] dark:bg-black">
+      <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-12">
+        <div class="h-auto col-span-12 bg-white rounded-lg shadow-md md:col-span-9 dark:bg-black">
           <div class="mt-4">
             <!-- charts component -->
             <charts :totalOrders="totalCheckouts" :totalInventory="inStockCount" :totalCustomers="totalCustomers" />
