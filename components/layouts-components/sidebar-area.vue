@@ -102,11 +102,7 @@ const menuGroups = computed(() => [
       {
         icon: 'material-symbols:category-rounded',
         label: 'layout.categories',
-        route: '',
-        children: [
-          { label: 'layout.categories', route: '/categories/categories' },
-          { label: 'layout.add_category', route: '/categories/add-category' },
-        ]
+        route: '/categories',
       },
       {
         icon: 'lsicon:management-stockout-filled',

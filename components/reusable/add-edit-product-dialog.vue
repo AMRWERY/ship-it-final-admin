@@ -52,7 +52,7 @@
                             <div class="flex flex-col items-center">
                               <icon name="material-symbols:add-photo-alternate" class="w-20 h-20 text-blue-700" />
                               <span class="block font-normal text-gray-400">{{ $t('form.attach_your_files_here')
-                                }}</span>
+                              }}</span>
                             </div>
                           </div>
                           <input type="file" class="w-full h-full opacity-0" @change="handleImageUpload" multiple>
@@ -113,7 +113,7 @@
               <div v-else-if="step === 3">
                 <div class="mb-4">
                   <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.product_type')
-                    }}
+                  }}
                   </p>
                   <div class="grid grid-cols-3 gap-4">
                     <label for="new-arrival" class="block mb-2 font-medium text-gray-700 dark:text-gray-200">

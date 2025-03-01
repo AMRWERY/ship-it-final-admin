@@ -18,16 +18,17 @@
           </div>
         </div>
 
-        <!-- <div class="flex flex-col">
+        <div class="flex flex-col">
           <nuxt-link to="" role="button" class="flex items-center justify-center w-full px-5 py-2.5 btn-style"
-            @click="openAddProductDialog">
+            @click="openAddCategorytDialog">
             <icon name="material-symbols:add" class="w-5 h-5 -ms-2 me-2" aria-hidden="true" />
-            <span>{{ $t('btn.add_product') }}</span>
+            <span>{{ $t('btn.add_category') }}</span>
           </nuxt-link>
 
-          <add-edit-product-dialog :is-dialog-open="isDialogOpen" :product-id="selectedProductId"
+          <!-- add-edit-category-dialog component -->
+          <add-edit-category-dialog :is-dialog-open="isDialogOpen" :category-id="selectedCategoryId"
             @close="handleDialogClose" />
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -80,6 +81,11 @@
             </td>
             <td class="p-4 py-5">
               <img :src="category.imgOne" class="w-12 h-12 rounded-lg">
+            </td>
+            <td class="p-4 py-5">
+              <nuxt-link to="" @click="openEditDialog(category.id)" role="button"
+                class="text-sm text-blue-700 cursor-pointer dark:text-blue-400">{{
+                  $t('btn.edit_category') }}</nuxt-link>
             </td>
             <td class="p-4 py-5 text-center">
               <div class="flex items-center justify-center space-s-4">
@@ -142,7 +148,7 @@ const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast 
 
 const handleDeleteCategory = async (categoryId) => {
   deleteCat.value = categoryId;
-  setTimeout(async () => {
+  try {
     await categoryStore.deleteCategory(categoryId);
     triggerToast({
       title: t('toast.great'),
@@ -150,14 +156,41 @@ const handleDeleteCategory = async (categoryId) => {
       type: 'success',
       icon: 'mdi:check-circle',
     });
+    categoryStore.setSearchTerm(categoryStore.searchCategoryByTitle);
+  } catch (error) {
+    triggerToast({
+      title: t('toast.error'),
+      message: t('toast.failed_to_delete_category'),
+      type: 'error',
+      icon: 'mdi-alert-circle',
+    });
+  } finally {
     deleteCat.value = null;
-  }, 3000);
+  }
 };
 
 const searchCategory = computed({
   get: () => categoryStore.searchCategoryByTitle,
   set: (value) => categoryStore.setSearchTerm(value)
 });
+
+const isDialogOpen = ref(false);
+const selectedCategoryId = ref(null);
+
+const openAddCategorytDialog = () => {
+  selectedCategoryId.value = null;
+  isDialogOpen.value = true;
+};
+
+const openEditDialog = (categoryId) => {
+  selectedCategoryId.value = categoryId;
+  isDialogOpen.value = true;
+};
+
+const handleDialogClose = () => {
+  isDialogOpen.value = false;
+  selectedCategoryId.value = null;
+};
 
 definePageMeta({
   layout: "dashboard",

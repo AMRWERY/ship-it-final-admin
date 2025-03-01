@@ -73,7 +73,9 @@
     "your_reply": "Your Reply",
     "previous": "Previous",
     "next": "Next",
-    "find_category": "Find Category..."
+    "find_category": "Find Category...",
+    "add_category": "Add Category",
+    "edit_category": "Edit Category"
   },
   "btn": {
     "logging": "Logging",
@@ -94,7 +96,8 @@
     "send_reply": "Send Reply",
     "sending_reply": "Sending reply",
     "go_back_home": "Go Back Home",
-    "save": "Save"
+    "save": "Save",
+    "edit_category": "Edit Category"
   },
   "toast": {
     "successfully_logged_in": "successfully logged in",
@@ -126,7 +129,12 @@
     "product_updated_successfully": "Product updated successfully",
     "successfully_added_product": "Successfully added product",
     "failed_to_add_product": "Failed to add product",
-    "failed_to_update_product": "Failed to update product"
+    "failed_to_update_product": "Failed to update product",
+    "fill_required_fields": "Fill required fields",
+    "category_updated_successfully": "Category updated successfully",
+    "failed_to_update_category": "Failed to update category",
+    "failed_to_delete_category": "Failed to delete category",
+    "successfully_added_category": "Successfully added category"
   },
   "breadcrumb": {
     "home": "Home",
@@ -135,8 +143,7 @@
     "items_stock": "Items Stock",
     "products_add_product": "Add Product",
     "products_all_products": "Products",
-    "categories_categories": "Categories",
-    "categories_add_category": "Add Category",
+    "categories": "Categories",
     "deals_all_deals": "All Deals",
     "deals_add_today_deals": "Add Deal",
     "customer_messages": "Customer Messages",

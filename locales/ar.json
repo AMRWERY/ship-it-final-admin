@@ -73,7 +73,9 @@
     "your_reply": "ردك",
     "previous": "السابق",
     "next": "التالي",
-    "find_category": "ابحث عن الفئة..."
+    "find_category": "ابحث عن الفئة...",
+    "add_category": "اضافه فئه",
+    "edit_category": "تعديل فئه"
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",
@@ -94,7 +96,8 @@
     "send_reply": "ارسل الرد",
     "sending_reply": "جاري ارسال الرد",
     "go_back_home": "العودة إلى الصفحة الرئيسية",
-    "save": "حفظ"
+    "save": "حفظ",
+    "edit_category": "تعديل فئه"
   },
   "toast": {
     "successfully_logged_in": "تم تسجيل الدخول بنجاح",
@@ -126,7 +129,12 @@
     "product_updated_successfully": "تم تحديث المنتج بنجاح",
     "successfully_added_product": "تم اضافه المنتج بنجاح",
     "failed_to_add_product": "فشل اضافه المنتج",
-    "failed_to_update_product": "فشل تعديل المنتج"
+    "failed_to_update_product": "فشل تعديل المنتج",
+    "fill_required_fields": "إملأ الحقول المطلوبة",
+    "category_updated_successfully": "تم تحديث الفئة بنجاح",
+    "failed_to_update_category": "فشل في تحديث الفئة",
+    "failed_to_delete_category": "فشل في حذف الفئة",
+    "successfully_added_category": "تمت إضافة الفئة بنجاح"
   },
   "breadcrumb": {
     "home": "الرئيسية",
@@ -135,8 +143,7 @@
     "items_stock": "مخزون العناصر",
     "products_add_product": "إضافة منتج",
     "products_all_products": "المنتجات",
-    "categories_categories": "الفئات",
-    "categories_add_category": "إضافة فئة",
+    "categories": "الفئات",
     "deals_all_deals": "كل العروض",
     "deals_add_today_deals": "إضافة عرض",
     "customer_messages": "رسائل العملاء",

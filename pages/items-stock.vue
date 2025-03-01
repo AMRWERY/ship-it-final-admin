@@ -25,6 +25,7 @@
             <span>{{ $t('btn.add_product') }}</span>
           </nuxt-link>
 
+          <!-- add-edit-product-dialog component -->
           <add-edit-product-dialog :is-dialog-open="isDialogOpen" :product-id="selectedProductId"
             @close="handleDialogClose" />
         </div>
