@@ -1,6 +1,6 @@
 export default defineNuxtPlugin((nuxtApp) => {
   const applyStoredLocale = () => {
-    const storedLocale = sessionStorage.getItem("locale") || "en";
+    const storedLocale = localStorage.getItem("locale") || "en";
     const i18n = nuxtApp.$i18n;
     if (i18n.locale !== storedLocale) {
       i18n.setLocale(storedLocale); // Use setLocale method

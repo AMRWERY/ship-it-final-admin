@@ -75,14 +75,14 @@ export default defineNuxtPlugin((app) => {
 
   if (process.client) {
     const initialLocale =
-      localeStore.locale || sessionStorage.getItem("locale") || "en";
+      localeStore.locale || localStorage.getItem("locale") || "en";
     updateValidationLocale(initialLocale);
   }
 
   watch(
     () => localeStore.locale,
     (newLocale) => {
-      sessionStorage.setItem("locale", newLocale);
+      localStorage.setItem("locale", newLocale);
       updateValidationLocale(newLocale);
     }
   );

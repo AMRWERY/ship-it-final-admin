@@ -1,6 +1,7 @@
 export const useLocaleStore = defineStore("locales", {
   state: () => ({
-    locale: process.client ? sessionStorage.getItem("locale") || "en" : "en",
+    
+    locale: process.client ? localStorage.getItem("locale") || "en" : "en",
     isOverlayVisible: false,
   }),
 
@@ -9,7 +10,7 @@ export const useLocaleStore = defineStore("locales", {
       this.isOverlayVisible = true;
       this.locale = value;
       if (process.client) {
-        sessionStorage.setItem("locale", value);
+        localStorage.setItem("locale", value);
       }
       setTimeout(() => {
         this.isOverlayVisible = false;
@@ -18,7 +19,7 @@ export const useLocaleStore = defineStore("locales", {
 
     loadLocale() {
       if (process.client) {
-        this.locale = sessionStorage.getItem("locale") || "en";
+        this.locale = localStorage.getItem("locale") || "en";
       }
     },
   },
