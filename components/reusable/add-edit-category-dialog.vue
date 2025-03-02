@@ -44,7 +44,9 @@
               </div>
             </div>
             <div class="flex items-center justify-center mb-4 space-s-6" v-if="previewImage">
-              <img :src="previewImage" class="w-48 h-32 rounded-lg">
+             <div class="p-1 border border-gray-200 rounded-lg">
+               <img :src="previewImage" class="object-cover w-full h-32 rounded-lg">
+              </div>
             </div>
 
             <button type="submit" class="w-full px-4 py-2 btn-style">
