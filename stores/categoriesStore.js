@@ -172,7 +172,6 @@ export const useCategoriesStore = defineStore("categoriesStore", {
       this.paginatedCategories = this.filteredCategories.slice(start, end);
       if (this.paginatedCategories.length === 0 && this.currentPage > 1) {
         this.currentPage -= 1;
-        this.updatePagination();
       }
     },
 

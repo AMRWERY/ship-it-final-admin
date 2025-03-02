@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db, storage } from "@/firebase";
-import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const useProductsStore = defineStore("new-products", {
   state: () => ({
@@ -20,6 +20,7 @@ export const useProductsStore = defineStore("new-products", {
     currentPage: 1,
     productsPerPage: 10,
     productRatings: {},
+    searchProductByTitle: "",
   }),
 
   actions: {
@@ -86,7 +87,7 @@ export const useProductsStore = defineStore("new-products", {
         })
         .catch((error) => {
           // console.error("Error updating product:", error);
-          return error
+          return error;
         });
     },
 
@@ -111,7 +112,6 @@ export const useProductsStore = defineStore("new-products", {
 
     fetchProductsByBrand(brandName) {
       if (!brandName) {
-        // console.error("Brand name is required to fetch products by brand.");
         return;
       }
       getDocs(
@@ -131,7 +131,6 @@ export const useProductsStore = defineStore("new-products", {
 
     fetchProductsByCategory(catId) {
       if (!catId) {
-        // console.error("Category ID is required to fetch products by category.");
         return;
       }
       getDocs(query(collection(db, "products"), where("catId", "==", catId)))
@@ -149,7 +148,6 @@ export const useProductsStore = defineStore("new-products", {
 
     fetchProductDetail(productId) {
       if (!productId) {
-        // console.error("Product ID is missing or invalid.");
         return null;
       }
       const docRef = doc(db, "products", productId);
@@ -170,11 +168,19 @@ export const useProductsStore = defineStore("new-products", {
         });
     },
 
+    setSearchTerm(term) {
+      this.searchProductByTitle = term.toLowerCase();
+      this.currentPage = 1;
+      this.updatePagination();
+    },
+
     updatePagination() {
-      this.paginatedProducts = this.products.slice(
-        (this.currentPage - 1) * this.productsPerPage,
-        this.currentPage * this.productsPerPage
-      );
+      const start = (this.currentPage - 1) * this.productsPerPage;
+      const end = this.currentPage * this.productsPerPage;
+      this.paginatedProducts = this.filteredProducts.slice(start, end);
+      if (this.paginatedProducts.length === 0 && this.currentPage > 1) {
+        this.currentPage -= 1;
+      }
     },
 
     changePage(page) {
@@ -239,7 +245,19 @@ export const useProductsStore = defineStore("new-products", {
     },
 
     totalPages() {
-      return Math.ceil(this.products.length / this.productsPerPage);
+      return Math.ceil(this.filteredProducts.length / this.productsPerPage);
+    },
+
+    filteredProducts: (state) => {
+      if (!state.searchProductByTitle) return state.products;
+      return state.products.filter((product) => {
+        const title = product.title?.toLowerCase() || "";
+        const titleAr = product.titleAr?.toLowerCase() || "";
+        return (
+          title.includes(state.searchProductByTitle) ||
+          titleAr.includes(state.searchProductByTitle)
+        );
+      });
     },
   },
 });

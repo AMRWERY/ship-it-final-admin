@@ -75,7 +75,8 @@
     "next": "التالي",
     "find_category": "ابحث عن الفئة...",
     "add_category": "اضافه فئه",
-    "edit_category": "تعديل فئه"
+    "edit_category": "تعديل فئه",
+    "find_product": "ابحث عن منتج..."
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",

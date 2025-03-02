@@ -10,7 +10,7 @@
       <div class="flex flex-col items-start mt-4 space-y-4 md:flex-row md:items-end md:space-y-0 md:space-s-4 md:mt-0">
         <div class="flex flex-col">
           <div class="relative">
-            <input type="text" placeholder="Search..."
+            <input type="text" :placeholder="t('form.find_product')" v-model="searchProduct"
               class="w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm pe-4 placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow" />
             <div class="absolute inset-y-0 flex items-center pointer-events-none end-0 pe-3">
               <icon name="material-symbols:search-rounded" class="w-5 h-5 text-gray-500" />
@@ -261,6 +261,11 @@ const handleDialogClose = () => {
   isDialogOpen.value = false;
   selectedProductId.value = null;
 };
+
+const searchProduct = computed({
+  get: () => productStore.searchProductByTitle,
+  set: (value) => productStore.setSearchTerm(value)
+});
 
 definePageMeta({
   layout: 'dashboard'

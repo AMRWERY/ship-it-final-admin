@@ -75,7 +75,8 @@
     "next": "Next",
     "find_category": "Find Category...",
     "add_category": "Add Category",
-    "edit_category": "Edit Category"
+    "edit_category": "Edit Category",
+    "find_product": "Find Product..."
   },
   "btn": {
     "logging": "Logging",
