@@ -66,6 +66,10 @@ export const useAuthStore = defineStore("auth-store", {
             role: userData.role,
             loginType: userData.loginType,
           };
+          if (this.user?.email !== "admin@ship.com") {
+            await this.logoutUser();
+            throw new Error("Unauthorized access");
+          }
           localStorage.setItem("user", JSON.stringify(saveUserData));
         } else {
           this.role = "user";
@@ -100,5 +104,7 @@ export const useAuthStore = defineStore("auth-store", {
 
   getters: {
     isAuthenticated: (state) => !!state.user,
+
+    isAdmin: (state) => state.user?.email === "admin@ship.com",
   },
 });

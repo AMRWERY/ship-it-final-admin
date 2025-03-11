@@ -12,8 +12,17 @@ export default defineNuxtRouteMiddleware(async (to) => {
     return navigateTo("/login");
   }
 
-  // Redirect authenticated users away from the login page
-  if (authStore.isAuthenticated && to.path === "/login") {
-    return navigateTo("/");
+  if (authStore.isAuthenticated) {
+    // Redirect from login page based on role
+    if (to.path === "/login") {
+      return authStore.user?.email === "admin@ship.com"
+        ? navigateTo("/")
+        : navigateTo("/dashboard");
+    }
+
+    // Admin-only route protection
+    if (to.path === "/" && authStore.user?.email !== "admin@ship.com") {
+      return navigateTo("/dashboard");
+    }
   }
 });
