@@ -116,7 +116,7 @@
     <!-- dynamic-toast component -->
     <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
       <div class="pointer-events-auto">
-        <dynamic-toast v-if="showToast" :title="toastTitle" :message="toastMessage" :toastType="toastType"
+        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
           :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
       </div>
     </div>
@@ -138,7 +138,7 @@ const closeDialog = () => {
   emit('close');
 };
 
-const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast();
+const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 const { t } = useI18n()
 
 const updateOrderStatus = (orderId, newStatus) => {
@@ -156,7 +156,6 @@ const updateOrderStatus = (orderId, newStatus) => {
     .then((rss) => {
       checkoutStore.fetchOrders();
       triggerToast({
-        title: t('toast.great'),
         message: t('toast.order_status_updated'),
         type: 'success',
         icon: 'mdi-check-circle',
@@ -166,7 +165,6 @@ const updateOrderStatus = (orderId, newStatus) => {
     .catch((error) => {
       console.error(error);
       triggerToast({
-        title: t('toast.error'),
         message: t('toast.failed_to_update_order'),
         type: 'error',
         icon: 'mdi:alert-circle',

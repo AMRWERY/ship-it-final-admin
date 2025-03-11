@@ -3,7 +3,7 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+    <div class="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
       <h3 class="py-2 mt-5 text-2xl font-bold text-start">
         {{ $t('dashboard.orders') }}
       </h3>
@@ -104,7 +104,7 @@
         <tbody v-if="checkoutStore.paginatedOrders.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_orders_found') }}</p>
+              <p class="text-xl font-semibold text-gray-800 dark:text-white">{{ $t('dashboard.no_orders_found') }}</p>
             </td>
           </tr>
         </tbody>
@@ -190,7 +190,7 @@
       <div class="flex mt-3 space-s-1 ms-auto">
         <button @click="checkoutStore.changePage(checkoutStore.currentPage - 1)"
           :disabled="checkoutStore.currentPage === 1"
-          class="px-3 py-1 text-sm font-normal transition dark:bg-slate-800 dark:text-white duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+          class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
           {{ $t('pagination.previous') }}
         </button>
         <button v-for="page in checkoutStore.totalPages" :key="page" @click="checkoutStore.changePage(page)" :class="{
@@ -202,7 +202,7 @@
         </button>
         <button @click="checkoutStore.changePage(checkoutStore.currentPage + 1)"
           :disabled="checkoutStore.currentPage === checkoutStore.totalPages"
-          class="px-3 py-1 text-sm font-normal transition dark:bg-slate-800 dark:text-white duration-200 bg-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+          class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
           {{ $t('pagination.next') }}
         </button>
       </div>
@@ -216,7 +216,7 @@
     <!-- dynamic-toast component -->
     <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
       <div class="pointer-events-auto">
-        <dynamic-toast v-if="showToast" :title="toastTitle" :message="toastMessage" :toastType="toastType"
+        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
           :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
       </div>
     </div>
@@ -226,7 +226,7 @@
 <script setup>
 const { t } = useI18n()
 const checkoutStore = useCheckoutStore();
-const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast()
+const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast()
 
 const currentStatus = ref('')
 const orderStatus = ref([])
@@ -277,7 +277,6 @@ const deleteOrder = (orderId) => {
     .then(() => {
       checkoutStore.paginatedOrders = checkoutStore.paginatedOrders.filter(order => order.id !== orderId);
       triggerToast({
-        title: t('toast.great'),
         message: t('toast.order_deleted_successfully'),
         type: 'success',
         icon: 'mdi:check-circle',
@@ -285,7 +284,6 @@ const deleteOrder = (orderId) => {
     })
     .catch((error) => {
       triggerToast({
-        title: t('toast.error'),
         message: t('toast.order_deletion_failed'),
         type: 'error',
         icon: 'mdi:alert-circle',

@@ -128,7 +128,7 @@
     <!-- dynamic-toast component -->
     <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
       <div class="pointer-events-auto">
-        <dynamic-toast v-if="showToast" :title="toastTitle" :message="toastMessage" :toastType="toastType"
+        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
           :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
       </div>
     </div>
@@ -144,14 +144,13 @@ onMounted(() => {
 })
 
 const deleteCat = ref(null);
-const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast()
+const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast()
 
 const handleDeleteCategory = async (categoryId) => {
   deleteCat.value = categoryId;
   try {
     await categoryStore.deleteCategory(categoryId);
     triggerToast({
-      title: t('toast.great'),
       message: t('toast.category_deleted_successfully'),
       type: 'success',
       icon: 'mdi:check-circle',
@@ -159,7 +158,6 @@ const handleDeleteCategory = async (categoryId) => {
     categoryStore.setSearchTerm(categoryStore.searchCategoryByTitle);
   } catch (error) {
     triggerToast({
-      title: t('toast.error'),
       message: t('toast.failed_to_delete_category'),
       type: 'error',
       icon: 'mdi-alert-circle',

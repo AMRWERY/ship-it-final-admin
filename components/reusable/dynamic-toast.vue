@@ -1,22 +1,18 @@
 <template>
     <div>
-        <transition name="toast-slide">
-            <div v-if="visible" :class="`relative w-full max-w-lg p-5 rounded-lg shadow sm:max-w-lg ${toastStyles}`">
-                <button @click="closeToast" class="absolute mt-2 text-gray-500 top-2 end-2 hover:text-gray-700">
-                    <icon name="material-symbols:close" class="w-5 h-5" />
-                </button>
-
-                <div class="flex items-start">
-                    <div>
-                        <icon :name="toastIcon" :class="`w-6 h-6 ${iconColor}`" />
-                    </div>
-                    <div class="ms-3">
-                        <h2 class="font-semibold" :class="titleColor">{{ title }}</h2>
-                        <p class="mt-2 text-sm leading-relaxed text-gray-600">
-                            {{ message }}
-                        </p>
-                    </div>
+        <transition name="bounce" mode="out-in">
+            <div v-if="visible"
+                :class="`relative w-full max-w-lg p-5 rounded-lg shadow-xl sm:max-w-lg z-50 ${toastStyles}`"
+                role="alert">
+                <!-- Progress bar container -->
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-white rounded-b-lg bg-opacity-20">
+                    <div class="h-full transition-all ease-linear" :class="progressBarColor"
+                        :style="progressBarStyle" />
                 </div>
+                <icon :name="toastIcon" :class="`w-6 h-6 ${iconColor}`" class="inline shrink-0 me-3" />
+                <span class="block text-lg me-3 sm:inline">{{ message }}</span>
+                <icon name="material-symbols:close" class="inline w-6 h-6 cursor-pointer ms-auto shrink-0"
+                    @click="closeToast" />
             </div>
         </transition>
     </div>
@@ -27,10 +23,6 @@ const props = defineProps({
     message: {
         type: String,
         required: true,
-    },
-    title: {
-        type: String,
-        default: '',
     },
     toastIcon: {
         type: String,
@@ -47,42 +39,32 @@ const props = defineProps({
 });
 
 const visible = ref(true);
+const progressWidth = ref(100);
 const emit = defineEmits(['toastClosed']);
 
 const toastStyles = computed(() => {
     switch (props.toastType) {
         case 'success':
-            return 'bg-green-100 text-green-700';
+            return 'bg-green-500 text-white font-semibold tracking-wide flex items-center w-max max-w-sm p-4 rounded-md shadow-md shadow-green-200';
         case 'error':
-            return 'bg-red-100 text-red-700';
+            return 'bg-red-500 text-white font-semibold tracking-wide flex items-center w-max max-w-sm p-4 rounded-md shadow-md shadow-red-200';
         case 'warning':
-            return 'bg-yellow-200 text-yellow-700';
+            return 'bg-yellow-500 text-white font-semibold tracking-wide flex items-center w-max max-w-sm p-4 rounded-md shadow-md shadow-yellow-200';
         default:
-            return 'bg-blue-100 text-blue-700';
+            return 'bg-blue-500 text-white font-semibold tracking-wide flex items-center w-max max-w-sm p-4 rounded-md shadow-md shadow-blue-200';
     }
 });
 
 const iconColor = computed(() => {
     switch (props.toastType) {
         case 'success':
-            return 'text-green-500';
+            return 'bg-green-100 text-green-500';
         case 'error':
-            return 'text-red-500';
+            return 'bg-red-100 text-red-500';
         case 'warning':
-            return 'text-yellow-500';
+            return 'bg-yellow-100 text-yellow-500';
         default:
-            return 'text-blue-500';
-    }
-});
-
-const titleColor = computed(() => {
-    switch (props.toastType) {
-        case 'success':
-        case 'error':
-        case 'warning':
-            return 'text-gray-800';
-        default:
-            return 'text-blue-800';
+            return 'bg-blue-100 text-blue-500';
     }
 });
 
@@ -94,17 +76,55 @@ const closeToast = () => {
 setTimeout(() => {
     closeToast();
 }, props.duration);
+
+const progressBarColor = computed(() => {
+    switch (props.toastType) {
+        case 'success': return 'bg-green-300';
+        case 'error': return 'bg-red-300';
+        case 'warning': return 'bg-yellow-300';
+        default: return 'bg-blue-300';
+    }
+});
+
+const progressBarStyle = computed(() => ({
+    width: `${progressWidth.value}%`,
+    transitionDuration: `${props.duration}ms`,
+}));
+
+onMounted(() => {
+    setTimeout(() => {
+        progressWidth.value = 0;
+    }, 50);
+});
 </script>
 
 <style scoped>
-.toast-slide-enter-active,
-.toast-slide-leave-active {
-    transition: opacity 0.5s ease, transform 0.5s ease;
+.bounce-enter-from,
+.bounce-leave-to {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.8);
 }
 
-.toast-slide-enter,
-.toast-slide-leave-to {
-    opacity: 0;
-    transform: translateY(20px);
+.bounce-enter-active,
+.bounce-leave-active {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    position: absolute;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: translateY(-30px) scale(0.8);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(10px) scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
 }
 </style>

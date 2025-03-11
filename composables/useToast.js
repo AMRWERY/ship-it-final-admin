@@ -1,12 +1,10 @@
 export function useToast() {
   const showToast = ref(false);
-  const toastTitle = ref("");
   const toastMessage = ref("");
   const toastType = ref("");
   const toastIcon = ref("");
 
-  const triggerToast = ({ title, message, type, icon }) => {
-    toastTitle.value = title || "";
+  const triggerToast = ({ message, type, icon }) => {
     toastMessage.value = message || "";
     toastType.value = type || "";
     toastIcon.value = icon || "";
@@ -19,7 +17,6 @@ export function useToast() {
 
   return {
     showToast,
-    toastTitle,
     toastMessage,
     toastType,
     toastIcon,

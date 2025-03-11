@@ -3,7 +3,7 @@
     <!-- breadcrumb component -->
     <breadcrumb />
 
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+    <div class="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
       <h3 class="py-2 mt-5 text-2xl font-bold text-start">
         {{ $t('dashboard.customer_messages') }}
       </h3>
@@ -63,7 +63,7 @@
         <tbody v-if="contactStore.paginatedMessages.length === 0">
           <tr>
             <td colspan="10" class="p-4 text-center">
-              <p class="text-gray-800 dark:text-white font-semibold text-xl">{{ $t('dashboard.no_meesages_found') }}</p>
+              <p class="text-xl font-semibold text-gray-800 dark:text-white">{{ $t('dashboard.no_meesages_found') }}</p>
             </td>
           </tr>
         </tbody>
@@ -112,7 +112,7 @@
         <div class="flex mt-3 space-s-1 ms-auto">
           <button @click="contactStore.changePage(contactStore.currentPage - 1)"
             :disabled="contactStore.currentPage === 1"
-            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white dark:bg-slate-800 dark:text-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
             {{ $t('pagination.previous') }}
           </button>
           <button v-for="page in contactStore.totalPages" :key="page" @click="contactStore.changePage(page)" :class="{
@@ -124,7 +124,7 @@
           </button>
           <button @click="contactStore.changePage(contactStore.currentPage + 1)"
             :disabled="contactStore.currentPage === contactStore.totalPages"
-            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white dark:bg-slate-800 dark:text-white border rounded min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+            class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
             {{ $t('pagination.next') }}
           </button>
         </div>
@@ -139,7 +139,7 @@
     <!-- dynamic-toast component -->
     <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
       <div class="pointer-events-auto">
-        <dynamic-toast v-if="showToast" :title="toastTitle" :message="toastMessage" :toastType="toastType"
+        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
           :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
       </div>
     </div>
@@ -148,7 +148,7 @@
 
 <script setup>
 const contactStore = useContactStore();
-const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast();
+const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 
 onMounted(() => {
   contactStore.fetchMessages()
@@ -183,7 +183,6 @@ const deleteMessage = (messageId) => {
     .then(() => {
       contactStore.paginatedMessages = contactStore.paginatedMessages.filter(message => message.id !== messageId);
       triggerToast({
-        title: t('toast.great'),
         message: t('toast.message_deleted'),
         type: 'success',
         icon: 'mdi:check-circle',
@@ -191,7 +190,6 @@ const deleteMessage = (messageId) => {
     })
     .catch(() => {
       triggerToast({
-        title: t('toast.error'),
         message: t('toast.message_deletion_failed'),
         type: 'error',
         icon: 'mdi:alert-circle',

@@ -347,7 +347,7 @@
     <!-- dynamic-toast component -->
     <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
       <div class="pointer-events-auto">
-        <dynamic-toast v-if="showToast" :title="toastTitle" :message="toastMessage" :toastType="toastType"
+        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
           :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
       </div>
     </div>
@@ -364,7 +364,7 @@ const selectedCategory = ref('')
 const selectedFiles = ref([]);
 const previewImages = ref([])
 const fileUploadError = ref('');
-const { showToast, toastTitle, toastMessage, toastType, toastIcon, triggerToast } = useToast();
+const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 const { t } = useI18n();
 const loading = ref(false);
 const product = ref({ brand: '', brandAr: '', title: '', titleAr: '', description: '', descriptionAr: '', discountedPrice: '', originalPrice: '', discount: '', sku: '', productTypes: [], sizes: [], colors: [] })
@@ -387,7 +387,6 @@ const handleAddDeal = () => {
     selectedFiles.value.length === 0
   ) {
     triggerToast({
-      title: t("toast.error"),
       message: t("toast.please_fill_all_required_fields"),
       type: "error",
       icon: "mdi-alert-circle",
@@ -415,7 +414,6 @@ const handleAddDeal = () => {
     .then((success) => {
       if (success) {
         triggerToast({
-          title: t("toast.success"),
           message: t("toast.deal_added_successfully"),
           type: "success",
           icon: "mdi-check-circle",
@@ -426,7 +424,6 @@ const handleAddDeal = () => {
     .catch((error) => {
       console.error("Error submitting product:", error);
       triggerToast({
-        title: t("toast.error"),
         message: t("toast.something_went_wrong_please_try_again"),
         type: "error",
         icon: "mdi-alert-circle",
