@@ -1,11 +1,10 @@
 <template>
   <div>
-    <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-md mx-auto">
-        <img src="@/public/shopping-bags.svg" alt="shopping-bags" class="mx-auto w-36 h-36" />
+    <div class="max-w-screen-xl px-4 min-h-screen mx-auto flex items-center">
+      <div class="max-w-md mx-auto w-full">
         <ClientOnly>
-          <div
-            class="p-4 space-y-4 rounded-lg shadow-lg sm:p-6 lg:p-8 dark:shadow-2xl dark:border-gray-100 dark:border">
+          <div class="p-4 space-y-4 rounded-lg shadow-lg dark:shadow-2xl dark:border-gray-100 dark:border">
+            <img src="@/public/shopping-bags.svg" alt="shopping-bags" class="mx-auto w-36 h-36" />
             <p class="mb-10 text-2xl font-bold text-center text-gray-800 dark:text-gray-200 sm:text-3xl">{{
               $t('form.sign_in_to_your_account')
             }}</p>
@@ -41,8 +40,8 @@
     <!-- dynamic-toast component  -->
     <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
       <div class="pointer-events-auto">
-        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
-          :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
+        <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType" :duration="5000"
+          :toastIcon="toastIcon" @toastClosed="showToast = false" />
       </div>
     </div>
   </div>
