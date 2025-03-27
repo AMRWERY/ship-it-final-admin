@@ -23,6 +23,7 @@ export const useProductsStore = defineStore("new-products", {
     searchProductByTitle: "",
     colors: [],
     sizes: [],
+    lowStockProducts: [],
   }),
 
   actions: {
@@ -259,6 +260,22 @@ export const useProductsStore = defineStore("new-products", {
         }));
       } catch (error) {
         console.error("Error fetching sizes:", error);
+      }
+    },
+
+    async fetchLowStockProducts() {
+      try {
+        const productsRef = collection(db, "products");
+        const q = query(productsRef, where("stock", "<=", 10));
+        const querySnapshot = await getDocs(q);
+        this.lowStockProducts = querySnapshot.docs
+          .map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+          .filter(product => product.availability === "In stock");
+      } catch (error) {
+        console.error('Error fetching low stock products:', error);
       }
     },
   },

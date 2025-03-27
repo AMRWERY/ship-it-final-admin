@@ -5,6 +5,9 @@ import {
   doc,
   updateDoc,
   getDocs,
+  query,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 
 export const useUserStore = defineStore("users", {
@@ -13,6 +16,7 @@ export const useUserStore = defineStore("users", {
     paginatedUsers: [],
     currentPage: 1,
     usersPerPage: 8,
+    recentUsers: [],
   }),
 
   actions: {
@@ -101,6 +105,20 @@ export const useUserStore = defineStore("users", {
       if (page > 0 && page <= this.totalPages) {
         this.currentPage = page;
         this.updatePagination();
+      }
+    },
+
+    async fetchRecentUsers() {
+      try {
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, orderBy("createdAt", "desc"), limit(5));
+        const querySnapshot = await getDocs(q);
+        this.recentUsers = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+      } catch (error) {
+        console.error('Error fetching recent users:', error);
       }
     },
   },

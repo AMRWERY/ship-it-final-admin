@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div class="py-6 mx-auto mb-5 max-w-7xl">
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+    <div class="pt-3 pb-6 mx-auto mb-5 max-w-7xl">
+      <!-- Quick Actions Section -->
+      <div class="mb-6">
+        <quick-actions />
+      </div>
+
+      <!-- Main Metrics Cards -->
+      <div class="grid grid-cols-1 gap-6 mb-6 sm:grid-cols-2 md:grid-cols-3">
         <!-- Card 1 - Orders -->
         <div class="p-4 bg-white rounded-lg shadow-md dark:bg-black dark:border dark:border-gray-100">
           <h3 class="text-xl font-semibold text-center">{{ $t('dashboard.orders_placed') }}</h3>
@@ -37,7 +43,8 @@
           </div>
           <div class="mt-6 text-center">
             <nuxt-link-locale to="/items-stock" type="button" class="px-4 py-2 text-white btn-style">{{
-              $t('btn.view_details') }}</nuxt-link-locale>
+              $t('btn.view_details')
+            }}</nuxt-link-locale>
           </div>
         </div>
 
@@ -56,43 +63,56 @@
           </div>
           <div class="mt-6 text-center">
             <nuxt-link-locale to="/users" type="button" class="px-4 py-2 text-white btn-style">{{
-              $t('btn.view_details') }}</nuxt-link-locale>
+              $t('btn.view_details')
+            }}</nuxt-link-locale>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-12">
+      <!-- Revenue Metrics Section -->
+      <div class="mb-6">
+        <revenue-metrics />
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-12">
+        <!-- Charts Section -->
         <div
-          class="h-auto col-span-12 bg-white rounded-lg shadow-md md:col-span-9 dark:bg-black dark:border dark:border-gray-100">
+          class="h-auto col-span-12 bg-white rounded-lg shadow-md md:col-span-8 dark:bg-black dark:border dark:border-gray-100">
           <div class="mt-4">
-            <!-- charts component -->
             <charts :totalOrders="totalCheckouts" :totalInventory="inStockCount" :totalCustomers="totalCustomers" />
           </div>
         </div>
 
-        <div
-          class="col-span-12 p-4 bg-white rounded-lg shadow-md md:col-span-3 h-[400px] dark:bg-black dark:border dark:border-gray-100 overflow-y-hidden">
-          <h3 class="text-xl font-semibold text-center">{{ $t('dashboard.top_products') }}</h3>
-          <div class="h-full overflow-y-auto no-scrollbar">
-            <ul role="list" class="divide-y divide-gray-100">
-              <li v-for="product in topProducts" :key="product.id" class="flex justify-between py-5 gap-x-6">
-                <div class="flex min-w-0 gap-x-4">
-                  <img class="flex-none rounded-full size-12 bg-gray-50" :src="product.imageUrl1" />
-                  <div class="flex-auto min-w-0">
-                    <p class="font-semibold text-gray-900 truncate text-sm/6 dark:text-gray-200">{{ $i18n.locale ===
-                      'ar' ? product.titleAr :
-                      product.title }}</p>
-                    <div class="flex items-center justify-between">
-                      <p class="mt-1 text-gray-500 dark:text-gray-100 text-xs/5">{{ $i18n.locale === 'ar' ?
-                        product.brandAr :
-                        product.brand }}</p>
-                      <p class="mt-1 font-semibold text-gray-700 dark:text-gray-200 text-xs/5">{{
-                        $n(parseFloat(product.discountedPrice) || 0, 'currency', currencyLocale) }}</p>
+        <!-- Right Sidebar -->
+        <div class="col-span-12 space-y-4 md:col-span-4">
+          <!-- Recent Activity -->
+          <recent-activity />
+          
+          <!-- Top Products -->
+          <div
+            class="p-4 overflow-y-hidden bg-white rounded-lg shadow-md dark:bg-black dark:border dark:border-gray-100">
+            <h3 class="text-xl font-semibold text-center">{{ $t('dashboard.top_products') }}</h3>
+            <div class="h-full overflow-y-auto no-scrollbar">
+              <ul role="list" class="divide-y divide-gray-100">
+                <li v-for="product in topProducts" :key="product.id" class="flex justify-between py-5 gap-x-6">
+                  <div class="flex min-w-0 gap-x-4">
+                    <img class="flex-none rounded-full size-12 bg-gray-50" :src="product.imageUrl1" />
+                    <div class="flex-auto min-w-0">
+                      <p class="font-semibold text-gray-900 truncate text-sm/6 dark:text-gray-200">{{ $i18n.locale ===
+                        'ar' ? product.titleAr :
+                        product.title }}</p>
+                      <div class="flex items-center justify-between">
+                        <p class="mt-1 text-gray-500 dark:text-gray-100 text-xs/5">{{ $i18n.locale === 'ar' ?
+                          product.brandAr :
+                          product.brand }}</p>
+                        <p class="mt-1 font-semibold text-gray-700 dark:text-gray-200 text-xs/5">{{
+                          $n(parseFloat(product.discountedPrice) || 0, 'currency', currencyLocale) }}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -113,11 +133,8 @@ onMounted(() => {
 });
 
 const totalCheckouts = computed(() => checkoutStore.getTotalCheckouts);
-
 const totalCustomers = computed(() => userStore.totalCustomers);
-
 const inStockCount = computed(() => productStore.inStockProducts);
-
 const topProducts = computed(() => productStore.products.slice(0, 6));
 
 //currency composable

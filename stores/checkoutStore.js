@@ -7,6 +7,8 @@ import {
   deleteDoc,
   query,
   where,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import { db } from "@/firebase";
 
@@ -31,6 +33,11 @@ export const useCheckoutStore = defineStore("checkout", {
     },
     totalCheckouts: 0,
     status: [],
+    recentOrders: [],
+    totalRevenue: 0,
+    averageOrderValue: 0,
+    revenueGrowth: 0,
+    monthlyRevenue: 0,
   }),
 
   actions: {
@@ -186,6 +193,69 @@ export const useCheckoutStore = defineStore("checkout", {
         this.updatePagination();
       } catch (error) {
         console.error("Error removing from order:", error);
+      }
+    },
+
+    async fetchRecentOrders() {
+      try {
+        const ordersRef = collection(db, "checkout");
+        const q = query(ordersRef, orderBy("date", "desc"), limit(5));
+        const querySnapshot = await getDocs(q);
+        this.recentOrders = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+      } catch (error) {
+        console.error('Error fetching recent orders:', error);
+      }
+    },
+
+    async fetchRevenueMetrics() {
+      try {
+        const ordersRef = collection(db, "checkout");
+        const querySnapshot = await getDocs(ordersRef);
+        
+        // Calculate total revenue
+        let totalRevenue = 0;
+        let orderCount = 0;
+        const now = new Date();
+        const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        let monthlyRevenue = 0;
+        let lastMonthRevenue = 0;
+
+        querySnapshot.forEach(doc => {
+          const order = doc.data();
+          const orderTotal = order.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+          totalRevenue += orderTotal;
+          orderCount++;
+
+          // Calculate monthly revenue
+          const orderDate = new Date(order.date);
+          if (orderDate >= firstDayOfMonth) {
+            monthlyRevenue += orderTotal;
+          }
+
+          // Calculate last month's revenue for growth
+          const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+          const firstDayOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+          if (orderDate >= firstDayOfLastMonth && orderDate < lastMonth) {
+            lastMonthRevenue += orderTotal;
+          }
+        });
+
+        // Calculate metrics
+        this.totalRevenue = totalRevenue;
+        this.averageOrderValue = orderCount > 0 ? totalRevenue / orderCount : 0;
+        this.monthlyRevenue = monthlyRevenue;
+        
+        // Calculate revenue growth
+        if (lastMonthRevenue > 0) {
+          this.revenueGrowth = ((monthlyRevenue - lastMonthRevenue) / lastMonthRevenue) * 100;
+        } else {
+          this.revenueGrowth = 0;
+        }
+      } catch (error) {
+        console.error('Error fetching revenue metrics:', error);
       }
     },
   },
