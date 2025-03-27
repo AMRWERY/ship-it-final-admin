@@ -113,12 +113,18 @@ export const useUserStore = defineStore("users", {
         const usersRef = collection(db, "users");
         const q = query(usersRef, orderBy("createdAt", "desc"), limit(5));
         const querySnapshot = await getDocs(q);
-        this.recentUsers = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
+        this.recentUsers = querySnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name || data.displayName || 'Unknown User',
+            createdAt: data.createdAt || new Date().toISOString(),
+            ...data
+          };
+        });
       } catch (error) {
         console.error('Error fetching recent users:', error);
+        this.recentUsers = [];
       }
     },
   },

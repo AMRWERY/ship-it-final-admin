@@ -201,12 +201,18 @@ export const useCheckoutStore = defineStore("checkout", {
         const ordersRef = collection(db, "checkout");
         const q = query(ordersRef, orderBy("date", "desc"), limit(5));
         const querySnapshot = await getDocs(q);
-        this.recentOrders = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
+        this.recentOrders = querySnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            orderNumber: data.orderId || doc.id,
+            createdAt: data.date || data.createdAt || new Date().toISOString(),
+            ...data
+          };
+        });
       } catch (error) {
         console.error('Error fetching recent orders:', error);
+        this.recentOrders = [];
       }
     },
 

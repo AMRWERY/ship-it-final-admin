@@ -135,7 +135,9 @@
           <h3 class="mb-4 text-xl font-semibold text-center">{{ $t('dashboard.current_deals') }}</h3>
           <div class="h-[300px] overflow-y-auto no-scrollbar">
             <ul role="list" class="divide-y divide-gray-100">
-              <li v-for="deal in currentDeals" :key="deal.id" class="flex justify-between py-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800" @click="openDealDialog(deal)">
+              <li v-for="deal in currentDeals" :key="deal.id"
+                class="flex justify-between py-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                @click="openDealDialog(deal)">
                 <div class="flex items-center gap-2">
                   <img class="flex-none rounded-full size-8 bg-gray-50" :src="deal.imageUrl1" />
                   <span class="text-xs font-medium text-gray-900 dark:text-gray-200">{{ deal.title }}</span>
@@ -148,47 +150,12 @@
       </div>
 
       <!-- Deal Details Dialog -->
-      <div v-if="selectedDeal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-        <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-bold">{{ $t('dashboard.deal_details') }}</h3>
-            <button @click="selectedDeal = null" class="text-gray-500 hover:text-gray-700">
-              <icon name="material-symbols:close" class="w-6 h-6" />
-            </button>
-          </div>
-          
-          <div class="space-y-4">
-            <div class="flex items-center gap-4">
-              <img :src="selectedDeal.imageUrl1" class="object-cover w-24 h-24 rounded-lg" />
-              <div>
-                <h4 class="text-lg font-semibold">{{ selectedDeal.title }}</h4>
-                <p class="text-sm text-gray-500">{{ selectedDeal.brand }}</p>
-              </div>
-            </div>
-            
-            <div class="grid grid-cols-2 gap-4">
-              <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
-                <p class="text-sm text-gray-500">{{ $t('dashboard.original_price') }}</p>
-                <p class="text-lg font-semibold">{{ $n(parseFloat(selectedDeal.price) || 0, 'currency', currencyLocale) }}</p>
-              </div>
-              <div class="p-3 rounded-lg bg-red-50 dark:bg-red-900/20">
-                <p class="text-sm text-red-500">{{ $t('dashboard.discounted_price') }}</p>
-                <p class="text-lg font-semibold text-red-600">{{ $n(parseFloat(selectedDeal.discountedPrice) || 0, 'currency', currencyLocale) }}</p>
-              </div>
-            </div>
-            
-            <div class="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-              <p class="text-sm text-blue-500">{{ $t('dashboard.discount') }}</p>
-              <p class="text-lg font-semibold text-blue-600">{{ selectedDeal.discount }}%</p>
-            </div>
-            
-            <div class="p-3 rounded-lg bg-green-50 dark:bg-green-900/20">
-              <p class="text-sm text-green-500">{{ $t('dashboard.stock') }}</p>
-              <p class="text-lg font-semibold text-green-600">{{ selectedDeal.stock }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <deal-details-dialog 
+        v-if="selectedDeal"
+        :is-open="!!selectedDeal" 
+        :deal="selectedDeal" 
+        @close="selectedDeal = null" 
+      />
     </div>
   </div>
 </template>
@@ -235,7 +202,7 @@ const currentDeals = computed(() => {
       title: locale.value === 'ar' ? product.titleAr : product.title,
       discount: product.discount,
       imageUrl1: product.imageUrl1,
-      price: product.price,
+      price: product.price || product.originalPrice, // Fallback to originalPrice if price is not available
       discountedPrice: product.discountedPrice,
       stock: product.stock,
       brand: locale.value === 'ar' ? product.brandAr : product.brand

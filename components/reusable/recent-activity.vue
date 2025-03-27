@@ -53,7 +53,15 @@ const recentUsers = computed(() => userStore.recentUsers || []);
 const lowStockProducts = computed(() => productStore.lowStockProducts || []);
 
 const formatDate = (date) => {
-  return new Date(date).toLocaleDateString();
+  if (!date) return 'N/A';
+  try {
+    const dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) return 'Invalid Date';
+    return dateObj.toLocaleDateString();
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return 'Invalid Date';
+  }
 };
 
 onMounted(() => {
