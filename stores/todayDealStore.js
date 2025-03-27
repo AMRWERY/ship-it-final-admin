@@ -6,6 +6,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  updateDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/firebase";
@@ -15,7 +16,18 @@ export const useTodayDealStore = defineStore("todayDealStore", {
     products: [],
     currentDeal: null,
     nextDeals: [],
+    currentPage: 1,
+    itemsPerPage: 5,
   }),
+
+  getters: {
+    totalPages: (state) => Math.ceil(state.products.length / state.itemsPerPage),
+    paginatedDeals: (state) => {
+      const start = (state.currentPage - 1) * state.itemsPerPage;
+      const end = start + state.itemsPerPage;
+      return state.products.slice(start, end);
+    },
+  },
 
   actions: {
     fetchDeals() {
@@ -35,6 +47,12 @@ export const useTodayDealStore = defineStore("todayDealStore", {
         });
     },
 
+    changePage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+      }
+    },
+
     setActiveDeal() {
       const now = new Date();
       const activeDeal = this.products.find(
@@ -50,7 +68,6 @@ export const useTodayDealStore = defineStore("todayDealStore", {
       this.nextDeals = this.products.filter(
         (product) => new Date(product.startTime.seconds * 1000) > now
       );
-      // console.log('next deal', this.nextDeals)
     },
 
     startDealTimer() {
@@ -98,7 +115,7 @@ export const useTodayDealStore = defineStore("todayDealStore", {
       try {
         const dealRef = doc(db, "today-deal", dealId);
         await deleteDoc(dealRef);
-        await this.fetchDeals(); // Refresh the deals list
+        await this.fetchDeals();
         return true;
       } catch (error) {
         console.error("Error deleting deal:", error);
@@ -110,7 +127,7 @@ export const useTodayDealStore = defineStore("todayDealStore", {
       try {
         const dealRef = doc(db, "today-deal", dealId);
         await updateDoc(dealRef, dealData);
-        await this.fetchDeals(); // Refresh the deals list
+        await this.fetchDeals();
         return true;
       } catch (error) {
         console.error("Error updating deal:", error);
@@ -122,7 +139,7 @@ export const useTodayDealStore = defineStore("todayDealStore", {
       try {
         const dealsRef = collection(db, "today-deal");
         await addDoc(dealsRef, dealData);
-        await this.fetchDeals(); // Refresh the deals list
+        await this.fetchDeals();
         return true;
       } catch (error) {
         console.error("Error adding deal:", error);

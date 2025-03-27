@@ -21,6 +21,11 @@
                     <tr>
                         <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
                             <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                #
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
                                 {{ $t('dashboard.image') }}
                             </p>
                         </th>
@@ -62,8 +67,13 @@
                 </tbody>
 
                 <tbody v-else>
-                    <tr v-for="deal in todayDealStore.products" :key="deal.id" 
+                    <tr v-for="(deal, index) in todayDealStore.paginatedDeals" :key="deal.id" 
                         class="border-b hover:bg-slate-50 border-slate-200 dark:hover:bg-slate-600">
+                        <td class="p-4">
+                            <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">
+                                {{ (todayDealStore.currentPage - 1) * todayDealStore.itemsPerPage + index + 1 }}
+                            </p>
+                        </td>
                         <td class="p-4">
                             <div class="w-16 h-16 overflow-hidden rounded-lg">
                                 <img :src="deal.imageUrl1" :alt="deal.title" class="object-cover w-full h-full" />
@@ -119,6 +129,32 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- pagination -->
+        <div class="flex items-center px-4 py-3" v-if="hasDeals">
+            <div class="flex mt-3 space-s-1 ms-auto">
+                <button @click="todayDealStore.changePage(todayDealStore.currentPage - 1)" 
+                        :disabled="todayDealStore.currentPage === 1"
+                        class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+                    {{ $t('pagination.previous') }}
+                </button>
+                <button v-for="page in todayDealStore.totalPages" 
+                        :key="page" 
+                        @click="todayDealStore.changePage(page)" 
+                        :class="{
+                            'bg-slate-800 text-white': page === todayDealStore.currentPage,
+                            'bg-white text-slate-500': page !== todayDealStore.currentPage,
+                        }"
+                        class="px-3 py-1 text-sm font-normal transition duration-200 border rounded min-w-9 min-h-9 border-slate-200 ease">
+                    {{ page }}
+                </button>
+                <button @click="todayDealStore.changePage(todayDealStore.currentPage + 1)"
+                        :disabled="todayDealStore.currentPage === todayDealStore.totalPages"
+                        class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+                    {{ $t('pagination.next') }}
+                </button>
+            </div>
         </div>
 
         <!-- Deal Form Dialog -->
