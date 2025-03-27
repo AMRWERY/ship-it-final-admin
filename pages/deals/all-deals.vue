@@ -66,7 +66,7 @@
                 </tbody>
 
                 <tbody v-else>
-                    <tr v-for="deal in todayDealStore.deals" :key="deal.id" 
+                    <tr v-for="deal in todayDealStore.products" :key="deal.id" 
                         class="border-b hover:bg-slate-50 border-slate-200 dark:hover:bg-slate-600">
                         <td class="p-4">
                             <div class="w-16 h-16 overflow-hidden rounded-lg">
@@ -152,14 +152,14 @@ const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast
 const showDealDialog = ref(false);
 const selectedDeal = ref(null);
 
-// Add computed property to check deals
+// Update computed property to check products instead of deals
 const hasDeals = computed(() => {
-    return todayDealStore.deals && todayDealStore.deals.length > 0;
+    return todayDealStore.products && todayDealStore.products.length > 0;
 });
 
-// Add debugging
-watch(() => todayDealStore.deals, (newDeals) => {
-    console.log('Deals updated:', newDeals);
+// Update watcher to watch products instead of deals
+watch(() => todayDealStore.products, (newProducts) => {
+    console.log('Products updated:', newProducts);
 }, { immediate: true });
 
 const openDealDialog = (deal = null) => {
