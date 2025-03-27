@@ -3,290 +3,260 @@
         <!-- breadcrumb component -->
         <breadcrumb />
 
-        <section class="py-4">
-            <div class="px-4 mx-auto">
-                <div class="grid grid-cols-1 gap-12 mt-8 lg:col-gap-12 xl:col-gap-10 lg:mt-12 lg:grid-cols-5 lg:gap-10">
-                    <div class="lg:col-span-3 lg:row-end-1">
-                        <div class="lg:flex lg:items-start">
-                            <div class="lg:order-2 lg:ms-5">
-                                <div class="max-w-xl overflow-hidden rounded-lg">
-                                    <img class="object-cover w-full max-w-full h-96" :src="selectedImage"
-                                        alt="product-img-1" />
-                                </div>
-                            </div>
-
-                            <div class="w-full mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0">
-                                <div class="flex flex-row items-start gap-2 lg:flex-col">
-                                    <button type="button" v-for="(image, index) in imageList" :key="index"
-                                        @click="setSelectedImage(image)"
-                                        class="w-24 h-20 p-1 mb-3 overflow-hidden text-center border border-gray-200 rounded-lg flex-0 aspect-square">
-                                        <img class="object-cover w-full h-full rounded-lg" :src="image"
-                                            alt="product-img-2" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-8 lg:row-span-2 lg:row-end-2">
-                        <div class="lg:ps-6">
-                            <div class="mb-6">
-                                <span class="text-red-500 dark:text-red-200">{{ $i18n.locale ===
-                                    'ar' ? currentDeal?.brandAr :
-                                    currentDeal?.brand }}</span>
-                                <h2 class="max-w-xl mt-2 mb-4 text-2xl font-bold font-heading dark:text-gray-300">
-                                    {{ $i18n.locale ===
-                                        'ar' ? currentDeal?.titleAr :
-                                        currentDeal?.title }}
-                                </h2>
-                            </div>
-
-                            <div class="flex mb-6 item-center gap-x-6">
-                                <div class="flex items-center space-s-2">
-                                    <p class="text-2xl font-bold text-red-600 dark:text-red-500"
-                                        v-if="currentDeal?.discountedPrice">{{
-                                            $n(parseFloat(currentDeal?.discountedPrice),
-                                                'currency',
-                                                currencyLocale) }}
-                                    </p>
-                                    <p class="text-base font-semibold text-gray-600 line-through dark:text-gray-300"
-                                        v-if="currentDeal?.originalPrice">{{ $n(parseFloat(currentDeal?.originalPrice),
-                                            'currency',
-                                            currencyLocale)
-                                        }}</p>
-                                </div>
-                                <div class="flex py-1.5 px-2 bg-purple-600 font-semibold !ms-4 rounded-lg">
-                                    <span class="text-sm text-white">{{ $t('dashboard.save') }} {{ currentDeal?.discount
-                                        }}%</span>
-                                </div>
-                            </div>
-
-                            <div class="gap-4 pb-5 border-b border-gray-300">
-                                <div class="flex items-center justify-around gap-5 mt-5">
-                                    <div v-for="(value, key) in currentDealTime" :key="key"
-                                        class="flex flex-col items-center space-y-2">
-                                        <div class="flex items-center justify-center w-10 h-10 border-2 rounded-full"
-                                            :class="`border-${key}`">
-                                            <span class="text-lg font-bold">{{ value }}</span>
-                                        </div>
-                                        <span class="text-sm capitalize">{{ $t(`dashboard.${key}`) }}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gap-4 pb-5 border-b border-gray-300">
-                                <div class="max-w-2xl custom-scroll max-h-32">
-                                    <div class="mt-6">
-                                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">{{
-                                            $t('dashboard.description') }}</h3>
-                                        <p class="mt-4 text-sm text-gray-600 dark:text-gray-100">{{ $i18n.locale ===
-                                            'ar' ? currentDeal?.descriptionAr :
-                                            currentDeal?.description }} </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gap-4 border-b border-gray-300">
-                                <div class="py-6">
-                                    <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        {{ $t('dashboard.color') }}
-                                    </p>
-                                    <div class="flex flex-wrap items-center gap-2 mt-3 select-none">
-                                        <label v-for="color in currentDeal?.colors" :key="color">
-                                            <input type="radio" name="type" value="" class="sr-only peer" />
-                                            <p
-                                                class="px-6 py-2 font-bold border border-black rounded-lg peer-checked:bg-black peer-checked:text-white dark:border-gray-400">
-                                                {{ color }}
-                                            </p>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gap-4 border-b border-gray-300">
-                                <div class="py-6">
-                                    <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        {{ $t('dashboard.size') }}
-                                    </p>
-                                    <div class="flex flex-wrap items-center gap-2 mt-3 select-none">
-                                        <label v-for="size in currentDeal?.sizes" :key="size">
-                                            <input type="radio" name="type" value="" class="sr-only peer" />
-                                            <p
-                                                class="px-6 py-2 font-bold border border-black rounded-lg peer-checked:bg-black peer-checked:text-white dark:border-gray-400">
-                                                {{ size }}
-                                            </p>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-full">
-                        <nav class="flex gap-4">
-                            <nuxt-link to=""
-                                class="py-2 text-sm font-semibold text-gray-900 border-b-2 border-gray-900 dark:border-gray-200 dark:text-gray-200">
-                                {{ $t('dashboard.upcoming_deals') }}
-                            </nuxt-link>
-                        </nav>
-
-                        <div class="flow-root mt-8 sm:mt-12">
-                            <div class="grid grid-cols-2 gap-4 md:grid-cols-2 max-sm:justify-center gap-y-8 sm:gap-x-6">
-                                <div class="flex items-center gap-6 overflow-hidden cursor-pointer max-sm:flex-col"
-                                    v-for="(deal, index) in nextDeals" :key="index">
-                                    <div class="w-24 h-24 p-3 overflow-hidden bg-gray-100 rounded-lg shrink-0">
-                                        <img :src="deal.imageUrl1" alt="product1"
-                                            class="object-contain w-full h-full" />
-                                    </div>
-                                    <div class="max-sm:text-center">
-                                        <h3 class="text-sm font-bold text-gray-800 sm:text-base dark:text-gray-200">{{
-                                            $i18n.locale ===
-                                                'ar' ? deal.titleAr :
-                                                deal.title }}</h3>
-                                        <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">{{
-                                            $i18n.locale ===
-                                                'ar' ? deal.brandAr :
-                                                deal.brand }}</h4>
-                                        <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">{{
-                                            $t('dashboard.save') }} {{
-                                                deal.discount }}%</h4>
-                                        <h4 class="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400">{{
-                                            $n(parseFloat(deal.discountedPrice),
-                                                'currency',
-                                                currencyLocale) }}
-                                        </h4>
-                                        <h4 class="mt-1 text-xs font-bold text-red-600 dark:text-red-400">{{
-                                            formatRemainingTime(deal.remainingTime) }}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
+            <h3 class="py-2 mt-5 text-2xl font-bold text-start">
+                {{ $t('dashboard.all_deals') }}
+            </h3>
+            <div class="flex items-center gap-4">
+                <button @click="openDealDialog()" class="px-4 py-2 text-white btn-style">
+                    {{ $t('btn.add_deal') }}
+                </button>
             </div>
-        </section>
+        </div>
+
+        <!-- Deals Table -->
+        <div class="relative flex flex-col w-full h-full overflow-scroll overflow-y-hidden text-gray-700 bg-white rounded-lg shadow-md bg-clip-border dark:bg-black dark:text-gray-200">
+            <table class="w-full table-auto text-start min-w-max">
+                <thead>
+                    <tr>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.image') }}
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.title') }}
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.brand') }}
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.discount') }}
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.price') }}
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.status') }}
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
+                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
+                                {{ $t('dashboard.actions') }}
+                            </p>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody v-if="!hasDeals">
+                    <tr>
+                        <td colspan="7" class="p-4 text-center">
+                            <p class="text-xl font-semibold text-gray-800 dark:text-white">{{ $t('dashboard.no_deals_found') }}</p>
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tbody v-else>
+                    <tr v-for="deal in todayDealStore.deals" :key="deal.id" 
+                        class="border-b hover:bg-slate-50 border-slate-200 dark:hover:bg-slate-600">
+                        <td class="p-4">
+                            <div class="w-16 h-16 overflow-hidden rounded-lg">
+                                <img :src="deal.imageUrl1" :alt="deal.title" class="object-cover w-full h-full" />
+                            </div>
+                        </td>
+                        <td class="p-4">
+                            <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">
+                                {{ $i18n.locale === 'ar' ? deal.titleAr : deal.title }}
+                            </p>
+                        </td>
+                        <td class="p-4">
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                {{ $i18n.locale === 'ar' ? deal.brandAr : deal.brand }}
+                            </p>
+                        </td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full dark:bg-red-900/20 dark:text-red-400">
+                                {{ deal.discount }}%
+                            </span>
+                        </td>
+                        <td class="p-4">
+                            <div class="flex flex-col">
+                                <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">
+                                    {{ $n(parseFloat(deal.discountedPrice), 'currency', currencyLocale) }}
+                                </p>
+                                <p class="text-xs text-gray-500 line-through dark:text-gray-400">
+                                    {{ $n(parseFloat(deal.originalPrice), 'currency', currencyLocale) }}
+                                </p>
+                            </div>
+                        </td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 text-sm font-semibold rounded-full"
+                                  :class="getStatusClass(deal)">
+                                {{ getStatusText(deal) }}
+                            </span>
+                        </td>
+                        <td class="p-4">
+                            <div class="flex items-center gap-2">
+                                <tooltip :text="$t('tooltip.edit')" position="bottom">
+                                    <button @click="openDealDialog(deal)" 
+                                            class="flex items-center justify-center w-8 h-8 text-blue-500 rounded hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">
+                                        <icon name="material-symbols:edit" class="w-5 h-5" />
+                                    </button>
+                                </tooltip>
+                                <tooltip :text="$t('tooltip.delete')" position="bottom">
+                                    <button @click="deleteDeal(deal.id)"
+                                            class="flex items-center justify-center w-8 h-8 text-red-500 rounded hover:text-red-600 dark:text-red-400 dark:hover:text-red-500">
+                                        <icon name="material-symbols:delete" class="w-5 h-5" />
+                                    </button>
+                                </tooltip>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Deal Form Dialog -->
+        <deal-form-dialog 
+            v-if="showDealDialog"
+            :is-open="showDealDialog"
+            :deal="selectedDeal"
+            @close="closeDealDialog"
+            @save="handleDealSave"
+        />
+
+        <!-- dynamic-toast component -->
+        <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
+            <div class="pointer-events-auto">
+                <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
+                              :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
 const { t } = useI18n();
 const todayDealStore = useTodayDealStore();
+const { showToast, toastMessage, toastType, toastIcon, triggerToast } = useToast();
 
-const currentDeal = computed(() => todayDealStore.currentDeal);
-const nextDeals = computed(() => todayDealStore.nextDeals);
+const showDealDialog = ref(false);
+const selectedDeal = ref(null);
 
-const nextDealStartTime = ref(null);
-
-const currentDealTime = ref({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+// Add computed property to check deals
+const hasDeals = computed(() => {
+    return todayDealStore.deals && todayDealStore.deals.length > 0;
 });
 
-const calculateRemainingTime = (timestamp) => {
+// Add debugging
+watch(() => todayDealStore.deals, (newDeals) => {
+    console.log('Deals updated:', newDeals);
+}, { immediate: true });
+
+const openDealDialog = (deal = null) => {
+    selectedDeal.value = deal;
+    showDealDialog.value = true;
+};
+
+const closeDealDialog = () => {
+    showDealDialog.value = false;
+    selectedDeal.value = null;
+};
+
+const handleDealSave = async (dealData) => {
+    try {
+        if (selectedDeal.value) {
+            await todayDealStore.updateDeal(selectedDeal.value.id, dealData);
+            triggerToast({
+                message: t('toast.deal_updated_successfully'),
+                type: 'success',
+                icon: 'mdi-check-circle',
+            });
+        } else {
+            await todayDealStore.addDeal(dealData);
+            triggerToast({
+                message: t('toast.deal_added_successfully'),
+                type: 'success',
+                icon: 'mdi-check-circle',
+            });
+        }
+        closeDealDialog();
+        await todayDealStore.fetchDeals();
+    } catch (error) {
+        console.error('Error saving deal:', error);
+        triggerToast({
+            message: t('toast.failed_to_save_deal'),
+            type: 'error',
+            icon: 'mdi-alert-circle',
+        });
+    }
+};
+
+const getStatusClass = (deal) => {
     const now = new Date().getTime();
-    const targetTime = new Date(timestamp.seconds * 1000).getTime();
-    const diff = targetTime - now;
-    if (diff <= 0) return null;
-    const days = Math.floor(diff / (24 * 60 * 60 * 1000));
-    const hours = Math.floor((diff % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-    const minutes = Math.floor((diff % (60 * 60 * 1000)) / (60 * 1000));
-    const seconds = Math.floor((diff % (60 * 1000)) / 1000);
-    return { days, hours, minutes, seconds };
-};
+    const startTime = new Date(deal.startTime.seconds * 1000).getTime();
+    const endTime = new Date(deal.endTime.seconds * 1000).getTime();
 
-const updateCurrentDealTime = () => {
-    if (!currentDeal.value?.endTime) return;
-    const remaining = calculateRemainingTime(currentDeal.value.endTime);
-    if (remaining) {
-        currentDealTime.value = remaining;
+    if (now < startTime) {
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
+    } else if (now > endTime) {
+        return 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400';
     } else {
-        currentDealTime.value = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
     }
 };
 
-const updateNextDealsTimes = () => {
-    nextDeals.value.forEach((deal) => {
-        deal.remainingTime = calculateRemainingTime(deal.startTime);
-    });
-};
+const getStatusText = (deal) => {
+    const now = new Date().getTime();
+    const startTime = new Date(deal.startTime.seconds * 1000).getTime();
+    const endTime = new Date(deal.endTime.seconds * 1000).getTime();
 
-const updateNextDealStartTime = () => {
-    if (!nextDeals.value || nextDeals.value.length === 0) {
-        nextDealStartTime.value = null;
-        return;
+    if (now < startTime) {
+        return t('dashboard.upcoming');
+    } else if (now > endTime) {
+        return t('dashboard.ended');
+    } else {
+        return t('dashboard.active');
     }
-    const nextDeal = nextDeals.value.find(
-        (deal) => new Date(deal.startTime.seconds * 1000) > new Date()
-    );
-    nextDealStartTime.value = nextDeal
-        ? calculateRemainingTime(nextDeal.startTime)
-        : null;
 };
 
-let interval;
+const deleteDeal = async (dealId) => {
+    try {
+        await todayDealStore.deleteDeal(dealId);
+        triggerToast({
+            message: t('toast.deal_deleted_successfully'),
+            type: 'success',
+            icon: 'mdi-check-circle',
+        });
+    } catch (error) {
+        console.error('Error deleting deal:', error);
+        triggerToast({
+            message: t('toast.failed_to_delete_deal'),
+            type: 'error',
+            icon: 'mdi-alert-circle',
+        });
+    }
+};
 
 onMounted(() => {
-    todayDealStore
-        .fetchDeals()
-        .then(() => {
-            const firstImage = todayDealStore.currentDeal?.imageUrl1;
-            if (firstImage) selectedImage.value = firstImage;
-            interval = setInterval(() => {
-                updateCurrentDealTime();
-                updateNextDealsTimes();
-            }, 1000);
-            updateCurrentDealTime();
-            updateNextDealsTimes();
-            updateNextDealStartTime();
-            setInterval(() => {
-                updateNextDealStartTime();
-            }, 1000);
-        })
-        .catch((error) => {
-            console.error("Error fetching deals:", error);
-        });
+    todayDealStore.fetchDeals();
 });
-
-onBeforeUnmount(() => {
-    if (interval) clearInterval(interval);
-});
-
-const formatRemainingTime = (timeObj) => {
-    if (
-        typeof timeObj === "object" &&
-        timeObj.days !== undefined &&
-        timeObj.hours !== undefined &&
-        timeObj.minutes !== undefined &&
-        timeObj.seconds !== undefined
-    ) {
-        return `${timeObj.days} ${t('dashboard.days')} ${timeObj.hours} ${t('dashboard.hours')} ${timeObj.minutes} ${t('dashboard.minutes')} ${timeObj.seconds} ${t('dashboard.seconds')}`;
-    }
-    return "Invalid time";
-};
-
-const imageList = computed(() =>
-    [
-        todayDealStore.currentDeal?.imageUrl1,
-        todayDealStore.currentDeal?.imageUrl2,
-        todayDealStore.currentDeal?.imageUrl3,
-        todayDealStore.currentDeal?.imageUrl4,
-    ].filter(Boolean)
-);
-
-const selectedImage = ref('');
-
-const setSelectedImage = (image) => {
-    selectedImage.value = image;
-};
 
 //currency composable
 const { currencyLocale } = useCurrencyLocale();
 
 definePageMeta({
     layout: 'dashboard'
-})
+});
 
 useHead({
     titleTemplate: () => t('head.all_deals'),
