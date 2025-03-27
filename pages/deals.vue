@@ -41,7 +41,7 @@
                         </th>
                         <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
                             <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                                {{ $t('dashboard.price') }}
+                                {{ $t('dashboard.discounted_price') }}
                             </p>
                         </th>
                         <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
@@ -49,11 +49,7 @@
                                 {{ $t('dashboard.status') }}
                             </p>
                         </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
-                            <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                                {{ $t('dashboard.actions') }}
-                            </p>
-                        </th>
+                        <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black"></th>
                     </tr>
                 </thead>
 
@@ -106,13 +102,13 @@
                         </td>
                         <td class="p-4">
                             <div class="flex items-center gap-2">
-                                <tooltip :text="$t('tooltip.edit')" position="bottom">
+                                <tooltip :text="$t('tooltip.edit_deal')" position="bottom">
                                     <button @click="openDealDialog(deal)" 
                                             class="flex items-center justify-center w-8 h-8 text-blue-500 rounded hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">
                                         <icon name="material-symbols:edit" class="w-5 h-5" />
                                     </button>
                                 </tooltip>
-                                <tooltip :text="$t('tooltip.delete')" position="bottom">
+                                <tooltip :text="$t('tooltip.delete_deal')" position="bottom">
                                     <button @click="deleteDeal(deal.id)"
                                             class="flex items-center justify-center w-8 h-8 text-red-500 rounded hover:text-red-600 dark:text-red-400 dark:hover:text-red-500">
                                         <icon name="material-symbols:delete" class="w-5 h-5" />
@@ -159,7 +155,7 @@ const hasDeals = computed(() => {
 
 // Update watcher to watch products instead of deals
 watch(() => todayDealStore.products, (newProducts) => {
-    console.log('Products updated:', newProducts);
+    // console.log('Products updated:', newProducts);
 }, { immediate: true });
 
 const openDealDialog = (deal = null) => {
@@ -205,7 +201,6 @@ const getStatusClass = (deal) => {
     const now = new Date().getTime();
     const startTime = new Date(deal.startTime.seconds * 1000).getTime();
     const endTime = new Date(deal.endTime.seconds * 1000).getTime();
-
     if (now < startTime) {
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
     } else if (now > endTime) {
@@ -259,7 +254,7 @@ definePageMeta({
 });
 
 useHead({
-    titleTemplate: () => t('head.all_deals'),
+    titleTemplate: () => t('head.deals'),
 });
 </script>
 

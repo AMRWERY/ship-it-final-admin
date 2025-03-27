@@ -4,6 +4,8 @@ import {
   query,
   orderBy,
   addDoc,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/firebase";
@@ -90,6 +92,42 @@ export const useTodayDealStore = defineStore("todayDealStore", {
           console.error("Error adding new deal:", error);
           return false;
         });
+    },
+
+    async deleteDeal(dealId) {
+      try {
+        const dealRef = doc(db, "today-deal", dealId);
+        await deleteDoc(dealRef);
+        await this.fetchDeals(); // Refresh the deals list
+        return true;
+      } catch (error) {
+        console.error("Error deleting deal:", error);
+        throw error;
+      }
+    },
+
+    async updateDeal(dealId, dealData) {
+      try {
+        const dealRef = doc(db, "today-deal", dealId);
+        await updateDoc(dealRef, dealData);
+        await this.fetchDeals(); // Refresh the deals list
+        return true;
+      } catch (error) {
+        console.error("Error updating deal:", error);
+        throw error;
+      }
+    },
+
+    async addDeal(dealData) {
+      try {
+        const dealsRef = collection(db, "today-deal");
+        await addDoc(dealsRef, dealData);
+        await this.fetchDeals(); // Refresh the deals list
+        return true;
+      } catch (error) {
+        console.error("Error adding deal:", error);
+        throw error;
+      }
     },
   },
 });

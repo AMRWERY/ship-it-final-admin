@@ -6,19 +6,19 @@
         <div class="absolute inset-0 bg-gray-500 opacity-75 dark:bg-gray-900"></div>
       </div>
 
-      <div class="inline-block overflow-hidden text-left align-bottom transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="inline-block overflow-hidden align-bottom transition-all transform text-start sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
         <div class="px-4 pt-5 pb-4 text-center bg-white dark:bg-black sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
-            <div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
+            <div class="w-full mt-3 text-center sm:mt-0 sm:text-start">
               <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
-                {{ deal ? $t('dashboard.edit_deal') : $t('dashboard.add_deal') }}
+                {{ deal ? $t('form.edit_deal') : $t('form.add_deal') }}
               </h3>
 
               <form @submit.prevent="handleSubmit" class="mt-4 space-y-4">
                 <!-- Title -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.title') }}
+                    {{ $t('form.title') }}
                   </label>
                   <div class="mt-1">
                     <input type="text" v-model="formData.title" required
@@ -29,7 +29,7 @@
                 <!-- Arabic Title -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.title_ar') }}
+                    {{ $t('form.title_ar') }}
                   </label>
                   <div class="mt-1">
                     <input type="text" v-model="formData.titleAr" required
@@ -40,7 +40,7 @@
                 <!-- Brand -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.brand') }}
+                    {{ $t('form.brand') }}
                   </label>
                   <div class="mt-1">
                     <input type="text" v-model="formData.brand" required
@@ -51,7 +51,7 @@
                 <!-- Arabic Brand -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.brand_ar') }}
+                    {{ $t('form.brand_ar') }}
                   </label>
                   <div class="mt-1">
                     <input type="text" v-model="formData.brandAr" required
@@ -62,7 +62,7 @@
                 <!-- Discount -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.discount') }} (%)
+                    {{ $t('form.discount') }} (%)
                   </label>
                   <div class="mt-1">
                     <input type="number" v-model="formData.discount" required min="0" max="100"
@@ -73,7 +73,7 @@
                 <!-- Original Price -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.original_price') }}
+                    {{ $t('form.original_price') }}
                   </label>
                   <div class="mt-1">
                     <input type="number" v-model="formData.originalPrice" required min="0" step="0.01"
@@ -84,7 +84,7 @@
                 <!-- Start Time -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.start_time') }}
+                    {{ $t('form.start_time') }}
                   </label>
                   <div class="mt-1">
                     <input type="datetime-local" v-model="formData.startTime" required
@@ -95,7 +95,7 @@
                 <!-- End Time -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.end_time') }}
+                    {{ $t('form.end_time') }}
                   </label>
                   <div class="mt-1">
                     <input type="datetime-local" v-model="formData.endTime" required
@@ -106,7 +106,7 @@
                 <!-- Images -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.images') }}
+                    {{ $t('form.images') }}
                   </label>
                   <div class="mt-1 space-y-2">
                     <div v-for="(image, index) in formData.images" :key="index" class="flex items-center gap-2">
@@ -128,7 +128,7 @@
                 <!-- Description -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.description') }}
+                    {{ $t('form.description') }}
                   </label>
                   <div class="mt-1">
                     <textarea v-model="formData.description" rows="3"
@@ -139,7 +139,7 @@
                 <!-- Arabic Description -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.description_ar') }}
+                    {{ $t('form.description_ar') }}
                   </label>
                   <div class="mt-1">
                     <textarea v-model="formData.descriptionAr" rows="3"
@@ -150,7 +150,7 @@
                 <!-- Colors -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.colors') }}
+                    {{ $t('form.colors') }}
                   </label>
                   <div class="mt-1">
                     <input type="text" v-model="colorsInput" @keyup.enter="addColor"
@@ -172,7 +172,7 @@
                 <!-- Sizes -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ $t('dashboard.sizes') }}
+                    {{ $t('form.sizes') }}
                   </label>
                   <div class="mt-1">
                     <input type="text" v-model="sizesInput" @keyup.enter="addSize"

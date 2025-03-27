@@ -118,11 +118,7 @@ const menuGroups = computed(() => [
       {
         icon: 'streamline:discount-percent-fire',
         label: 'layout.deals',
-        route: '',
-        children: [
-          { label: 'layout.all_deals', route: '/deals/all-deals' },
-          { label: 'layout.add_deal', route: '/deals/add-today-deals' },
-        ]
+        route: '/deals',
       },
       {
         icon: 'gridicons:multiple-users',

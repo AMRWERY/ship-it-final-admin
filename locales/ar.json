@@ -76,7 +76,16 @@
     "find_category": "ابحث عن الفئة...",
     "add_category": "اضافه فئه",
     "edit_category": "تعديل فئه",
-    "find_product": "ابحث عن منتج..."
+    "find_product": "ابحث عن منتج...",
+    "edit_deal": "تعديل العرض",
+    "add_deal": "أضف عرض",
+    "title": "العنوان",
+    "title_ar": "العنوان عربي",
+    "images": "الصور",
+    "description": "الوصف",
+    "description_ar": "الوصف عربي",
+    "colors": "الألوان",
+    "sizes": "المقاسات"
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",
@@ -98,7 +107,11 @@
     "sending_reply": "جاري ارسال الرد",
     "go_back_home": "العودة إلى الصفحة الرئيسية",
     "save": "حفظ",
-    "edit_category": "تعديل فئه"
+    "edit_category": "تعديل فئه",
+    "add_image": "إضافة صورة",
+    "update": "تحديث",
+    "cancel": "إلغاء",
+    "add": "إضافة"
   },
   "toast": {
     "successfully_logged_in": "تم تسجيل الدخول بنجاح",
@@ -134,7 +147,11 @@
     "category_updated_successfully": "تم تحديث الفئة بنجاح",
     "failed_to_update_category": "فشل في تحديث الفئة",
     "failed_to_delete_category": "فشل في حذف الفئة",
-    "successfully_added_category": "تمت إضافة الفئة بنجاح"
+    "successfully_added_category": "تمت إضافة الفئة بنجاح",
+    "deal_updated_successfully": "تم تحديث العرض بنجاح",
+    "failed_to_save_deal": "فشل حفظ العرض",
+    "deal_deleted_successfully": "تم حذف العرض بنجاح",
+    "failed_to_delete_deal": "فشل حذف العرض"
   },
   "breadcrumb": {
     "home": "الرئيسية",
@@ -149,7 +166,8 @@
     "customer_messages": "رسائل العملاء",
     "profile": "الملف الشخصي",
     "add_product": "إضافة منتج",
-    "edit_product": "تعديل منتج"
+    "edit_product": "تعديل منتج",
+    "deals": "العروض"
   },
   "head": {
     "login": "تسجيل الدخول",
@@ -161,7 +179,7 @@
     "products": "المنتجات",
     "categories": "الفئات",
     "add_category": "إضافة فئة",
-    "all_deals": "كل العروض",
+    "deals": "العروض",
     "add_deal": "أضف عرض",
     "customer_messages": "رسائل العملاء",
     "dashboard": "لوحة التحكم",
@@ -177,7 +195,9 @@
     "delete_message": "حذف الرسالة",
     "profile": "الملف الشخصي",
     "toggle_theme": "تبديل السمة",
-    "edit_product": "تعديل منتج"
+    "edit_product": "تعديل منتج",
+    "edit_deal": "تعديل العرض",
+    "delete_deal": "حذف العرض"
   },
   "dashboard": {
     "users": "المستخدمون",
@@ -257,7 +277,12 @@
     "top_categories": "الفئات الأكثر شعبية",
     "current_deals": "العروض الحالية",
     "deal_details": "تفاصيل العرض",
-    "discounted_price":"السعر بعد الخصم"
+    "discounted_price":"السعر بعد الخصم",
+    "all_deals":"كل العروض",
+    "title": "العنوان",
+    "no_deals_found": "لا يوجد عروض",
+    "upcoming": "قادم",
+    "ended": "منتهي"
   },
   "pagination": {
     "previous": "السابق",

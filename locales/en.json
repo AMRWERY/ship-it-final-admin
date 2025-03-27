@@ -76,7 +76,16 @@
     "find_category": "Find Category...",
     "add_category": "Add Category",
     "edit_category": "Edit Category",
-    "find_product": "Find Product..."
+    "find_product": "Find Product...",
+    "edit_deal": "Edit Deal",
+    "add_deal": "Add Deal",
+    "title": "Title",
+    "title_ar": "Title Ar",
+    "images": "Images",
+    "description": "Description",
+    "description_ar": "Description Ar",
+    "colors": "Colors",
+    "sizes": "Sizes"
   },
   "btn": {
     "logging": "Logging",
@@ -98,7 +107,11 @@
     "sending_reply": "Sending reply",
     "go_back_home": "Go Back Home",
     "save": "Save",
-    "edit_category": "Edit Category"
+    "edit_category": "Edit Category",
+    "add_image": "Add Image",
+    "update": "Update",
+    "cancel": "Cancel",
+    "add": "Add"
   },
   "toast": {
     "successfully_logged_in": "Successfully logged in",
@@ -134,7 +147,11 @@
     "category_updated_successfully": "Category updated successfully",
     "failed_to_update_category": "Failed to update category",
     "failed_to_delete_category": "Failed to delete category",
-    "successfully_added_category": "Successfully added category"
+    "successfully_added_category": "Successfully added category",
+    "deal_updated_successfully": "Deal updated successfully",
+    "failed_to_save_deal": "Failed to save deal",
+    "deal_deleted_successfully": "Deal deleted successfully",
+    "failed_to_delete_deal": "Failed to delete deal"
   },
   "breadcrumb": {
     "home": "Home",
@@ -149,7 +166,8 @@
     "customer_messages": "Customer Messages",
     "profile": "Profile",
     "add_product": "Add Product",
-    "edit_product": "Edit Product"
+    "edit_product": "Edit Product",
+    "deals": "Deals"
   },
   "head": {
     "login": "Login",
@@ -161,7 +179,7 @@
     "products": "Products",
     "categories": "Categories",
     "add_category": "Add Category",
-    "all_deals": "All Deals",
+    "deals": "Deals",
     "add_deal": "Add Deal",
     "customer_messages": "Customer Messages",
     "dashboard": "Dashboard",
@@ -177,7 +195,9 @@
     "delete_message": "Delete message",
     "profile": "Profile",
     "toggle_theme": "Toggle theme",
-    "edit_product": "Edit Product"
+    "edit_product": "Edit Product",
+    "edit_deal": "Edit Deal",
+    "delete_deal": "Delete Deal"
   },
   "dashboard": {
     "users": "Users",
@@ -257,7 +277,12 @@
     "top_categories": "Top Categories",
     "current_deals": "Current Deals",
     "deal_details": "Deal Details",
-    "discounted_price":"Discounted Price"
+    "discounted_price":"Discounted Price",
+    "all_deals":"All Deals",
+    "title": "Title",
+    "no_deals_found": "No deals found",
+    "upcoming": "Upcoming",
+    "ended": "Ended"
   },
   "pagination": {
     "previous": "Previous",
