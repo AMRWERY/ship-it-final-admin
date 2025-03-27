@@ -252,7 +252,8 @@
     "total_products": "Total Products",
     "total_checkouts": "Total Checkouts",
     "total_customers": "Total Customers",
-    "monthly_revenue": "Monthly Revenue"
+    "monthly_revenue": "Monthly Revenue",
+    "statistics": "Statistics"
   },
   "pagination": {
     "previous": "Previous",

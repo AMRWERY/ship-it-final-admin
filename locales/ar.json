@@ -252,7 +252,8 @@
     "total_products": "إجمالي المنتجات",
     "total_checkouts": "إجمالي المدفوعات",
     "total_customers": "إجمالي العملاء",
-    "monthly_revenue": "إيرادات الشهر"
+    "monthly_revenue": "إيرادات الشهر",
+    "statistics": "الإحصائيات"
   },
   "pagination": {
     "previous": "السابق",
