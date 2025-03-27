@@ -253,7 +253,11 @@
     "total_checkouts": "إجمالي المدفوعات",
     "total_customers": "إجمالي العملاء",
     "monthly_revenue": "إيرادات الشهر",
-    "statistics": "الإحصائيات"
+    "statistics": "الإحصائيات",
+    "top_categories": "الفئات الأكثر شعبية",
+    "current_deals": "العروض الحالية",
+    "deal_details": "تفاصيل العرض",
+    "discounted_price":"السعر بعد الخصم"
   },
   "pagination": {
     "previous": "السابق",

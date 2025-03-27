@@ -253,7 +253,11 @@
     "total_checkouts": "Total Checkouts",
     "total_customers": "Total Customers",
     "monthly_revenue": "Monthly Revenue",
-    "statistics": "Statistics"
+    "statistics": "Statistics",
+    "top_categories": "Top Categories",
+    "current_deals": "Current Deals",
+    "deal_details": "Deal Details",
+    "discounted_price":"Discounted Price"
   },
   "pagination": {
     "previous": "Previous",

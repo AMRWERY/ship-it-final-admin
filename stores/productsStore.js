@@ -269,13 +269,13 @@ export const useProductsStore = defineStore("new-products", {
         const q = query(productsRef, where("stock", "<=", 10));
         const querySnapshot = await getDocs(q);
         this.lowStockProducts = querySnapshot.docs
-          .map(doc => ({
+          .map((doc) => ({
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           }))
-          .filter(product => product.availability === "In stock");
+          .filter((product) => product.availability === "In stock");
       } catch (error) {
-        console.error('Error fetching low stock products:', error);
+        console.error("Error fetching low stock products:", error);
       }
     },
   },
