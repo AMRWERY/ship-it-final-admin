@@ -27,8 +27,9 @@ export const useUserStore = defineStore("users", {
             ...doc.data(),
             id: doc.id,
           }));
+          // Filter out both admin emails
           this.users = this.users.filter(
-            (user) => user.email !== "admin@cospora.com"
+            (user) => user.email !== "admin@cospora.com" && user.email !== "admin@ship.com"
           );
           this.updatePagination();
         })

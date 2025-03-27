@@ -3,8 +3,8 @@
     <!-- Overlay Component -->
     <overlay :visible="localeStore.isOverlayVisible" />
 
-    <header class="sticky top-0 flex w-full bg-white z-999 drop-shadow-1">
-      <div class="flex items-center justify-between flex-grow px-4 py-4 shadow-2 md:px-6">
+    <header class="sticky top-0 flex w-full bg-white z-999 shadow-lg">
+      <div class="flex items-center justify-between flex-grow px-4 py-4 md:px-6">
         <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
           <!-- Hamburger Toggle BTN -->
           <button class="z-50 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm lg:hidden" @click="() => {
