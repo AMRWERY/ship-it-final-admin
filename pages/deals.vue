@@ -46,7 +46,7 @@
                         </th>
                         <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
                             <p class="text-sm font-semibold leading-none text-slate-500 dark:text-gray-100">
-                                {{ $t('dashboard.discounted_price') }}
+                                {{ $t('dashboard.price') }}
                             </p>
                         </th>
                         <th class="p-4 border-b border-slate-200 bg-slate-50 dark:bg-black">
