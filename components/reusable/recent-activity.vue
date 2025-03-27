@@ -56,11 +56,17 @@ const formatDate = (date) => {
   if (!date) return 'N/A';
   try {
     const dateObj = new Date(date);
-    if (isNaN(dateObj.getTime())) return 'Invalid Date';
-    return dateObj.toLocaleDateString();
+    if (isNaN(dateObj.getTime())) return 'N/A';
+    
+    // Format the date to be more readable
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(dateObj);
   } catch (error) {
     console.error('Error formatting date:', error);
-    return 'Invalid Date';
+    return 'N/A';
   }
 };
 

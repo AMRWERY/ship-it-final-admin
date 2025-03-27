@@ -115,13 +115,17 @@ export const useUserStore = defineStore("users", {
         const querySnapshot = await getDocs(q);
         this.recentUsers = querySnapshot.docs.map(doc => {
           const data = doc.data();
+          const userName = data.displayName || data.name || data.email?.split('@')[0] || 'Unknown User';
+          const userDate = data.createdAt || data.date || new Date().toISOString();
+          
           return {
             id: doc.id,
-            name: data.name || data.displayName || 'Unknown User',
-            createdAt: data.createdAt || new Date().toISOString(),
+            name: userName,
+            createdAt: userDate,
+            email: data.email,
             ...data
           };
-        });
+        }).filter(user => user.email !== "admin@cospora.com");
       } catch (error) {
         console.error('Error fetching recent users:', error);
         this.recentUsers = [];
