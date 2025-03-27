@@ -11,10 +11,10 @@
                     </h1>
                     <p class="my-12 font-extrabold text-white text-8xl animate-bounce">{{ error.statusCode }}</p>
                     <p class="mb-6 text-4xl font-extrabold text-white">{{ error.statusMessage }}</p>
-                    <nuxt-link to="/"
+                    <nuxt-link-locale to="/"
                         class="inline-block px-5 py-3 mt-6 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring">
                         {{ $t('btn.go_back_home') }}
-                    </nuxt-link>
+                    </nuxt-link-locale>
                 </div>
             </div>
         </div>

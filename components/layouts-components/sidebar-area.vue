@@ -16,9 +16,9 @@
         ]" ref="target">
         <!-- SIDEBAR HEADER -->
         <div class="flex items-center justify-between gap-3 px-6 py-[1.375rem] lg:py-6.5">
-          <nuxt-link to="/">
+          <nuxt-link-locale to="/">
             <p class="text-3xl font-semibold text-white capitalize opacity-100 max-h-7 head">Ship-IT</p>
-          </nuxt-link>
+          </nuxt-link-locale>
 
           <button class="block lg:hidden" @click="sidebarStore.isSidebarOpen = false">
             <icon name="ic:baseline-keyboard-arrow-left" class="fill-current w-5 h-[18px]" />
@@ -56,6 +56,7 @@
 const sidebarStore = useSidebarStore()
 const authStore = useAuthStore();
 const localeStore = useLocaleStore()
+const localePath = useLocalePath()
 const target = ref(null)
 
 onClickOutside(target, () => {
@@ -66,7 +67,7 @@ const logout = async () => {
   try {
     await authStore.logoutUser();
     setTimeout(() => {
-      navigateTo('/login')
+      navigateTo(localePath('/login'))
     }, 3000);
   } catch (err) {
     console.error('Error during logout:', err);

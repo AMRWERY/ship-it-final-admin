@@ -31,10 +31,11 @@ export default defineNuxtConfig({
     vueI18n: "./i18n.config.js",
     locales: ["en", "ar"],
     defaultLocale: "en",
+    strategy: "prefix",
     detectBrowserLanguage: {
-      useCookie: false,
+      useCookie: true,
       fallbackLocale: "en",
-      redirectOn: "root",
+      redirectOn: "all",
     },
   },
   plugins: ["~/plugins/locale.client.js"],

@@ -4,11 +4,11 @@
       <nav class="flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-s-1 md:space-s-2 rtl:space-s-reverse">
           <li class="inline-flex items-center">
-            <nuxt-link to="/"
+            <nuxt-link-locale to="/"
               class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-300">
               <icon name="material-symbols:home-outline-rounded" class="w-5 h-5 me-2.5" />
               {{ $t('breadcrumb.home') }}
-            </nuxt-link>
+            </nuxt-link-locale>
           </li>
           <li v-if="breadcrumbLabel">
             <div class="flex items-center">

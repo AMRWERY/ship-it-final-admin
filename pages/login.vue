@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="max-w-screen-xl px-4 min-h-screen mx-auto flex items-center">
-      <div class="max-w-md mx-auto w-full">
+    <div class="flex items-center max-w-screen-xl min-h-screen px-4 mx-auto">
+      <div class="w-full max-w-md mx-auto">
         <ClientOnly>
           <div class="p-4 space-y-4 rounded-lg shadow-lg dark:shadow-2xl dark:border-gray-100 dark:border">
             <img src="@/public/shopping-bags.svg" alt="shopping-bags" class="mx-auto w-36 h-36" />

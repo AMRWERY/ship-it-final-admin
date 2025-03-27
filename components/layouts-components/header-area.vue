@@ -19,12 +19,12 @@
         <div class="flex items-center space-s-5 ms-auto">
           <!-- profile -->
           <tooltip :text="$t('tooltip.profile')" position="bottom">
-            <nuxt-link to="/profile" type="button" class="relative flex text-white rounded-full" v-if="isAuthenticated">
+            <nuxt-link-locale to="/profile" type="button" class="relative flex text-white rounded-full" v-if="isAuthenticated">
               <span class="absolute -inset-1.5" />
               <span class="sr-only">View Profile</span>
               <img src="https://justfields.com/storage/projects/7M5rV059/vector-avatar-02.jpg" alt="profile-img"
                 class="rounded-full h-7 w-7">
-            </nuxt-link>
+            </nuxt-link-locale>
           </tooltip>
 
           <nuxt-link class="text-neutral-600" to="" role="button" v-if="localeStore.isRTL">
@@ -48,7 +48,7 @@
             </nuxt-link>
           </tooltip>
 
-          <nuxt-link to="/login" class="text-neutral-600" v-if="!isAuthenticated">login</nuxt-link>
+          <nuxt-link-locale to="/login" class="text-neutral-600" v-if="!isAuthenticated">login</nuxt-link-locale>
         </div>
       </div>
     </header>

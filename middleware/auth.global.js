@@ -1,28 +1,36 @@
 export default defineNuxtRouteMiddleware(async (to) => {
   const authStore = useAuthStore();
+  const localePath = useLocalePath();
 
-  // Skip middleware execution on the server
   if (process.server) return;
 
-  // Wait for auth initialization on the client
   await authStore.init();
 
-  // Redirect unauthenticated users trying to access protected routes
-  if (!authStore.isAuthenticated && to.path !== "/login") {
-    return navigateTo("/login");
+  const loginPath = localePath("/login");
+  const isLoginPage = to.path === loginPath;
+
+  // Handle unauthenticated users
+  if (!authStore.isAuthenticated) {
+    if (!isLoginPage) {
+      return navigateTo(loginPath);
+    }
+    return;
   }
 
-  if (authStore.isAuthenticated) {
-    // Redirect from login page based on role
-    if (to.path === "/login") {
-      return authStore.user?.email === "admin@ship.com"
-        ? navigateTo("/")
-        : navigateTo("/dashboard");
-    }
+  // Handle authenticated users
+  if (isLoginPage) {
+    const redirectPath =
+      authStore.user?.email === "admin@ship.com"
+        ? localePath("/")
+        : localePath("/dashboard");
+    return navigateTo(redirectPath);
+  }
 
-    // Admin-only route protection
-    if (to.path === "/" && authStore.user?.email !== "admin@ship.com") {
-      return navigateTo("/dashboard");
-    }
+  // Admin protection
+  if (
+    to.path === localePath("/") &&
+    authStore.user?.email !== "admin@ship.com"
+  ) {
+    return navigateTo(localePath("/dashboard"));
   }
 });

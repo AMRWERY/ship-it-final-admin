@@ -16,9 +16,9 @@
             </div>
           </div>
           <div class="mt-6 text-center">
-            <nuxt-link to="/orders" type="button" class="px-4 py-2 text-white btn-style">{{
+            <nuxt-link-locale to="/orders" type="button" class="px-4 py-2 text-white btn-style">{{
               $t('btn.view_details')
-              }}</nuxt-link>
+              }}</nuxt-link-locale>
           </div>
         </div>
 
@@ -36,8 +36,8 @@
             </div>
           </div>
           <div class="mt-6 text-center">
-            <nuxt-link to="/items-stock" type="button" class="px-4 py-2 text-white btn-style">{{
-              $t('btn.view_details') }}</nuxt-link>
+            <nuxt-link-locale to="/items-stock" type="button" class="px-4 py-2 text-white btn-style">{{
+              $t('btn.view_details') }}</nuxt-link-locale>
           </div>
         </div>
 
@@ -55,8 +55,8 @@
             </div>
           </div>
           <div class="mt-6 text-center">
-            <nuxt-link to="/users" type="button" class="px-4 py-2 text-white btn-style">{{
-              $t('btn.view_details') }}</nuxt-link>
+            <nuxt-link-locale to="/users" type="button" class="px-4 py-2 text-white btn-style">{{
+              $t('btn.view_details') }}</nuxt-link-locale>
           </div>
         </div>
       </div>
