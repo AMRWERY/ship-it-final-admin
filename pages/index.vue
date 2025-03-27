@@ -124,7 +124,6 @@
                   <img class="flex-none rounded-full size-8 bg-gray-50" :src="category.imgOne" />
                   <span class="text-xs font-medium text-gray-900 dark:text-gray-200">{{ category.name }}</span>
                 </div>
-                <span class="text-xs text-gray-500 dark:text-gray-400">{{ category.count }}</span>
               </li>
             </ul>
           </div>
@@ -142,7 +141,7 @@
                   <img class="flex-none rounded-full size-8 bg-gray-50" :src="deal.imageUrl1" />
                   <span class="text-xs font-medium text-gray-900 dark:text-gray-200">{{ deal.title }}</span>
                 </div>
-                <span class="text-xs font-medium text-red-600 dark:text-red-400">{{ deal.discount }}%</span>
+                <span class="mt-2 text-xs font-medium text-red-600 dark:text-red-400">{{ deal.discount }}%</span>
               </li>
             </ul>
           </div>

@@ -111,23 +111,40 @@ export const useUserStore = defineStore("users", {
     async fetchRecentUsers() {
       try {
         const usersRef = collection(db, "users");
-        const q = query(usersRef, orderBy("createdAt", "desc"), limit(5));
+        const q = query(usersRef, orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
-        this.recentUsers = querySnapshot.docs.map(doc => {
-          const data = doc.data();
-          const userName = data.displayName || data.name || data.email?.split('@')[0] || 'Unknown User';
-          const userDate = data.createdAt || data.date || new Date().toISOString();
-          
-          return {
-            id: doc.id,
-            name: userName,
-            createdAt: userDate,
-            email: data.email,
-            ...data
-          };
-        }).filter(user => user.email !== "admin@cospora.com");
+        this.recentUsers = querySnapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+            // Skip admin users
+            if (data.email === "admin@ship.com" || data.role === "admin")
+              return null;
+            // Get full name from firstName and lastName
+            const fullName =
+              `${data.firstName || ""} ${data.lastName || ""}`.trim() ||
+              "Unknown User";
+            let userDate;
+            if (data.createdAt?.toDate) {
+              userDate = data.createdAt.toDate();
+            } else if (data.createdAt) {
+              userDate = new Date(data.createdAt);
+            } else {
+              userDate = new Date();
+            }
+            return {
+              id: doc.id,
+              name: fullName,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              createdAt: userDate,
+              email: data.email,
+              ...data,
+            };
+          })
+          .filter((user) => user !== null)
+          .slice(0, 5);
       } catch (error) {
-        console.error('Error fetching recent users:', error);
+        console.error("Error fetching recent users:", error);
         this.recentUsers = [];
       }
     },

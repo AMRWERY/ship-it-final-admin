@@ -55,10 +55,28 @@ const lowStockProducts = computed(() => productStore.lowStockProducts || []);
 const formatDate = (date) => {
   if (!date) return 'N/A';
   try {
+    // If it's already a Date object
+    if (date instanceof Date) {
+      return new Intl.DateTimeFormat('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      }).format(date);
+    }
+    
+    // If it's a Firestore timestamp
+    if (date.toDate) {
+      return new Intl.DateTimeFormat('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      }).format(date.toDate());
+    }
+    
+    // If it's a string or number
     const dateObj = new Date(date);
     if (isNaN(dateObj.getTime())) return 'N/A';
     
-    // Format the date to be more readable
     return new Intl.DateTimeFormat('en-US', {
       month: 'short',
       day: 'numeric',
