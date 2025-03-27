@@ -102,7 +102,6 @@
   },
   "toast": {
     "successfully_logged_in": "تم تسجيل الدخول بنجاح",
-    "your_account_has_been_successfully_logged_in": "تم تسجيل دخول حسابك بنجاح",
     "successfully_updated": "تم التحديث بنجاح",
     "your_profile_has_been_successfully_updated": "تم تحديث ملفك الشخصي بنجاح",
     "error": "خطأ",

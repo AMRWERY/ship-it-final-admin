@@ -101,8 +101,7 @@
     "edit_category": "Edit Category"
   },
   "toast": {
-    "successfully_logged_in": "successfully logged in",
-    "your_account_has_been_successfully_logged_in": "Your account has been successfully logged in",
+    "successfully_logged_in": "Successfully logged in",
     "successfully_updated": "successfully updated",
     "your_profile_has_been_successfully_updated": "Your profile has been successfully updated",
     "error": "Error",

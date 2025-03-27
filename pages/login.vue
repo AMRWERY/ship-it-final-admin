@@ -62,7 +62,7 @@ const handleLogin = async () => {
   try {
     await authStore.loginUser(email.value, password.value);
     triggerToast({
-      message: t('toast.your_account_has_been_successfully_logged_in'),
+      message: t('toast.successfully_logged_in'),
       type: 'success',
       icon: 'mdi-check-circle',
     });
