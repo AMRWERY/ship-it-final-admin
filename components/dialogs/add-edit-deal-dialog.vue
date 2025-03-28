@@ -117,16 +117,16 @@
                     <div class="grid grid-cols-2 gap-6 px-4 mx-auto mt-3 md:grid-cols-4 lg:px-6">
                       <!-- Image 1 -->
                       <div class="flex flex-col items-center">
-                        <div v-if="imagePreview.image1" class="relative mb-2 w-28 h-28">
-                          <img :src="imagePreview.image1" class="object-cover w-full h-full rounded-lg" />
-                          <button type="button" @click="removeImagePreview('image1')"
+                        <div v-if="imagePreview.imageUrl1" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.imageUrl1" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('imageUrl1')"
                             class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
                             <icon name="material-symbols:close" class="w-4 h-4" />
                           </button>
                         </div>
                         <div v-else
                           class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
-                          <label for="image1"
+                          <label for="imageUrl1"
                             class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
                             <icon name="material-symbols:add-photo-alternate"
                               class="w-10 h-10 text-blue-700 dark:text-blue-400" />
@@ -134,22 +134,22 @@
                             }}</span>
                           </label>
                         </div>
-                        <input id="image1" type="file" class="hidden" accept="image/*"
-                          @change="handleImageUpload($event, 'image1')" />
+                        <input id="imageUrl1" type="file" class="hidden" accept="image/*"
+                          @change="handleImageUpload($event, 'imageUrl1')" />
                       </div>
 
                       <!-- Image 2 -->
                       <div class="flex flex-col items-center">
-                        <div v-if="imagePreview.image2" class="relative mb-2 w-28 h-28">
-                          <img :src="imagePreview.image2" class="object-cover w-full h-full rounded-lg" />
-                          <button type="button" @click="removeImagePreview('image2')"
+                        <div v-if="imagePreview.imageUrl2" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.imageUrl2" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('imageUrl2')"
                             class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
                             <icon name="material-symbols:close" class="w-4 h-4" />
                           </button>
                         </div>
                         <div v-else
                           class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
-                          <label for="image2"
+                          <label for="imageUrl2"
                             class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
                             <icon name="material-symbols:add-photo-alternate"
                               class="w-10 h-10 text-blue-700 dark:text-blue-400" />
@@ -157,22 +157,22 @@
                             }}</span>
                           </label>
                         </div>
-                        <input id="image2" type="file" class="hidden" accept="image/*"
-                          @change="handleImageUpload($event, 'image2')" />
+                        <input id="imageUrl2" type="file" class="hidden" accept="image/*"
+                          @change="handleImageUpload($event, 'imageUrl2')" />
                       </div>
 
                       <!-- Image 3 -->
                       <div class="flex flex-col items-center">
-                        <div v-if="imagePreview.image3" class="relative mb-2 w-28 h-28">
-                          <img :src="imagePreview.image3" class="object-cover w-full h-full rounded-lg" />
-                          <button type="button" @click="removeImagePreview('image3')"
+                        <div v-if="imagePreview.imageUrl3" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.imageUrl3" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('imageUrl3')"
                             class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
                             <icon name="material-symbols:close" class="w-4 h-4" />
                           </button>
                         </div>
                         <div v-else
                           class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
-                          <label for="image3"
+                          <label for="imageUrl3"
                             class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
                             <icon name="material-symbols:add-photo-alternate"
                               class="w-10 h-10 text-blue-700 dark:text-blue-400" />
@@ -180,22 +180,22 @@
                             }}</span>
                           </label>
                         </div>
-                        <input id="image3" type="file" class="hidden" accept="image/*"
-                          @change="handleImageUpload($event, 'image3')" />
+                        <input id="imageUrl3" type="file" class="hidden" accept="image/*"
+                          @change="handleImageUpload($event, 'imageUrl3')" />
                       </div>
 
                       <!-- Image 4 -->
                       <div class="flex flex-col items-center">
-                        <div v-if="imagePreview.image4" class="relative mb-2 w-28 h-28">
-                          <img :src="imagePreview.image4" class="object-cover w-full h-full rounded-lg" />
-                          <button type="button" @click="removeImagePreview('image4')"
+                        <div v-if="imagePreview.imageUrl4" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.imageUrl4" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('imageUrl4')"
                             class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
                             <icon name="material-symbols:close" class="w-4 h-4" />
                           </button>
                         </div>
                         <div v-else
                           class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
-                          <label for="image4"
+                          <label for="imageUrl4"
                             class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
                             <icon name="material-symbols:add-photo-alternate"
                               class="w-10 h-10 text-blue-700 dark:text-blue-400" />
@@ -203,8 +203,8 @@
                             }}</span>
                           </label>
                         </div>
-                        <input id="image4" type="file" class="hidden" accept="image/*"
-                          @change="handleImageUpload($event, 'image4')" />
+                        <input id="imageUrl4" type="file" class="hidden" accept="image/*"
+                          @change="handleImageUpload($event, 'imageUrl4')" />
                       </div>
                     </div>
                   </div>
@@ -292,17 +292,17 @@ const steps = ref([
 const currentStep = ref(0);
 
 const imageFiles = ref({
-  image1: null,
-  image2: null,
-  image3: null,
-  image4: null
+  imageUrl1: null,
+  imageUrl2: null,
+  imageUrl3: null,
+  imageUrl4: null
 });
 
 const imagePreview = ref({
-  image1: '',
-  image2: '',
-  image3: '',
-  image4: ''
+  imageUrl1: '',
+  imageUrl2: '',
+  imageUrl3: '',
+  imageUrl4: ''
 });
 
 // Initialize form data when deal prop changes
@@ -353,10 +353,10 @@ watch(() => props.deal, (newDeal) => {
     };
 
     // Set image previews if available
-    if (newDeal.imageUrl1) imagePreview.value.image1 = newDeal.imageUrl1;
-    if (newDeal.imageUrl2) imagePreview.value.image2 = newDeal.imageUrl2;
-    if (newDeal.imageUrl3) imagePreview.value.image3 = newDeal.imageUrl3;
-    if (newDeal.imageUrl4) imagePreview.value.image4 = newDeal.imageUrl4;
+    if (newDeal.imageUrl1) imagePreview.value.imageUrl1 = newDeal.imageUrl1;
+    if (newDeal.imageUrl2) imagePreview.value.imageUrl2 = newDeal.imageUrl2;
+    if (newDeal.imageUrl3) imagePreview.value.imageUrl3 = newDeal.imageUrl3;
+    if (newDeal.imageUrl4) imagePreview.value.imageUrl4 = newDeal.imageUrl4;
   } else {
     // Reset form data for new deal
     formData.value = {
@@ -375,18 +375,18 @@ watch(() => props.deal, (newDeal) => {
 
     // Reset image previews
     imagePreview.value = {
-      image1: '',
-      image2: '',
-      image3: '',
-      image4: ''
+      imageUrl1: '',
+      imageUrl2: '',
+      imageUrl3: '',
+      imageUrl4: ''
     };
 
     // Reset image files
     imageFiles.value = {
-      image1: null,
-      image2: null,
-      image3: null,
-      image4: null
+      imageUrl1: null,
+      imageUrl2: null,
+      imageUrl3: null,
+      imageUrl4: null
     };
 
     // Reset to first step
@@ -423,20 +423,20 @@ const removeImagePreview = (imageKey) => {
 const handleSubmit = () => {
   // Collect all available image files
   const files = [];
-  if (imageFiles.value.image1) files.push(imageFiles.value.image1);
-  if (imageFiles.value.image2) files.push(imageFiles.value.image2);
-  if (imageFiles.value.image3) files.push(imageFiles.value.image3);
-  if (imageFiles.value.image4) files.push(imageFiles.value.image4);
+  if (imageFiles.value.imageUrl1) files.push(imageFiles.value.imageUrl1);
+  if (imageFiles.value.imageUrl2) files.push(imageFiles.value.imageUrl2);
+  if (imageFiles.value.imageUrl3) files.push(imageFiles.value.imageUrl3);
+  if (imageFiles.value.imageUrl4) files.push(imageFiles.value.imageUrl4);
 
   // Retain existing image URLs if no new file is selected
   const imageUrls = {};
 
   // Keep existing images if editing and no new file was uploaded
   if (props.deal) {
-    if (!imageFiles.value.image1 && props.deal.imageUrl1) imageUrls.imageUrl1 = props.deal.imageUrl1;
-    if (!imageFiles.value.image2 && props.deal.imageUrl2) imageUrls.imageUrl2 = props.deal.imageUrl2;
-    if (!imageFiles.value.image3 && props.deal.imageUrl3) imageUrls.imageUrl3 = props.deal.imageUrl3;
-    if (!imageFiles.value.image4 && props.deal.imageUrl4) imageUrls.imageUrl4 = props.deal.imageUrl4;
+    if (!imageFiles.value.imageUrl1 && props.deal.imageUrl1) imageUrls.imageUrl1 = props.deal.imageUrl1;
+    if (!imageFiles.value.imageUrl2 && props.deal.imageUrl2) imageUrls.imageUrl2 = props.deal.imageUrl2;
+    if (!imageFiles.value.imageUrl3 && props.deal.imageUrl3) imageUrls.imageUrl3 = props.deal.imageUrl3;
+    if (!imageFiles.value.imageUrl4 && props.deal.imageUrl4) imageUrls.imageUrl4 = props.deal.imageUrl4;
   }
 
   // Calculate discounted price if not provided
