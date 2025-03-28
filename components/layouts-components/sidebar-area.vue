@@ -1,56 +1,62 @@
-  <template>
-    <div>
-      <!-- Overlay Component -->
-      <overlay :visible="authStore.isOverlayVisible" />
+<template>
+  <div>
+    <!-- Overlay Component -->
+    <overlay :visible="authStore.isOverlayVisible" />
 
-      <aside
-        class="fixed top-0 z-50 flex h-screen w-[230px] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0"
-        :class="[
-          localeStore.isRTL ? 'right-0' : 'left-0',
-          {
-            'translate-x-0': sidebarStore.isSidebarOpen,
-            '-translate-x-full': !sidebarStore.isSidebarOpen && !localeStore.isRTL,
-            'translate-x-full': !sidebarStore.isSidebarOpen && localeStore.isRTL,
-            'lg:translate-x-0': true
-          }
-        ]" ref="target">
-        <!-- SIDEBAR HEADER -->
-        <div class="flex items-center justify-between gap-3 px-6 py-[1.375rem] lg:py-6.5">
-          <nuxt-link-locale to="/">
-            <p class="text-3xl font-semibold text-white capitalize opacity-100 max-h-7 head">Ship-IT</p>
-          </nuxt-link-locale>
+    <aside
+      class="fixed top-0 z-50 flex flex-col w-64 h-screen overflow-hidden transition-all duration-300 ease-in-out bg-gradient-to-b from-gray-900 to-gray-800 lg:static lg:translate-x-0"
+      :class="[
+        localeStore.isRTL ? 'right-0' : 'left-0',
+        {
+          'translate-x-0 shadow-2xl': sidebarStore.isSidebarOpen,
+          '-translate-x-full': !sidebarStore.isSidebarOpen && !localeStore.isRTL,
+          'translate-x-full': !sidebarStore.isSidebarOpen && localeStore.isRTL,
+        }
+      ]" ref="target">
+      <!-- Sidebar Header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b border-gray-700">
+        <nuxt-link-locale to="/" class="flex items-center">
+          <icon name="material-symbols:local-shipping-outline-sharp" class="w-8 h-8 text-indigo-400 me-2" />
+          <span class="text-xl font-bold tracking-wide text-white">Ship-IT</span>
+        </nuxt-link-locale>
 
-          <button class="block lg:hidden" @click="sidebarStore.isSidebarOpen = false">
-            <icon name="ic:baseline-keyboard-arrow-left" class="fill-current w-5 h-[18px]" />
-          </button>
-        </div>
-        <!-- SIDEBAR HEADER -->
+        <button
+          class="p-1.5 text-gray-400 rounded-lg hover:bg-gray-700 hover:text-white transition-colors lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-600"
+          @click="sidebarStore.isSidebarOpen = false" aria-label="Close sidebar">
+          <icon
+            :name="localeStore.isRTL ? 'material-symbols:arrow-forward-rounded' : 'material-symbols:arrow-back-rounded'"
+            class="w-5 h-5" />
+        </button>
+      </div>
 
-        <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-          <!-- Sidebar Menu -->
-          <nav class="px-4 py-4 mt-5 lg:mt-9 lg:px-6">
-            <template v-for="menuGroup in menuGroups" :key="menuGroup.name">
-              <div>
-                <h3 class="mb-4 text-sm font-medium text-white ms-4">{{ menuGroup.name }}</h3>
-                <ul class="mb-6 flex flex-col gap-1.5">
-                  <sidebar-item v-for="(menuItem, index) in menuGroup.menuItems" :item="menuItem" :key="index"
-                    :index="index" />
-                </ul>
-              </div>
-            </template>
-          </nav>
-          <!-- Sidebar Menu -->
-        </div>
+      <!-- Sidebar Content -->
+      <div class="flex-grow overflow-y-auto">
+        <nav class="px-4 py-6">
+          <template v-for="menuGroup in menuGroups" :key="menuGroup.name">
+            <div class="mb-6">
+              <h3 v-if="menuGroup.name" class="px-4 mb-4 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                {{ menuGroup.name }}
+              </h3>
+              <ul class="space-y-1">
+                <sidebar-item v-for="(menuItem, index) in menuGroup.menuItems" :item="menuItem" :key="index"
+                  :index="index" />
+              </ul>
+            </div>
+          </template>
+        </nav>
+      </div>
 
-        <div class="px-4 pb-6 mt-auto">
-          <nuxt-link role="button" to="" @click="logout"
-            class="block py-2 text-center text-white transition-all duration-300 bg-transparent border-2 border-white rounded-md hover:bg-white hover:text-black">
-            {{ $t('btn.logout') }}
-          </nuxt-link>
-        </div>
-      </aside>
-    </div>
-  </template>
+      <!-- Sidebar Footer -->
+      <div class="px-4 py-5 border-t border-gray-700">
+        <button @click="logout"
+          class="flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <icon name="heroicons:arrow-right-on-rectangle" class="w-5 h-5 me-2" />
+          {{ $t('btn.logout') }}
+        </button>
+      </div>
+    </aside>
+  </div>
+</template>
 
 <script setup>
 const sidebarStore = useSidebarStore()
