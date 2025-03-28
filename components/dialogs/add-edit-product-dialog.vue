@@ -3,7 +3,7 @@
     <!-- Dialog content -->
     <transition name="dialog">
       <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-        <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:bg-black">
+        <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <form @submit.prevent="handleSubmit">
             <!-- Dialog header -->
             <div class="flex items-center justify-between mb-4">

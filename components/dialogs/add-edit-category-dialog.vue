@@ -3,12 +3,14 @@
     <!-- Dialog content -->
     <transition name="dialog">
       <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-        <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:black">
+        <div class="w-full max-w-xl p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <form @submit.prevent="handleSubmit">
             <!-- Dialog header -->
             <div class="flex items-center justify-between mb-6">
-              <h3 class="text-xl font-bold">{{ isEditMode ? $t('form.edit_category') : $t('form.add_category') }}</h3>
-              <button @click="closeDialog" class="text-gray-500 hover:text-gray-700">
+              <h3 class="text-xl font-bold dark:text-white">{{ isEditMode ? $t('form.edit_category') :
+                $t('form.add_category') }}</h3>
+              <button @click="closeDialog"
+                class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
                 <icon name="material-symbols:close" class="w-6 h-6" />
               </button>
             </div>
@@ -30,11 +32,13 @@
                 <div class="md:flex">
                   <div class="w-full">
                     <div
-                      class="relative flex items-center justify-center h-48 bg-gray-100 border-2 border-blue-700 border-dashed border-dotted rounded-lg">
+                      class="relative flex items-center justify-center h-48 bg-gray-100 border-2 border-blue-700 border-dashed border-dotted rounded-lg dark:bg-gray-700 dark:border-blue-500">
                       <div class="absolute">
                         <div class="flex flex-col items-center">
-                          <icon name="material-symbols:add-photo-alternate" class="w-20 h-20 text-blue-700" />
-                          <span class="block font-normal text-gray-400">{{ $t('form.attach_your_files_here') }}</span>
+                          <icon name="material-symbols:add-photo-alternate"
+                            class="w-20 h-20 text-blue-700 dark:text-blue-400" />
+                          <span class="block font-normal text-gray-400 dark:text-gray-300">{{
+                            $t('form.attach_your_files_here') }}</span>
                         </div>
                       </div>
                       <input type="file" class="w-full h-full opacity-0" @change="handleImageUpload">
@@ -44,7 +48,7 @@
               </div>
             </div>
             <div class="flex items-center justify-center mb-4 space-s-6" v-if="previewImage">
-              <div class="p-1 border border-gray-200 rounded-lg">
+              <div class="p-1 border border-gray-200 rounded-lg dark:border-gray-600">
                 <img :src="previewImage" class="object-cover w-full h-32 rounded-lg">
               </div>
             </div>

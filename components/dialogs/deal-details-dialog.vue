@@ -1,10 +1,11 @@
 <template>
   <div>
     <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:black">
+      <div class="w-full max-w-xl p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-bold">{{ $t('dashboard.deal_details') }}</h3>
-          <button @click="closeDialog" class="text-gray-500 hover:text-gray-700">
+          <h3 class="text-xl font-bold dark:text-white">{{ $t('dashboard.deal_details') }}</h3>
+          <button @click="closeDialog"
+            class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
             <icon name="material-symbols:close" class="w-6 h-6" />
           </button>
         </div>
@@ -12,31 +13,33 @@
           <div class="flex items-center gap-4">
             <img :src="deal.imageUrl1" class="object-cover w-24 h-24 rounded-lg" />
             <div>
-              <h4 class="text-lg font-semibold">{{ deal.title }}</h4>
-              <p class="text-sm text-gray-500">{{ deal.brand }}</p>
+              <h4 class="text-lg font-semibold dark:text-white">{{ deal.title }}</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{{ deal.brand }}</p>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
-              <p class="text-sm text-gray-500">{{ $t('dashboard.original_price') }}</p>
-              <p class="text-lg font-semibold">{{ $n(parseFloat(deal.price) || 0, 'currency', currencyLocale) }}</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{{ $t('dashboard.original_price') }}</p>
+              <p class="text-lg font-semibold dark:text-white">{{ $n(parseFloat(deal.price) || 0, 'currency',
+                currencyLocale) }}</p>
             </div>
             <div class="p-3 rounded-lg bg-red-50 dark:bg-red-900/20">
-              <p class="text-sm text-red-500">{{ $t('dashboard.discounted_price') }}</p>
-              <p class="text-lg font-semibold text-red-600">{{ $n(parseFloat(deal.discountedPrice) || 0, 'currency',
+              <p class="text-sm text-red-500 dark:text-red-400">{{ $t('dashboard.discounted_price') }}</p>
+              <p class="text-lg font-semibold text-red-600 dark:text-red-300">{{ $n(parseFloat(deal.discountedPrice) ||
+                0, 'currency',
                 currencyLocale) }}</p>
             </div>
           </div>
           <div class="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-            <p class="text-sm text-blue-500">{{ $t('dashboard.discount') }}</p>
-            <p class="text-lg font-semibold text-blue-600">{{ deal.discount }}%</p>
+            <p class="text-sm text-blue-500 dark:text-blue-400">{{ $t('dashboard.discount') }}</p>
+            <p class="text-lg font-semibold text-blue-600 dark:text-blue-300">{{ deal.discount }}%</p>
           </div>
 
           <!-- Time Period Section -->
           <div class="grid grid-cols-2 gap-4">
             <div class="p-3 rounded-lg bg-purple-50 dark:bg-purple-900/20">
               <div class="flex items-center gap-2 mb-1">
-                <icon name="material-symbols:calendar-today" class="w-5 h-5 text-purple-600" />
+                <icon name="material-symbols:calendar-today" class="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 <p class="text-sm text-purple-600 dark:text-purple-400">{{ $t('dashboard.start_time') }}</p>
               </div>
               <p class="text-lg font-semibold text-purple-700 dark:text-purple-300">
@@ -45,7 +48,7 @@
             </div>
             <div class="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/20">
               <div class="flex items-center gap-2 mb-1">
-                <icon name="material-symbols:calendar-month" class="w-5 h-5 text-indigo-600" />
+                <icon name="material-symbols:calendar-month" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 <p class="text-sm text-indigo-600 dark:text-indigo-400">{{ $t('dashboard.end_time') }}</p>
               </div>
               <p class="text-lg font-semibold text-indigo-700 dark:text-indigo-300">

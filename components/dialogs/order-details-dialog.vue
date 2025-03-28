@@ -2,7 +2,7 @@
   <div>
     <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
       <div
-        class="flex flex-col w-full max-w-4xl bg-white rounded-xl shadow-2xl dark:bg-black max-h-[90vh] overflow-hidden">
+        class="flex flex-col w-full max-w-4xl bg-white rounded-xl shadow-2xl dark:bg-gray-800 max-h-[90vh] overflow-hidden">
         <!-- Header with close button -->
         <div class="flex items-center justify-between p-4 border-b dark:border-gray-700">
           <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-200">

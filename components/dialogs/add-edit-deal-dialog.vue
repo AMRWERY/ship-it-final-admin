@@ -8,7 +8,7 @@
 
         <div
           class="inline-block overflow-hidden align-bottom transition-all transform text-start sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
-          <div class="px-4 pt-5 pb-4 text-center bg-white dark:bg-black sm:p-6 sm:pb-4">
+          <div class="px-4 pt-5 pb-4 text-center bg-white dark:bg-gray-800 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
               <div class="w-full mt-3 text-center sm:mt-0 sm:text-start">
                 <!-- Header with close icon -->
