@@ -15,7 +15,8 @@
         </div>
 
         <!-- Deals Table -->
-        <div class="relative flex flex-col w-full h-full overflow-scroll overflow-y-hidden text-gray-700 bg-white rounded-lg shadow-md bg-clip-border dark:bg-black dark:text-gray-200">
+        <div
+            class="relative flex flex-col w-full h-full overflow-scroll overflow-y-hidden text-gray-700 bg-white rounded-lg shadow-md bg-clip-border dark:bg-black dark:text-gray-200">
             <table class="w-full table-auto text-start min-w-max">
                 <thead>
                     <tr>
@@ -61,13 +62,14 @@
                 <tbody v-if="!hasDeals">
                     <tr>
                         <td colspan="7" class="p-4 text-center">
-                            <p class="text-xl font-semibold text-gray-800 dark:text-white">{{ $t('dashboard.no_deals_found') }}</p>
+                            <p class="text-xl font-semibold text-gray-800 dark:text-white">{{
+                                $t('dashboard.no_deals_found') }}</p>
                         </td>
                     </tr>
                 </tbody>
 
                 <tbody v-else>
-                    <tr v-for="(deal, index) in todayDealStore.paginatedDeals" :key="deal.id" 
+                    <tr v-for="(deal, index) in todayDealStore.paginatedDeals" :key="deal.id"
                         class="border-b hover:bg-slate-50 border-slate-200 dark:hover:bg-slate-600">
                         <td class="p-4">
                             <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">
@@ -90,7 +92,8 @@
                             </p>
                         </td>
                         <td class="p-4">
-                            <span class="px-2 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full dark:bg-red-900/20 dark:text-red-400">
+                            <span
+                                class="px-2 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full dark:bg-red-900/20 dark:text-red-400">
                                 {{ deal.discount }}%
                             </span>
                         </td>
@@ -105,22 +108,21 @@
                             </div>
                         </td>
                         <td class="p-4">
-                            <span class="px-2 py-1 text-sm font-semibold rounded-full"
-                                  :class="getStatusClass(deal)">
+                            <span class="px-2 py-1 text-sm font-semibold rounded-full" :class="getStatusClass(deal)">
                                 {{ getStatusText(deal) }}
                             </span>
                         </td>
                         <td class="p-4">
                             <div class="flex items-center gap-2">
                                 <tooltip :text="$t('tooltip.edit_deal')" position="bottom">
-                                    <button @click="openDealDialog(deal)" 
-                                            class="flex items-center justify-center w-8 h-8 text-blue-500 rounded hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">
+                                    <button @click="openDealDialog(deal)"
+                                        class="flex items-center justify-center w-8 h-8 text-blue-500 rounded hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">
                                         <icon name="material-symbols:edit" class="w-5 h-5" />
                                     </button>
                                 </tooltip>
                                 <tooltip :text="$t('tooltip.delete_deal')" position="bottom">
                                     <button @click="deleteDeal(deal.id)"
-                                            class="flex items-center justify-center w-8 h-8 text-red-500 rounded hover:text-red-600 dark:text-red-400 dark:hover:text-red-500">
+                                        class="flex items-center justify-center w-8 h-8 text-red-500 rounded hover:text-red-600 dark:text-red-400 dark:hover:text-red-500">
                                         <icon name="material-symbols:delete" class="w-5 h-5" />
                                     </button>
                                 </tooltip>
@@ -134,43 +136,36 @@
         <!-- pagination -->
         <div class="flex items-center px-4 py-3" v-if="hasDeals">
             <div class="flex mt-3 space-s-1 ms-auto">
-                <button @click="todayDealStore.changePage(todayDealStore.currentPage - 1)" 
-                        :disabled="todayDealStore.currentPage === 1"
-                        class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+                <button @click="todayDealStore.changePage(todayDealStore.currentPage - 1)"
+                    :disabled="todayDealStore.currentPage === 1"
+                    class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
                     {{ $t('pagination.previous') }}
                 </button>
-                <button v-for="page in todayDealStore.totalPages" 
-                        :key="page" 
-                        @click="todayDealStore.changePage(page)" 
-                        :class="{
-                            'bg-slate-800 text-white': page === todayDealStore.currentPage,
-                            'bg-white text-slate-500': page !== todayDealStore.currentPage,
-                        }"
-                        class="px-3 py-1 text-sm font-normal transition duration-200 border rounded min-w-9 min-h-9 border-slate-200 ease">
+                <button v-for="page in todayDealStore.totalPages" :key="page" @click="todayDealStore.changePage(page)"
+                    :class="{
+                        'bg-slate-800 text-white': page === todayDealStore.currentPage,
+                        'bg-white text-slate-500': page !== todayDealStore.currentPage,
+                    }"
+                    class="px-3 py-1 text-sm font-normal transition duration-200 border rounded min-w-9 min-h-9 border-slate-200 ease">
                     {{ page }}
                 </button>
                 <button @click="todayDealStore.changePage(todayDealStore.currentPage + 1)"
-                        :disabled="todayDealStore.currentPage === todayDealStore.totalPages"
-                        class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
+                    :disabled="todayDealStore.currentPage === todayDealStore.totalPages"
+                    class="px-3 py-1 text-sm font-normal transition duration-200 bg-white border rounded dark:bg-slate-800 dark:text-white min-w-9 min-h-9 text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-400 ease">
                     {{ $t('pagination.next') }}
                 </button>
             </div>
         </div>
 
         <!-- Deal Form Dialog -->
-        <deal-form-dialog 
-            v-if="showDealDialog"
-            :is-open="showDealDialog"
-            :deal="selectedDeal"
-            @close="closeDealDialog"
-            @save="handleDealSave"
-        />
+        <deal-form-dialog v-if="showDealDialog" :is-open="showDealDialog" :deal="selectedDeal" @close="closeDealDialog"
+            @save="handleDealSave" />
 
         <!-- dynamic-toast component -->
         <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">
             <div class="pointer-events-auto">
-                <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType"
-                              :duration="5000" :toastIcon="toastIcon" @toastClosed="showToast = false" />
+                <dynamic-toast v-if="showToast" :message="toastMessage" :toastType="toastType" :duration="5000"
+                    :toastIcon="toastIcon" @toastClosed="showToast = false" />
             </div>
         </div>
     </div>
@@ -293,18 +288,3 @@ useHead({
     titleTemplate: () => t('head.deals'),
 });
 </script>
-
-<style scoped>
-.custom-scroll {
-    overflow-y: scroll;
-}
-
-.custom-scroll::-webkit-scrollbar {
-    display: none;
-}
-
-.custom-scroll {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-</style>
