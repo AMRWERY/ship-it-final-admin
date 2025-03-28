@@ -87,7 +87,14 @@
     "colors": "الألوان",
     "sizes": "المقاسات",
     "upload_file": "رفع ملف",
-    "enter_product_description_ar": "أدخل وصف المنتج عربي"
+    "enter_product_description_ar": "أدخل وصف المنتج عربي",
+    "change_password": "تعديل كلمة المرور",
+    "personal_information": "المعلومات الشخصية",
+    "personal_details_and_password": "المعلومات الشخصية وكلمة المرور",
+    "admin": "المدير",
+    "account_information": "معلومات الحساب",
+    "active": "نشط",
+    "inactive": "غير نشط"
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",
@@ -156,7 +163,8 @@
     "failed_to_save_deal": "فشل حفظ العرض",
     "deal_deleted_successfully": "تم حذف العرض بنجاح",
     "failed_to_delete_deal": "فشل حذف العرض",
-    "please_upload_at_least_one_image": "من فضلك قم برفع صورة على الأقل"
+    "please_upload_at_least_one_image": "من فضلك قم برفع صورة على الأقل",
+    "current_password_required": "كلمة المرور الحالية مطلوبة"
   },
   "breadcrumb": {
     "home": "الرئيسية",
@@ -261,9 +269,9 @@
     "no_orders_found": "لا يوجد طلبات",
     "no_categories_found": "لا توجد فئات",
     "quick_actions": "الإجراءات السريعة",
-    "add_product":"إضافة منتج",
-    "create_order":"إنشاء طلب",
-    "manage_inventory":"إدارة المخزون",
+    "add_product": "إضافة منتج",
+    "create_order": "إنشاء طلب",
+    "manage_inventory": "إدارة المخزون",
     "manage_users": "إدارة المستخدمين",
     "recent_activity": "النشاط الحديث",
     "recent_orders": "الطلبات الحديثة",
@@ -282,8 +290,8 @@
     "top_categories": "الفئات الأكثر شعبية",
     "available_deals": "العروض المتاحة",
     "deal_details": "تفاصيل العرض",
-    "price":"السعر",
-    "all_deals":"كل العروض",
+    "price": "السعر",
+    "all_deals": "كل العروض",
     "title": "العنوان",
     "no_deals_found": "لا يوجد عروض",
     "upcoming": "قادم",

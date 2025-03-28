@@ -87,7 +87,14 @@
     "colors": "Colors",
     "sizes": "Sizes",
     "upload_file": "Upload file",
-    "enter_product_description_ar": "Enter product description Ar"
+    "enter_product_description_ar": "Enter product description Ar",
+    "change_password": "Change Password",
+    "personal_information": "Personal Information",
+    "personal_details_and_password": "Personal details and password",
+    "admin": "Admin",
+    "account_information": "Account Information",
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "btn": {
     "logging": "Logging",
@@ -156,7 +163,8 @@
     "failed_to_save_deal": "Failed to save deal",
     "deal_deleted_successfully": "Deal deleted successfully",
     "failed_to_delete_deal": "Failed to delete deal",
-    "please_upload_at_least_one_image": "Please upload at least one image"
+    "please_upload_at_least_one_image": "Please upload at least one image",
+    "current_password_required": "Current password is required"
   },
   "breadcrumb": {
     "home": "Home",
@@ -261,9 +269,9 @@
     "no_orders_found": "No orders found",
     "no_categories_found": "No categories found",
     "quick_actions": "Quick Actions",
-    "add_product":"Add Product",
-    "create_order":"Create Order",
-    "manage_inventory":"Manage Inventory",
+    "add_product": "Add Product",
+    "create_order": "Create Order",
+    "manage_inventory": "Manage Inventory",
     "manage_users": "Manage Users",
     "recent_activity": "Recent Activity",
     "recent_orders": "Recent Orders",
@@ -282,8 +290,8 @@
     "top_categories": "Top Categories",
     "available_deals": "Available Deals",
     "deal_details": "Deal Details",
-    "price":"Price",
-    "all_deals":"All Deals",
+    "price": "Price",
+    "all_deals": "All Deals",
     "title": "Title",
     "no_deals_found": "No deals found",
     "upcoming": "Upcoming",
