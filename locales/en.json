@@ -291,7 +291,13 @@
     "start_time": "Start time",
     "end_time": "End time",
     "discounted_price": "Discounted Price",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "location": "Location",
+    "current_status": "Current Status",
+    "ordered_items": "Ordered Items",
+    "estimated_delivery": "Estimated Delivery",
+    "total": "Total",
+    "order_summary": "Order Summary"
   },
   "pagination": {
     "previous": "Previous",
@@ -299,5 +305,12 @@
   },
   "error_page": {
     "you_are_all_alone_here": "You are all alone here"
+  },
+  "status": {
+    "shipped": "Shipped",
+    "processing": "Processing",
+    "out_for_delivery": "Out for Delivery",
+    "delivered": "Delivered",
+    "order_placed": "Order Placed"
   }
 }

@@ -291,7 +291,13 @@
     "start_time": "وقت البدء",
     "end_time": "وقت الانتهاء",
     "discounted_price": "السعر بعد الخصم",
-    "unknown": "مجهول"
+    "unknown": "مجهول",
+    "location": "الموقع",
+    "current_status": "الحالة الحالية",
+    "ordered_items": "العناصر المطلوبة",
+    "estimated_delivery": "التوصيل المتوقع",
+    "total": "المجموع",
+    "order_summary": "ملخص الطلب"
   },
   "pagination": {
     "previous": "السابق",
@@ -299,5 +305,12 @@
   },
   "error_page": {
     "you_are_all_alone_here": "أنت وحدك هنا"
+  },
+  "status": {
+    "shipped": "تم الشحن",
+    "processing": "قيد المعالجة",
+    "out_for_delivery": "قيد التوصيل",
+    "delivered": "تم التوصيل",
+    "order_placed": "تم الطلب"
   }
 }
