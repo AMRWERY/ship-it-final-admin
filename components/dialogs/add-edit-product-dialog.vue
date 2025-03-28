@@ -753,36 +753,4 @@ const removeImagePreview = (imageKey) => {
 .dialog-leave-to {
   opacity: 0;
 }
-
-.scrollable-dialog {
-  overflow-y: auto;
-  scrollbar-width: none;
-  /* For Firefox */
-}
-
-.scrollable-dialog::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollable-dialog::-webkit-scrollbar-track {
-  background: #f7fafc;
-  border-radius: 8px;
-}
-
-.scrollable-dialog::-webkit-scrollbar-thumb {
-  background-color: #cbd5e0;
-  border-radius: 8px;
-}
-
-.dark .scrollable-dialog {
-  scrollbar-color: #4b5563 #1f2937;
-}
-
-.dark .scrollable-dialog::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-.dark .scrollable-dialog::-webkit-scrollbar-thumb {
-  background-color: #4b5563;
-}
 </style>

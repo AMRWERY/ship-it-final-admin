@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
-      <div class="flex flex-col w-full max-w-4xl p-3 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+      <div class="flex flex-col w-full max-w-4xl p-3 bg-white rounded-lg shadow-lg dark:black">
         <div v-if="orders?.length" class="flex flex-col gap-6 md:flex-row">
           <!-- Customer Info Section -->
           <div class="flex-1 p-6 rounded-lg shadow-md bg-gray-50 dark:bg-gray-700">
@@ -81,7 +81,7 @@
             <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-300">
               {{ $t('dashboard.order_details') }}
             </h3>
-            <div class="space-y-4 overflow-y-auto max-h-96 custom-scroll">
+            <div class="space-y-4 overflow-y-auto max-h-96 no-scrollbar">
               <div v-for="(item, index) in order.cart || []" :key="item.productId"
                 class="flex items-center pb-4 border-b space-s-4">
                 <span class="text-xl font-semibold text-gray-700 dark:text-gray-200">{{ index + 1 }}.</span>
@@ -210,14 +210,3 @@ const nextStatusId = computed(() => {
   return orderStatus.value[currentStatusIndex.value + 1]?.id;
 });
 </script>
-
-<style scoped>
-.custom-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.custom-scroll {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
-      <div class="flex flex-col w-full max-w-3xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+      <div class="flex flex-col w-full max-w-3xl p-6 bg-white rounded-lg shadow-lg dark:black">
         <div v-if="messages?.length" class="flex flex-col gap-4 md:flex-row ">
           <!-- Customer Info Section -->
           <div class="flex-1 p-6 rounded-lg shadow-md bg-gray-50 dark:bg-gray-700">
@@ -25,7 +25,7 @@
             <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-300">
               {{ $t('head.customer_messages') }}
             </h3>
-            <div class="space-y-4 overflow-y-auto max-h-96 custom-scroll">
+            <div class="space-y-4 overflow-y-auto max-h-96 no-scrollbar">
               <div class="flex-1">
                 <p class="text-base font-normal text-gray-900 dark:text-gray-200">
                   {{ message.message }}
@@ -36,7 +36,7 @@
             <!-- reply message -->
             <div class="mt-4">
               <button @click="toggleReply"
-                class="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded  dark:text-gray-200 dark:border-blue-400">
+                class="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded dark:text-gray-200 dark:border-blue-400">
                 {{ $t('btn.reply') }}
               </button>
               <div v-if="showReply" class="mt-3">
@@ -128,14 +128,3 @@ const sendReply = () => {
     });
 };
 </script>
-
-<style scoped>
-.custom-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.custom-scroll {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>

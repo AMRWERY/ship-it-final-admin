@@ -51,7 +51,7 @@
                 </div>
 
                 <!-- Month-Year Selector -->
-                <div v-else class="overflow-y-auto max-h-[210px] custom-scrollbar">
+                <div v-else class="overflow-y-auto max-h-[210px] no-scrollbar">
                     <!-- Month Selector -->
                     <div class="mb-4">
                         <h4 class="mb-2 font-semibold">Select Month</h4>
@@ -231,15 +231,5 @@ const yearsRange = computed(() => {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
-}
-
-/* Hide scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.custom-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 </style>

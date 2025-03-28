@@ -3,7 +3,7 @@
     <!-- Dialog content -->
     <transition name="dialog">
       <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-        <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:black">
           <form @submit.prevent="handleSubmit">
             <!-- Dialog header -->
             <div class="flex items-center justify-between mb-6">
@@ -44,8 +44,8 @@
               </div>
             </div>
             <div class="flex items-center justify-center mb-4 space-s-6" v-if="previewImage">
-             <div class="p-1 border border-gray-200 rounded-lg">
-               <img :src="previewImage" class="object-cover w-full h-32 rounded-lg">
+              <div class="p-1 border border-gray-200 rounded-lg">
+                <img :src="previewImage" class="object-cover w-full h-32 rounded-lg">
               </div>
             </div>
 
@@ -233,15 +233,5 @@ const resetForm = () => {
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
-}
-
-.scrollable-dialog {
-  overflow-y: auto;
-  scrollbar-width: none;
-  /* For Firefox */
-}
-
-.scrollable-dialog::-webkit-scrollbar {
-  display: none;
 }
 </style>

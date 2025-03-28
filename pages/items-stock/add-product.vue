@@ -389,15 +389,3 @@ useHead({
   titleTemplate: () => t("head.add_product"),
 });
 </script>
-
-<style scoped>
-.step-content {
-  overflow-y: auto;
-  scrollbar-width: none;
-  /* For Firefox */
-}
-
-.step-content::-webkit-scrollbar {
-  display: none;
-}
-</style> 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+      <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg dark:black">
         <div class="flex items-center justify-between mb-6">
           <h3 class="text-xl font-bold">{{ $t('dashboard.deal_details') }}</h3>
           <button @click="closeDialog" class="text-gray-500 hover:text-gray-700">

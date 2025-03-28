@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
   .btn-style {
     @apply text-sm font-medium text-white transition duration-300 bg-black border border-black rounded-md hover:bg-white hover:text-black dark:border-gray-300 dark:hover:border-white;
   }
