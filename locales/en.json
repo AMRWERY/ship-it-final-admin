@@ -85,7 +85,8 @@
     "description": "Description",
     "description_ar": "Description Ar",
     "colors": "Colors",
-    "sizes": "Sizes"
+    "sizes": "Sizes",
+    "upload_file": "Upload file"
   },
   "btn": {
     "logging": "Logging",

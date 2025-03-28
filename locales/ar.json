@@ -85,7 +85,8 @@
     "description": "الوصف",
     "description_ar": "الوصف عربي",
     "colors": "الألوان",
-    "sizes": "المقاسات"
+    "sizes": "المقاسات",
+    "upload_file": "رفع ملف"
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",

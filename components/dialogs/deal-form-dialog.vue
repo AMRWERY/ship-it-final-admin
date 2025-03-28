@@ -109,20 +109,78 @@
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       {{ $t('form.images') }}
                     </label>
-                    <div class="mt-1 space-y-2">
-                      <div v-for="(image, index) in formData.images" :key="index" class="flex items-center gap-2">
-                        <input type="text" v-model="formData.images[index]" placeholder="Image URL"
-                          class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
-                        <button type="button" @click="removeImage(index)"
-                          class="p-2 text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-500">
-                          <icon name="material-symbols:delete" class="w-5 h-5" />
-                        </button>
+                    <div class="grid grid-cols-2 gap-6 px-4 mx-auto mt-3 md:grid-cols-4 lg:px-6">
+                      <!-- Image 1 -->
+                      <div class="flex flex-col items-center">
+                        <div v-if="imagePreview.image1" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.image1" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('image1')" 
+                                  class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
+                            <icon name="material-symbols:close" class="w-4 h-4" />
+                          </button>
+                        </div>
+                        <div v-else class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
+                          <label for="image1" class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
+                            <icon name="material-symbols:add-photo-alternate" class="w-10 h-10 text-blue-700 dark:text-blue-400" />
+                            <span class="font-medium text-gray-600 dark:text-gray-300">{{ $t('form.upload_file') }}</span>
+                          </label>
+                        </div>
+                        <input id="image1" type="file" class="hidden" accept="image/*" @change="handleImageUpload($event, 'image1')" />
                       </div>
-                      <button type="button" @click="addImage"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-indigo-700 bg-indigo-100 rounded-md hover:bg-indigo-200 dark:text-indigo-400 dark:bg-indigo-900/20 dark:hover:bg-indigo-900/30">
-                        <icon name="material-symbols:add" class="w-5 h-5 mr-1" />
-                        {{ $t('btn.add_image') }}
-                      </button>
+
+                      <!-- Image 2 -->
+                      <div class="flex flex-col items-center">
+                        <div v-if="imagePreview.image2" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.image2" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('image2')" 
+                                  class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
+                            <icon name="material-symbols:close" class="w-4 h-4" />
+                          </button>
+                        </div>
+                        <div v-else class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
+                          <label for="image2" class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
+                            <icon name="material-symbols:add-photo-alternate" class="w-10 h-10 text-blue-700 dark:text-blue-400" />
+                            <span class="font-medium text-gray-600 dark:text-gray-300">{{ $t('form.upload_file') }}</span>
+                          </label>
+                        </div>
+                        <input id="image2" type="file" class="hidden" accept="image/*" @change="handleImageUpload($event, 'image2')" />
+                      </div>
+
+                      <!-- Image 3 -->
+                      <div class="flex flex-col items-center">
+                        <div v-if="imagePreview.image3" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.image3" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('image3')" 
+                                  class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
+                            <icon name="material-symbols:close" class="w-4 h-4" />
+                          </button>
+                        </div>
+                        <div v-else class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
+                          <label for="image3" class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
+                            <icon name="material-symbols:add-photo-alternate" class="w-10 h-10 text-blue-700 dark:text-blue-400" />
+                            <span class="font-medium text-gray-600 dark:text-gray-300">{{ $t('form.upload_file') }}</span>
+                          </label>
+                        </div>
+                        <input id="image3" type="file" class="hidden" accept="image/*" @change="handleImageUpload($event, 'image3')" />
+                      </div>
+
+                      <!-- Image 4 -->
+                      <div class="flex flex-col items-center">
+                        <div v-if="imagePreview.image4" class="relative mb-2 w-28 h-28">
+                          <img :src="imagePreview.image4" class="object-cover w-full h-full rounded-lg" />
+                          <button type="button" @click="removeImagePreview('image4')" 
+                                  class="absolute p-1 text-white bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
+                            <icon name="material-symbols:close" class="w-4 h-4" />
+                          </button>
+                        </div>
+                        <div v-else class="p-4 mb-2 border border-indigo-500 rounded-lg shadow-md w-28 h-28 bg-gray-50 dark:bg-gray-800">
+                          <label for="image4" class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
+                            <icon name="material-symbols:add-photo-alternate" class="w-10 h-10 text-blue-700 dark:text-blue-400" />
+                            <span class="font-medium text-gray-600 dark:text-gray-300">{{ $t('form.upload_file') }}</span>
+                          </label>
+                        </div>
+                        <input id="image4" type="file" class="hidden" accept="image/*" @change="handleImageUpload($event, 'image4')" />
+                      </div>
                     </div>
                   </div>
 
@@ -244,6 +302,18 @@ const formData = ref({
 
 const colorsInput = ref('');
 const sizesInput = ref('');
+const imageFiles = ref({
+  image1: null,
+  image2: null,
+  image3: null,
+  image4: null
+});
+const imagePreview = ref({
+  image1: '',
+  image2: '',
+  image3: '',
+  image4: ''
+});
 
 // Initialize form data when deal prop changes
 watch(() => props.deal, (newDeal) => {
@@ -253,7 +323,6 @@ watch(() => props.deal, (newDeal) => {
     let endTimeStr = '';
     // Handle different timestamp formats
     if (newDeal.startTime) {
-      console.log('Start time:', newDeal.startTime);
       if (newDeal.startTime.seconds) {
         const date = new Date(newDeal.startTime.seconds * 1000);
         startTimeStr = date.toISOString().slice(0, 16);
@@ -267,7 +336,6 @@ watch(() => props.deal, (newDeal) => {
     }
 
     if (newDeal.endTime) {
-      console.log('End time:', newDeal.endTime);
       if (newDeal.endTime.seconds) {
         const date = new Date(newDeal.endTime.seconds * 1000);
         endTimeStr = date.toISOString().slice(0, 16);
@@ -295,6 +363,12 @@ watch(() => props.deal, (newDeal) => {
       colors: [...(newDeal.colors || [])],
       sizes: [...(newDeal.sizes || [])]
     };
+    
+    // Set image previews if available
+    if (newDeal.imageUrl1) imagePreview.value.image1 = newDeal.imageUrl1;
+    if (newDeal.imageUrl2) imagePreview.value.image2 = newDeal.imageUrl2;
+    if (newDeal.imageUrl3) imagePreview.value.image3 = newDeal.imageUrl3;
+    if (newDeal.imageUrl4) imagePreview.value.image4 = newDeal.imageUrl4;
   } else {
     // Reset form data for new deal
     formData.value = {
@@ -312,15 +386,47 @@ watch(() => props.deal, (newDeal) => {
       colors: [],
       sizes: []
     };
+    // Reset image previews
+    imagePreview.value = {
+      image1: '',
+      image2: '',
+      image3: '',
+      image4: ''
+    };
+    // Reset image files
+    imageFiles.value = {
+      image1: null,
+      image2: null,
+      image3: null,
+      image4: null
+    };
   }
 }, { immediate: true });
 
-const addImage = () => {
-  formData.value.images.push('');
+// Handle image upload
+const handleImageUpload = (event, imageKey) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  // Store the file for later upload
+  imageFiles.value[imageKey] = file;
+  
+  // Create preview
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    imagePreview.value[imageKey] = e.target.result;
+  };
+  reader.readAsDataURL(file);
 };
 
-const removeImage = (index) => {
-  formData.value.images.splice(index, 1);
+// Remove image preview and clear file input
+const removeImagePreview = (imageKey) => {
+  imagePreview.value[imageKey] = '';
+  imageFiles.value[imageKey] = null;
+  
+  // Reset the file input
+  const fileInput = document.getElementById(imageKey);
+  if (fileInput) fileInput.value = '';
 };
 
 const addColor = () => {
@@ -346,13 +452,37 @@ const removeSize = (index) => {
 };
 
 const handleSubmit = () => {
+  // Collect all available image files
+  const files = [];
+  if (imageFiles.value.image1) files.push(imageFiles.value.image1);
+  if (imageFiles.value.image2) files.push(imageFiles.value.image2);
+  if (imageFiles.value.image3) files.push(imageFiles.value.image3);
+  if (imageFiles.value.image4) files.push(imageFiles.value.image4);
+
+  // Retain existing image URLs if no new file is selected
+  const imageUrls = {};
+  
+  // Keep existing images if editing and no new file was uploaded
+  if (props.deal) {
+    if (!imageFiles.value.image1 && props.deal.imageUrl1) imageUrls.imageUrl1 = props.deal.imageUrl1;
+    if (!imageFiles.value.image2 && props.deal.imageUrl2) imageUrls.imageUrl2 = props.deal.imageUrl2;
+    if (!imageFiles.value.image3 && props.deal.imageUrl3) imageUrls.imageUrl3 = props.deal.imageUrl3;
+    if (!imageFiles.value.image4 && props.deal.imageUrl4) imageUrls.imageUrl4 = props.deal.imageUrl4;
+  }
+
   const dealData = {
     ...formData.value,
+    ...imageUrls, // Include existing image URLs
     startTime: new Date(formData.value.startTime),
     endTime: new Date(formData.value.endTime),
     discountedPrice: formData.value.originalPrice * (1 - formData.value.discount / 100)
   };
 
-  emit('save', dealData);
+  // If we're updating with new files, pass both the dealData and files
+  if (files.length > 0) {
+    emit('save', dealData, files);
+  } else {
+    emit('save', dealData);
+  }
 };
 </script>

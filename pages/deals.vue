@@ -199,22 +199,39 @@ const closeDealDialog = () => {
     selectedDeal.value = null;
 };
 
-const handleDealSave = async (dealData) => {
+const handleDealSave = async (dealData, imageFiles) => {
     try {
         if (selectedDeal.value) {
-            await todayDealStore.updateDeal(selectedDeal.value.id, dealData);
+            // Update existing deal
+            if (imageFiles && imageFiles.length > 0) {
+                // If new images were uploaded
+                await todayDealStore.addNewDeal(dealData, imageFiles);
+            } else {
+                // No new images, just update the deal data
+                await todayDealStore.updateDeal(selectedDeal.value.id, dealData);
+            }
             triggerToast({
                 message: t('toast.deal_updated_successfully'),
                 type: 'success',
                 icon: 'mdi-check-circle',
             });
         } else {
-            await todayDealStore.addDeal(dealData);
-            triggerToast({
-                message: t('toast.deal_added_successfully'),
-                type: 'success',
-                icon: 'mdi-check-circle',
-            });
+            // Add new deal - must have images
+            if (imageFiles && imageFiles.length > 0) {
+                await todayDealStore.addNewDeal(dealData, imageFiles);
+                triggerToast({
+                    message: t('toast.deal_added_successfully'),
+                    type: 'success',
+                    icon: 'mdi-check-circle',
+                });
+            } else {
+                triggerToast({
+                    message: t('toast.please_upload_at_least_one_image'),
+                    type: 'error',
+                    icon: 'mdi-alert-circle',
+                });
+                return; // Don't close dialog
+            }
         }
         closeDealDialog();
         await todayDealStore.fetchDeals();
