@@ -86,7 +86,8 @@
     "description_ar": "الوصف عربي",
     "colors": "الألوان",
     "sizes": "المقاسات",
-    "upload_file": "رفع ملف"
+    "upload_file": "رفع ملف",
+    "enter_product_description_ar": "أدخل وصف المنتج عربي"
   },
   "btn": {
     "logging": "جاري تسجيل الدخول",
@@ -112,7 +113,9 @@
     "add_image": "إضافة صورة",
     "update": "تحديث",
     "cancel": "إلغاء",
-    "add": "إضافة"
+    "add": "إضافة",
+    "previous": "السابق",
+    "next": "التالي"
   },
   "toast": {
     "successfully_logged_in": "تم تسجيل الدخول بنجاح",
@@ -152,7 +155,8 @@
     "deal_updated_successfully": "تم تحديث العرض بنجاح",
     "failed_to_save_deal": "فشل حفظ العرض",
     "deal_deleted_successfully": "تم حذف العرض بنجاح",
-    "failed_to_delete_deal": "فشل حذف العرض"
+    "failed_to_delete_deal": "فشل حذف العرض",
+    "please_upload_at_least_one_image": "من فضلك قم برفع صورة على الأقل"
   },
   "breadcrumb": {
     "home": "الرئيسية",

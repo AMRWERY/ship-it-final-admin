@@ -86,7 +86,8 @@
     "description_ar": "Description Ar",
     "colors": "Colors",
     "sizes": "Sizes",
-    "upload_file": "Upload file"
+    "upload_file": "Upload file",
+    "enter_product_description_ar": "Enter product description Ar"
   },
   "btn": {
     "logging": "Logging",
@@ -112,7 +113,9 @@
     "add_image": "Add Image",
     "update": "Update",
     "cancel": "Cancel",
-    "add": "Add"
+    "add": "Add",
+    "previous": "Previous",
+    "next": "Next"
   },
   "toast": {
     "successfully_logged_in": "Successfully logged in",
@@ -152,7 +155,8 @@
     "deal_updated_successfully": "Deal updated successfully",
     "failed_to_save_deal": "Failed to save deal",
     "deal_deleted_successfully": "Deal deleted successfully",
-    "failed_to_delete_deal": "Failed to delete deal"
+    "failed_to_delete_deal": "Failed to delete deal",
+    "please_upload_at_least_one_image": "Please upload at least one image"
   },
   "breadcrumb": {
     "home": "Home",

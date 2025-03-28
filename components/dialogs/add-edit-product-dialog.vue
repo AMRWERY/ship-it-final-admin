@@ -85,13 +85,13 @@
               <div v-else-if="step === 2">
                 <div class="mb-4">
                   <dynamic-inputs :label="t('form.product_title')" :placeholder="t('form.enter_product_title')"
-                    type="text" name="product_title" :rules="'required'" :required="true" prefixIcon="mdi:tshirt-v"
+                    type="text" :name="t('form.product_title')" :rules="'required'" :required="true" prefixIcon="mdi:tshirt-v"
                     v-model="product.title" />
                 </div>
 
                 <div class="mb-4">
                   <dynamic-inputs :label="t('form.product_title_ar')" :placeholder="t('form.enter_product_title_ar')"
-                    type="text" name="product_title_ar" :rules="'required'" :required="true" prefixIcon="mdi:tshirt-v"
+                    type="text" :name="t('form.product_title_ar')" :rules="'required'" :required="true" prefixIcon="mdi:tshirt-v"
                     v-model="product.titleAr" />
                 </div>
 
@@ -161,7 +161,6 @@
                   </div>
                 </div>
 
-                <!-- don't delete it -->
                 <div class="mb-4">
                   <p class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-100">{{ $t('form.color') }}</p>
                   <div class="grid grid-cols-2 gap-4 ms-2">
@@ -179,25 +178,25 @@
               <div v-else-if="step === 4">
                 <div class="mb-4">
                   <dynamic-inputs :label="t('form.original_price')" :placeholder="t('form.enter_original_price')"
-                    type="text" name="price" prefixIcon="solar:dollar-linear"
+                    type="text" :name="t('form.original_price')" prefixIcon="solar:dollar-linear"
                     @input="(event) => handleInput(event, 'originalPrice')" @blur="() => handleBlur('originalPrice')"
                     v-model="product.originalPrice" />
                 </div>
 
                 <div class="mb-4">
                   <dynamic-inputs :label="t('form.discounted_price')" :placeholder="t('form.enter_discounted_price')"
-                    type="text" name="price" :rules="'required'" :required="true" prefixIcon="solar:dollar-linear"
+                    type="text" :name="t('form.discounted_price')" :rules="'required'" :required="true" prefixIcon="solar:dollar-linear"
                     @input="(event) => handleInput(event, 'discountedPrice')"
                     @blur="() => handleBlur('discountedPrice')" v-model="product.discountedPrice" />
                 </div>
 
                 <div class="mb-4">
                   <dynamic-inputs :label="t('form.discount')" :placeholder="t('form.enter_the_discount_percentage')"
-                    type="text" name="discount" prefixIcon="ri:discount-percent-fill" v-model="product.discount" />
+                    type="text" :name="t('form.discount')" prefixIcon="ri:discount-percent-fill" v-model="product.discount" />
                 </div>
 
                 <div class="mb-4">
-                  <dynamic-inputs :label="t('form.sku')" :placeholder="t('form.enter_sku')" type="text" name="sku"
+                  <dynamic-inputs :label="t('form.sku')" :placeholder="t('form.enter_sku')" type="text" :name="t('form.sku')"
                     :rules="'required'" :required="true" prefixIcon="material-symbols:barcode" v-model="product.sku" />
                 </div>
 

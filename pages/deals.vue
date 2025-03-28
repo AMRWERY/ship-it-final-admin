@@ -157,9 +157,9 @@
             </div>
         </div>
 
-        <!-- Deal Form Dialog -->
-        <deal-form-dialog v-if="showDealDialog" :is-open="showDealDialog" :deal="selectedDeal" @close="closeDealDialog"
-            @save="handleDealSave" />
+        <!-- add-edit-deal-dialog componenet -->
+        <add-edit-deal-dialog v-if="showDealDialog" :is-open="showDealDialog" :deal="selectedDeal"
+            @close="closeDealDialog" @save="handleDealSave" />
 
         <!-- dynamic-toast component -->
         <div class="fixed z-50 pointer-events-none bottom-5 start-5 w-96">

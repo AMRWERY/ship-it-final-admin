@@ -23,14 +23,14 @@
           <template v-if="type === 'textarea'">
             <Field as="textarea" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly"
               v-model="internalValue" :rules="rules"
-              class="w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow ps-9"
+              class="block w-full px-3 py-2 transition duration-300 bg-transparent border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 pe-16 text-slate-700 ease hover:border-slate-300 focus:shadow ps-9"
               rows="4" />
           </template>
 
           <template v-else>
             <Field :type="showPassword ? 'text' : type" :name="name" :placeholder="placeholder" :id="id"
               :readonly="readonly" v-model="internalValue" :rules="rules" :class="[
-                'w-full px-3 py-2 transition duration-300 bg-transparent border rounded-md shadow-sm pe-16 placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow ps-9',
+                'w-full block px-3 py-2 border-gray-300 transition duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 border rounded-md shadow-sm pe-16 placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 ease hover:border-slate-300 focus:shadow ps-9',
                 errors[name] ? 'border-red-600' : 'border-slate-200'
               ]" />
           </template>
