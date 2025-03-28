@@ -275,14 +275,18 @@
     "monthly_revenue": "إيرادات الشهر",
     "statistics": "الإحصائيات",
     "top_categories": "الفئات الأكثر شعبية",
-    "current_deals": "العروض الحالية",
+    "available_deals": "العروض المتاحة",
     "deal_details": "تفاصيل العرض",
     "price":"السعر",
     "all_deals":"كل العروض",
     "title": "العنوان",
     "no_deals_found": "لا يوجد عروض",
     "upcoming": "قادم",
-    "ended": "منتهي"
+    "ended": "منتهي",
+    "start_time": "وقت البدء",
+    "end_time": "وقت الانتهاء",
+    "discounted_price": "السعر بعد الخصم",
+    "unknown": "مجهول"
   },
   "pagination": {
     "previous": "السابق",

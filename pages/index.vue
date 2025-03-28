@@ -131,7 +131,7 @@
 
         <!-- Current Deals -->
         <div class="p-4 bg-white rounded-lg shadow-md dark:bg-black dark:border dark:border-gray-100">
-          <h3 class="mb-4 text-xl font-semibold text-center">{{ $t('dashboard.current_deals') }}</h3>
+          <h3 class="mb-4 text-xl font-semibold text-center">{{ $t('dashboard.available_deals') }}</h3>
           <div class="h-[300px] overflow-y-auto no-scrollbar">
             <ul role="list" class="divide-y divide-gray-100">
               <li v-for="deal in currentDeals" :key="deal.id"
@@ -165,6 +165,7 @@ const checkoutStore = useCheckoutStore();
 const userStore = useUserStore();
 const productStore = useProductsStore();
 const categoryStore = useCategoriesStore();
+const todayDealStore = useTodayDealStore();
 
 const selectedDeal = ref(null);
 
@@ -173,6 +174,7 @@ onMounted(() => {
   userStore.fetchUsers();
   productStore.fetchProducts();
   categoryStore.fetchCategories();
+  todayDealStore.fetchDeals();
 });
 
 const totalCheckouts = computed(() => checkoutStore.getTotalCheckouts);
@@ -191,20 +193,21 @@ const topCategories = computed(() => {
   }));
 });
 
-// Current Deals from products with discounts
+// Current Deals from todayDealStore (all deals)
 const currentDeals = computed(() => {
-  return productStore.products
-    .filter(product => product.discount && product.discount > 0)
+  return todayDealStore.products
     .slice(0, 5)
-    .map(product => ({
-      id: product.id,
-      title: locale.value === 'ar' ? product.titleAr : product.title,
-      discount: product.discount,
-      imageUrl1: product.imageUrl1,
-      price: product.price || product.originalPrice, // Fallback to originalPrice if price is not available
-      discountedPrice: product.discountedPrice,
-      stock: product.stock,
-      brand: locale.value === 'ar' ? product.brandAr : product.brand
+    .map(deal => ({
+      id: deal.id,
+      title: locale.value === 'ar' ? deal.titleAr : deal.title,
+      discount: deal.discount,
+      imageUrl1: deal.imageUrl1,
+      price: deal.price || deal.originalPrice,
+      discountedPrice: deal.discountedPrice,
+      stock: deal.stock,
+      brand: locale.value === 'ar' ? deal.brandAr : deal.brand,
+      startTime: deal.startTime,
+      endTime: deal.endTime,
     }));
 });
 

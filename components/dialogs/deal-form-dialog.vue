@@ -247,21 +247,58 @@ const sizesInput = ref('');
 // Initialize form data when deal prop changes
 watch(() => props.deal, (newDeal) => {
   if (newDeal) {
+    console.log('Deal received in form:', newDeal);
+    
+    // Format the dates for the form
+    let startTimeStr = '';
+    let endTimeStr = '';
+    
+    // Handle different timestamp formats
+    if (newDeal.startTime) {
+      console.log('Start time:', newDeal.startTime);
+      if (newDeal.startTime.seconds) {
+        const date = new Date(newDeal.startTime.seconds * 1000);
+        startTimeStr = date.toISOString().slice(0, 16);
+      } else if (typeof newDeal.startTime.toDate === 'function') {
+        startTimeStr = newDeal.startTime.toDate().toISOString().slice(0, 16);
+      } else if (typeof newDeal.startTime === 'string') {
+        startTimeStr = new Date(newDeal.startTime).toISOString().slice(0, 16);
+      } else if (newDeal.startTime instanceof Date) {
+        startTimeStr = newDeal.startTime.toISOString().slice(0, 16);
+      }
+    }
+    
+    if (newDeal.endTime) {
+      console.log('End time:', newDeal.endTime);
+      if (newDeal.endTime.seconds) {
+        const date = new Date(newDeal.endTime.seconds * 1000);
+        endTimeStr = date.toISOString().slice(0, 16);
+      } else if (typeof newDeal.endTime.toDate === 'function') {
+        endTimeStr = newDeal.endTime.toDate().toISOString().slice(0, 16);
+      } else if (typeof newDeal.endTime === 'string') {
+        endTimeStr = new Date(newDeal.endTime).toISOString().slice(0, 16);
+      } else if (newDeal.endTime instanceof Date) {
+        endTimeStr = newDeal.endTime.toISOString().slice(0, 16);
+      }
+    }
+    
     formData.value = {
       title: newDeal.title || '',
       titleAr: newDeal.titleAr || '',
       brand: newDeal.brand || '',
       brandAr: newDeal.brandAr || '',
       discount: newDeal.discount || 0,
-      originalPrice: newDeal.originalPrice || 0,
-      startTime: newDeal.startTime ? new Date(newDeal.startTime.seconds * 1000).toISOString().slice(0, 16) : '',
-      endTime: newDeal.endTime ? new Date(newDeal.endTime.seconds * 1000).toISOString().slice(0, 16) : '',
+      originalPrice: newDeal.originalPrice || newDeal.price || 0,
+      startTime: startTimeStr,
+      endTime: endTimeStr,
       images: [...(newDeal.images || [])],
       description: newDeal.description || '',
       descriptionAr: newDeal.descriptionAr || '',
       colors: [...(newDeal.colors || [])],
       sizes: [...(newDeal.sizes || [])]
     };
+    
+    console.log('Formatted form data:', formData.value);
   } else {
     // Reset form data for new deal
     formData.value = {
