@@ -297,7 +297,9 @@
     "ordered_items": "العناصر المطلوبة",
     "estimated_delivery": "التوصيل المتوقع",
     "total": "المجموع",
-    "order_summary": "ملخص الطلب"
+    "order_summary": "ملخص الطلب",
+    "customer_info": "معلومات العميل",
+    "message": "الرسالة"
   },
   "pagination": {
     "previous": "السابق",

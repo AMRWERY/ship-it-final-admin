@@ -297,7 +297,9 @@
     "ordered_items": "Ordered Items",
     "estimated_delivery": "Estimated Delivery",
     "total": "Total",
-    "order_summary": "Order Summary"
+    "order_summary": "Order Summary",
+    "customer_info": "Customer Info",
+    "message": "Message"
   },
   "pagination": {
     "previous": "Previous",
